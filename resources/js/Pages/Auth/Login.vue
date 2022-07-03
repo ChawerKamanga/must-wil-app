@@ -36,24 +36,15 @@ const submit = () => {
     </div>
 
     <form @submit.prevent="submit">
-     
-        <!-- Card Container -->
-        <div
-          class="
-            flex flex-col
-            p-6
-            m-3
-            w-full
-            space-y-5
-          "
-        >
-          <div class="flex flex-col items-center space-y-2">
-            <img src="images/must-logo.png" class="w-20" alt="must-logo" />
-            <span class="text-2xl font-bold text-center"
-              >WIL Evaluation System</span
-            >
-          </div>
-          <input
+      <!-- Card Container -->
+      <div class="flex flex-col p-6 m-3 w-full space-y-5">
+        <div class="flex flex-col items-center space-y-2">
+          <img src="images/must-logo.png" class="w-20" alt="must-logo" />
+          <span class="text-2xl font-bold text-center"
+            >WIL Evaluation System</span
+          >
+        </div>
+        <!-- <input
             type="email"
             placeholder="Email"
             class="
@@ -67,45 +58,52 @@ const submit = () => {
               placeholder:text-xs
               focus:border-[#4b73b9] focus:outline-none
             "
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            class="
-              py-3
-              px-4
-              text-left text-black
-              border
-              placeholder:text-left
-              border-gray-300
-              rounded-md
-              placeholder:text-xs
-              focus:border-[#4b73b9] focus:outline-none
-            "
-          />
-          <a
-            href="dashboard.html"
-            class="
-              px-5
-              py-4
-              text-xs
-              transition-all
-              text-center
-              rounded-md
-              text-white
-              bg-gradient-to-r
-              from-[#4b73b9]
-              to-[#213352]
-              hover:bg-gradient-to-l
-              hover:from-[#4b73b9]
-              hover:to-[#213352]
-              hover:text-white
-              duration-500
-            "
-          >
-            Login
-          </a>
-        </div>
+          /> -->
+        <BreezeInput
+          id="email"
+          type="email"
+          placeholder="Email"
+          class="mt-1 block w-full"
+          v-model="form.email"
+          required
+          autofocus
+          autocomplete="email"
+        />
+
+        <BreezeInput
+          id="password"
+          type="password"
+          placeholder="Password"
+          class="mt-1 block w-full"
+          v-model="form.password"
+          required
+          autocomplete="new-password"
+        />
+
+        <BreezeButton
+          :disabled="form.processing"
+          :class="{ 'opacity-25': form.processing }"
+          class="
+            px-5
+            py-4
+            text-xs
+            transition-all
+            text-center
+            rounded-md
+            text-white
+            bg-gradient-to-r
+            from-[#4b73b9]
+            to-[#213352]
+            hover:bg-gradient-to-l
+            hover:from-[#4b73b9]
+            hover:to-[#213352]
+            hover:text-white
+            duration-500
+          "
+        >
+          Login
+        </BreezeButton>
+      </div>
     </form>
   </BreezeGuestLayout>
 </template>
