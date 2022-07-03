@@ -7,7 +7,7 @@ import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
 const form = useForm({
-  fullname: "",
+  name: "",
   email: "",
   password: "",
   password_confirmation: "",
@@ -35,9 +35,9 @@ const submit = () => {
             >WIL Evaluation System</span
           >
         </div>
-        <BreezeLabel for="fullname" value="Fullname" />
+        <BreezeLabel for="name" value="Name" />
         <BreezeInput
-          id="fullname"
+          id="name"
           type="text"
           class="mt-1 block w-full"
           v-model="form.name"
