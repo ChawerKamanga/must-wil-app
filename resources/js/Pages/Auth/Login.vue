@@ -44,21 +44,6 @@ const submit = () => {
             >WIL Evaluation System</span
           >
         </div>
-        <!-- <input
-            type="email"
-            placeholder="Email"
-            class="
-              py-3
-              px-4
-              text-left text-black
-              border
-              placeholder:text-left
-              border-gray-300
-              rounded-md
-              placeholder:text-xs
-              focus:border-[#4b73b9] focus:outline-none
-            "
-          /> -->
         <BreezeInput
           id="email"
           type="email"
