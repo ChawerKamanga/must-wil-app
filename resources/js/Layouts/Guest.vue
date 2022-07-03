@@ -6,7 +6,8 @@ import { Link } from "@inertiajs/inertia-vue3";
   <div
     class="
       min-h-screen
-      flex flex-col
+      flex 
+      justify-center
       sm:justify-center
       items-center
       pt-6
@@ -18,8 +19,11 @@ import { Link } from "@inertiajs/inertia-vue3";
   >
     <div
       class="
-        w-full
+        flex
+        flex-col
+        items-center
         sm:max-w-md
+        rounded-lg
         mt-6
         pr-6
         py-4
