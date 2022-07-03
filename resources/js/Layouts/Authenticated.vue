@@ -1,201 +1,568 @@
-<script setup>
-import { ref } from "vue";
-import BreezeApplicationLogo from "@/Components/ApplicationLogo.vue";
-import BreezeDropdown from "@/Components/Dropdown.vue";
-import BreezeDropdownLink from "@/Components/DropdownLink.vue";
-import BreezeNavLink from "@/Components/NavLink.vue";
-import BreezeResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
-import { Link } from "@inertiajs/inertia-vue3";
-
-const showingNavigationDropdown = ref(false);
-</script>
-
 <template>
-  <div>
-    <div class="min-h-screen bg-gray-100">
-      <nav class="bg-white border-b border-gray-100">
-        <!-- Primary Navigation Menu -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex justify-between h-16">
-            <div class="flex">
-              <!-- Logo -->
-              <div class="shrink-0 flex items-center">
-                <Link :href="route('dashboard')">
-                  <BreezeApplicationLogo class="block h-9 w-auto" />
-                </Link>
-              </div>
-
-              <!-- Navigation Links -->
-              <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <BreezeNavLink
-                  :href="route('dashboard')"
-                  :active="route().current('dashboard')"
-                >
-                  Dashboard
-                </BreezeNavLink>
-              </div>
-            </div>
-
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
-              <!-- Settings Dropdown -->
-              <div class="ml-3 relative">
-                <BreezeDropdown align="right" width="48">
-                  <template #trigger>
-                    <span class="inline-flex rounded-md">
-                      <button
-                        type="button"
-                        class="
-                          inline-flex
-                          items-center
-                          px-3
-                          py-2
-                          border border-transparent
-                          text-sm
-                          leading-4
-                          font-medium
-                          rounded-md
-                          text-gray-500
-                          bg-white
-                          hover:text-gray-700
-                          focus:outline-none
-                          transition
-                          ease-in-out
-                          duration-150
-                        "
-                      >
-                        {{ $page.props.auth.user.name }}
-
-                        <svg
-                          class="ml-2 -mr-0.5 h-4 w-4"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                      </button>
-                    </span>
-                  </template>
-
-                  <template #content>
-                    <BreezeDropdownLink
-                      :href="route('logout')"
-                      method="post"
-                      as="button"
-                    >
-                      Log Out
-                    </BreezeDropdownLink>
-                  </template>
-                </BreezeDropdown>
-              </div>
-            </div>
-
-            <!-- Hamburger -->
-            <div class="-mr-2 flex items-center sm:hidden">
-              <button
-                @click="showingNavigationDropdown = !showingNavigationDropdown"
-                class="
-                  inline-flex
-                  items-center
-                  justify-center
-                  p-2
-                  rounded-md
-                  text-gray-400
-                  hover:text-gray-500 hover:bg-gray-100
-                  focus:outline-none focus:bg-gray-100 focus:text-gray-500
-                  transition
-                  duration-150
-                  ease-in-out
-                "
-              >
-                <svg
-                  class="h-6 w-6"
-                  stroke="currentColor"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    :class="{
-                      hidden: showingNavigationDropdown,
-                      'inline-flex': !showingNavigationDropdown,
-                    }"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                  <path
-                    :class="{
-                      hidden: !showingNavigationDropdown,
-                      'inline-flex': showingNavigationDropdown,
-                    }"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Responsive Navigation Menu -->
-        <div
-          :class="{
-            block: showingNavigationDropdown,
-            hidden: !showingNavigationDropdown,
-          }"
-          class="sm:hidden"
-        >
-          <div class="pt-2 pb-3 space-y-1">
-            <BreezeResponsiveNavLink
-              :href="route('dashboard')"
-              :active="route().current('dashboard')"
-            >
-              Dashboard
-            </BreezeResponsiveNavLink>
-          </div>
-
-          <!-- Responsive Settings Options -->
-          <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
-              <div class="font-medium text-base text-gray-800">
-                {{ $page.props.auth.user.name }}
-              </div>
-              <div class="font-medium text-sm text-gray-500">
-                {{ $page.props.auth.user.email }}
-              </div>
-            </div>
-
-            <div class="mt-3 space-y-1">
-              <BreezeResponsiveNavLink
-                :href="route('logout')"
-                method="post"
-                as="button"
-              >
-                Log Out
-              </BreezeResponsiveNavLink>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <!-- Page Heading -->
-      <header class="bg-white shadow" v-if="$slots.header">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <slot name="header" />
-        </div>
-      </header>
-
-      <!-- Page Content -->
-      <main>
+  <main class="bg-lightGray">
+     <section class="lg:relative hidden lg:block">
+      <div class="flex justify-between">
+        <!-- NavBar -->
         <slot />
-      </main>
-    </div>
-  </div>
+        <!-- Main Content -->
+        <div class="flex flex-col w-10/12 items-center mx-auto space-y-10">
+          <div class="flex w-full space-x-6">
+            <div class="bg-white rounded-xl w-full mt-5 space-y-6">
+              <div class="w-full mt-2 flex flex-col space-y-6">
+                <!-- Dark Blue Banner -->
+                <div
+                  class="relative flex justify-between w-11/12 mx-auto mt-5 bg-darkBlue rounded-lg"
+                >
+                  <!-- Circle Progress Bar -->
+                  <div class="circle-container bg-darkBlue">
+                    <div class="top-semicircle">
+                      <div class="rectangle1"></div>
+                    </div>
+                    <div class="bottom-semicircle">
+                      <div class="rectangle2"></div>
+                    </div>
+                    <div class="inner-circle bg-darkBlue"></div>
+                    <div class="smaller-circle text-white">
+                      <span id="big-percentage">75</span> %
+                    </div>
+                  </div>
+                  <!-- Assessment Progress Text -->
+                  <div class="flex flex-col h-[220px] justify-center">
+                    <div>
+                      <h1 class="text-xl font-bold text-white">
+                        Assessment Progress
+                      </h1>
+                    </div>
+                    <div class="mt-2">
+                      <h1 class="text-lg text-white">68 / 90 students</h1>
+                    </div>
+                  </div>
+                  <!-- Doc img -->
+                  <div class="flex flex-col h-[220px] justify-end p-10">
+                    <img
+                      src="images/docs_img_nobg.png"
+                      class="w-36"
+                      alt="doc image"
+                    />
+                  </div>
+                </div>
+
+                <div class="grid gap-4 lg:grid-cols-3 xl:grid-cols-2 mx-auto w-11/12">
+                  <!-- Organization 1 Stats -->
+                  <div
+                    class="bg-[#F4F4F4] px-5 py-3 rounded-lg flex flex-col"
+                  >
+                    <div class="flex">
+                      <!-- Progress Bar -->
+                      <div class="org-circle-container">
+                        <div class="org-top-semicircle">
+                          <div class="org-rectangle1"></div>
+                        </div>
+                        <div class="org-bottom-semicircle">
+                          <div class="org-rectangle2"></div>
+                        </div>
+                        <div class="org-inner-circle">100%</div>
+                      </div>
+
+                      <!-- Organization Description -->
+                      <div class="flex flex-col w-full ml-4">
+                        <h2 class="">FDH Bank</h2>
+                        <div class="flex justify-between mb-2">
+                          <span class="text-textLightGray text-xs">
+                            Blantyre
+                          </span>
+                          <span class="text-textLightGray text-xs"> 7/7 </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Organization 2 Stats -->
+                  <div
+                    class="bg-[#F4F4F4] px-5 py-3 rounded-lg flex flex-col"
+                  >
+                    <div class="flex">
+                      <!-- Progress Bar -->
+                      <div class="org-circle-container">
+                        <div class="org-top-semicircle">
+                          <div class="org-rectangle1"></div>
+                        </div>
+                        <div class="org-bottom-semicircle">
+                          <div class="org-rectangle2"></div>
+                        </div>
+                        <div class="org-inner-circle">100%</div>
+                      </div>
+
+                      <!-- Organization Description -->
+                      <div class="flex flex-col w-full ml-4">
+                        <h2 class="">MHub</h2>
+                        <div class="flex justify-between mb-2">
+                          <span class="text-textLightGray text-xs"
+                            >Lilongwe</span
+                          >
+                          <span class="text-textLightGray text-xs"> 7/7 </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Organization 3 Stats -->
+                  <div
+                    class="bg-[#F4F4F4] px-5 py-3 rounded-lg flex flex-col"
+                  >
+                    <div class="flex">
+                      <!-- Progress Bar -->
+                      <div class="org-circle-container">
+                        <div class="org-top-semicircle">
+                          <div class="org-rectangle1"></div>
+                        </div>
+                        <div class="org-bottom-semicircle">
+                          <div class="org-rectangle2"></div>
+                        </div>
+                        <div class="org-inner-circle">100%</div>
+                      </div>
+
+                      <!-- Organization Description -->
+                      <div class="flex flex-col w-full ml-4">
+                        <h2 class="">NBS Bank</h2>
+                        <div class="flex justify-between mb-2">
+                          <span class="text-textLightGray text-xs">
+                            Blantyre
+                          </span>
+                          <span class="text-textLightGray text-xs"> 7/7 </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                   <!-- Organization 4 Stats -->
+                   <div
+                   class="bg-[#F4F4F4] px-5 py-3 rounded-lg flex flex-col"
+                 >
+                   <div class="flex">
+                     <!-- Progress Bar -->
+                     <div class="org-circle-container">
+                       <div class="org-top-semicircle">
+                         <div class="org-rectangle1"></div>
+                       </div>
+                       <div class="org-bottom-semicircle">
+                         <div class="org-rectangle2"></div>
+                       </div>
+                       <div class="org-inner-circle">100%</div>
+                     </div>
+
+                     <!-- Organization Description -->
+                     <div class="flex flex-col w-full ml-4">
+                       <h2 class="">EHub</h2>
+                       <div class="flex justify-between mb-2">
+                         <span class="text-textLightGray text-xs">
+                           Mzuzu
+                         </span>
+                         <span class="text-textLightGray text-xs"> 7/7 </span>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+
+                 <!-- Organization 5 Stats -->
+                 <div
+                   class="bg-[#F4F4F4] px-5 py-3 rounded-lg flex flex-col"
+                 >
+                   <div class="flex">
+                     <!-- Progress Bar -->
+                     <div class="org-circle-container">
+                       <div class="org-top-semicircle">
+                         <div class="org-rectangle1"></div>
+                       </div>
+                       <div class="org-bottom-semicircle">
+                         <div class="org-rectangle2"></div>
+                       </div>
+                       <div class="org-inner-circle">100%</div>
+                     </div>
+
+                     <!-- Organization Description -->
+                     <div class="flex flex-col w-full ml-4">
+                       <h2 class="">MANEB</h2>
+                       <div class="flex justify-between mb-2">
+                         <span class="text-textLightGray text-xs">Zomba</span>
+                         <span class="text-textLightGray text-xs"> 7/7 </span>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+
+                 <!-- Organization 6 Stats -->
+                 <div
+                   class="bg-[#F4F4F4] px-5 py-3 rounded-lg flex flex-col"
+                 >
+                   <div class="flex">
+                     <!-- Progress Bar -->
+                     <div class="org-circle-container">
+                       <div class="org-top-semicircle">
+                         <div class="org-rectangle1"></div>
+                       </div>
+                       <div class="org-bottom-semicircle">
+                         <div class="org-rectangle2"></div>
+                       </div>
+                       <div class="org-inner-circle">100%</div>
+                     </div>
+
+                     <!-- Organization Description -->
+                     <div class="flex flex-col w-full ml-4">
+                       <h2 class="">MUST</h2>
+                       <div class="flex justify-between mb-2">
+                         <span class="text-textLightGray text-xs">
+                           Thyolo
+                         </span>
+                         <span class="text-textLightGray text-xs"> 7/7 </span>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                </div>
+
+                <div></div>
+              </div>
+            </div>
+
+            <div class="hidden xl:flex flex-col space-y-8 mt-5">
+              <!-- Row 1 of stats Card -->
+              <div class="flex space-x-6 justify-between">
+                <!-- Stats Card 1-->
+                <div class="bg-white rounded-lg">
+                  <div class="flex flex-col p-5 w-full space-y-4">
+                    <!-- Number with a background -->
+                    <div class="w-16 h-16 bg-[#F5B34C] rounded-md">
+                        <div class="flex justify-center items-center mt-2">
+                          <div class="border border-white w-12 h-12 p-2 flex justify-center items-center">
+                            <span class="text-white font-bold text-3xl">12</span>
+                          </div>
+                        </div>
+                    </div>
+                    <h5 class="text-textLightGray font-semibold">Organizations</h5>
+                    <h6 class="text-gray-900 font-bold text-xl">Total number of organizations allocated</h6>
+                    <span></span>
+                  </div>
+                </div>
+
+                 <!-- Stats Card 2-->
+                 <div class="bg-white rounded-lg">
+                  <div class="flex flex-col p-5 w-full space-y-4">
+                    <!-- Number with a background -->
+                    <div class="w-16 h-16 bg-[#578680] rounded-md">
+                        <div class="flex justify-center items-center mt-2">
+                          <div class="border border-white w-12 h-12 p-2 flex justify-center items-center">
+                            <span class="text-white font-bold text-3xl">3</span>
+                          </div>
+                        </div>
+                    </div>
+                    <h5 class="text-textLightGray font-semibold">Assessments</h5>
+                    <h6 class="text-gray-900 font-bold text-xl">Total number of Assessments Added</h6>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+
+               <!-- Row 2 of stats Card -->
+               <div class="flex space-x-6 justify-between">
+                <!-- Stats Card 1-->
+                <div class="bg-white rounded-lg">
+                  <div class="flex flex-col p-5 w-full space-y-4">
+                    <!-- Number with a background -->
+                    <div class="w-16 h-16 bg-[#4F4F4F] rounded-md">
+                        <div class="flex justify-center items-center mt-2">
+                          <div class="border border-white w-12 h-12 p-2 flex justify-center items-center">
+                            <span class="text-white font-bold text-3xl">8</span>
+                          </div>
+                        </div>
+                    </div>
+                    <h5 class="text-textLightGray font-semibold">Academic Supervisor</h5>
+                    <h6 class="text-gray-900 font-bold text-xl">Total number of Academic Supervisors</h6>
+                    <span></span>
+                  </div>
+                </div>
+
+                 <!-- Stats Card 2-->
+                 <div class="bg-white rounded-lg">
+                  <div class="flex flex-col p-5 w-full space-y-4">
+                    <!-- Number with a background -->
+                    <div class="w-16 h-16 bg-[#BC0000] rounded-md">
+                        <div class="flex justify-center items-center mt-2">
+                          <div class="border border-white w-12 h-12 p-2 flex justify-center items-center">
+                            <span class="text-white font-bold text-2xl">120</span>
+                          </div>
+                        </div>
+                    </div>
+                    <h5 class="text-textLightGray font-semibold">Interns</h5>
+                    <h6 class="text-gray-900 font-bold text-xl">Total number of Interns allocated</h6>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Table Section -->
+          <div class="bg-white rounded-xl w-full">
+            <div class="w-full mt-6 flex flex-col space-y-6">
+              <table class="items-center w-full bg-transparent border-collapse">
+                <thead>
+                  <tr>
+                    <th class="dashboard-th text-left">Organizations</th>
+                    <th class="dashboard-th text-left">Interns</th>
+                    <th class="dashboard-th">Industrial Supervisors</th>
+                    <th class="dashboard-th">Academic Supervisors</th>
+                    <th class="dashboard-th">Internship Status</th>
+                    <th class="dashboard-th text-left">Location</th>
+                    <th class="dashboard-th">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-gray-200">
+                    <th
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                    >
+                      <div class="flex items-center space-x-2">
+                        <div class="rounded-full bg-gray-800">
+                          <img
+                            src="images/fdh_logo-removebg-preview.png"
+                            class="w-10"
+                            alt="logo"
+                          />
+                        </div>
+                        <span class="font-normal">FDH Bank</span>
+                      </div>
+                    </th>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      <div class="flex items-center">
+                        <img
+                          src="images/amina.jpg"
+                          class="w-10 rounded-full"
+                          alt="logo"
+                        />
+                        <img
+                          src="images/bright.jpg"
+                          class="w-10 rounded-full -m-2"
+                          alt="logo"
+                        />
+                        <img
+                          src="images/chisomo.jpg"
+                          class="w-10 rounded-full -m-2"
+                          alt="logo"
+                        />
+                        <img
+                          src="images/grace.jpg"
+                          class="w-10 rounded-full -m-2"
+                          alt="logo"
+                        />
+                      </div>
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      <div class="flex justify-center">Joseph Phiri</div>
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      <div class="flex justify-center">
+                        <img
+                          src="images/pic_1.jpg"
+                          class="w-10 rounded-full"
+                          alt="amina"
+                        />
+                      </div>
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      <div class="flex justify-center">
+                        <div
+                          class="bg-green-100 rounded-lg text-green-800 py-2 text-center w-20"
+                        >
+                          In progress
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      Blantyre
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      <div
+                        class="flex space-x-1 justify-center hover:cursor-pointer"
+                      >
+                        <div class="bg-gray-500 rounded-full w-1 h-1"></div>
+                        <div class="bg-gray-500 rounded-full w-1 h-1"></div>
+                        <div class="bg-gray-500 rounded-full w-1 h-1"></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="border-b border-gray-200">
+                    <th
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                    >
+                      <div class="flex items-center space-x-2">
+                        <div class="rounded-full bg-gray-800">
+                          <img
+                            src="images/mhub.png"
+                            class="w-10"
+                            alt="logo"
+                          />
+                        </div>
+                        <span class="font-normal">MHub Malawi</span>
+                      </div>
+                    </th>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      <div class="flex items-center">
+                        <img
+                          src="images/david.jpg"
+                          class="w-10 rounded-full"
+                          alt="logo"
+                        />
+                        <img
+                          src="images/francis.jpg"
+                          class="w-10 rounded-full -m-2"
+                          alt="logo"
+                        />
+                      </div>
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      <div class="flex justify-center">Anita Mhango</div>
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      <div class="flex justify-center">
+                        <img
+                          src="images/pic_4.jpg"
+                          class="w-10 rounded-full"
+                          alt="amina"
+                        />
+                      </div>
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      <div class="flex justify-center">
+                        <div
+                          class="bg-green-100 rounded-lg text-green-800 py-2 text-center w-20"
+                        >
+                          In progress
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      Lilongwe
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      <div
+                        class="flex space-x-1 justify-center hover:cursor-pointer"
+                      >
+                        <div class="bg-gray-500 rounded-full w-1 h-1"></div>
+                        <div class="bg-gray-500 rounded-full w-1 h-1"></div>
+                        <div class="bg-gray-500 rounded-full w-1 h-1"></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="border-b border-gray-200">
+                    <th
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                    >
+                      <div class="flex items-center space-x-2">
+                        <div class="rounded-full bg-gray-800">
+                          <img
+                            src="images/mzuzu_ehub.png"
+                            class="w-10"
+                            alt="logo"
+                          />
+                        </div>
+                        <span class="font-normal">Mzuzu EHub</span>
+                      </div>
+                    </th>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      <div class="flex items-center">
+                        <img
+                          src="images/hanna.jpg"
+                          class="w-10 rounded-full"
+                          alt="logo"
+                        />
+                        <img
+                          src="images/brian.jpg"
+                          class="w-10 rounded-full -m-2"
+                          alt="logo"
+                        />
+                      </div>
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      <div class="flex justify-center">Betty Kaunda</div>
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      <div class="flex justify-center">
+                        <img
+                          src="images/pic_5.jpg"
+                          class="w-10 rounded-full"
+                          alt="amina"
+                        />
+                      </div>
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      <div class="flex justify-center">
+                        <div
+                          class="bg-green-100 rounded-lg text-green-800 py-2 text-center w-20"
+                        >
+                          In progress
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      Mzuzu
+                    </td>
+                    <td
+                      class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      <div
+                        class="flex space-x-1 justify-center hover:cursor-pointer"
+                      >
+                        <div class="bg-gray-500 rounded-full w-1 h-1"></div>
+                        <div class="bg-gray-500 rounded-full w-1 h-1"></div>
+                        <div class="bg-gray-500 rounded-full w-1 h-1"></div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 </template>
+
+<script setup>
+import { Link } from '@inertiajs/inertia-vue3'
+</script>

@@ -1,9 +1,12 @@
 <template>
   <Authenticated> 
-    <h1 class="text-3xl">Hello World</h1>
+    <Head title="Dashboard" />
+    <DashboardNav />
   </Authenticated>
 </template>
 
 <script setup>
-import Authenticated from "@/Layouts/Authenticated2.vue";
+import Authenticated from "@/Layouts/Authenticated.vue";
+import DashboardNav from "@/Components/DashboardNav.vue";
+import Head from "@inertiajs/inertia-vue3";
 </script>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RolesController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -16,6 +17,13 @@ use Inertia\Inertia;
 |
 */
 
+Route::middleware(['auth'])->group(function () {
+    Route::resource('roles', RolesController::class);
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+});
+
+
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -25,6 +33,5 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
 require __DIR__.'/auth.php';
