@@ -15,7 +15,7 @@
         <slot />
       </svg>
       <span class="menu-text text-gray-300 text-xs group-hover:text-darkBlue"
-        >{{ navName }}</span
+        >{{ itemName }}</span
       >
     </Link>
   </div>
