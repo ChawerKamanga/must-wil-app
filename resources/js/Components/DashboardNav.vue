@@ -7,25 +7,13 @@
           <span class="text-white text-xl font-light">MUST WIL</span>
         </div>
         <!-- Menu Item 1 -->
-        <div class="active-menu-item-wrapper group">
-          <a href="#" class="menu-item-link bg-gray-300">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="menu-icon text-[#344461]"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
+        <ActiveNavItem routeName="dashboard" itemName="Dashboard">
+          <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
               />
-            </svg>
-            <span class="menu-text text-[#344461]">Dashboard</span>
-          </a>
-        </div>
+        </ActiveNavItem>
 
         <div>
           <a
@@ -272,4 +260,5 @@
 
 <script setup>
 import { Head, Link } from "@inertiajs/inertia-vue3";
+import ActiveNavItem from "./ActiveNavItem.vue";
 </script>
