@@ -19,7 +19,7 @@ use Inertia\Inertia;
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('roles', RolesController::class);
-    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 

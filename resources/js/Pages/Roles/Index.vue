@@ -1,9 +1,14 @@
 <template>
-  <div class="">
-    <h2 class="text-4xl">Roles</h2>
-    <p>This is the column</p>
-  </div>
+  <Authenticated>
+    <Head title="Dashboard" />
+    <RolesNav />
+
+   
+  </Authenticated>
 </template>
 
 <script setup>
+import Authenticated from "@/Layouts/Authenticated.vue";
+import RolesNav from "@/Components/RolesNav.vue";
+import Head from "@inertiajs/inertia-vue3";
 </script>
