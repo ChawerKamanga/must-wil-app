@@ -127,7 +127,7 @@
 
         <div class="xl:hidden hidden lg:block">
           <img
-            src="images/pic_3.jpg"
+            src="/images/pic_3.jpg"
             class="w-16 rounded-full"
             alt="profile pic"
           />
@@ -135,7 +135,7 @@
 
         <div class="hidden xl:block w-full">
           <div class="flex space-x-3 text-white px-4">
-            <img src="images/pic_3.jpg" class="w-12" alt="profile pic" />
+            <img src="/images/pic_3.jpg" class="w-12" alt="profile pic" />
             <div class="flex flex-col">
               <h6 class="text-lg">Janet Lusale</h6>
               <span class="text-sm">Accademic Supervisor</span>

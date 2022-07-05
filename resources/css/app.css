@@ -44,6 +44,10 @@
   @apply  border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4;
 }
 
+.form-container {
+  @apply flex lg:flex-row flex-col space-x-10 space-y-10 lg:space-y-0;
+}
+
 /* Hamburger Menu */
 .hamburger {
   cursor: pointer;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRoleRequest;
 use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -40,7 +41,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Roles/Create');
     }
 
     /**
@@ -51,7 +52,14 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required', 'max:100'],
+            'description' => ['required', 'max:200'],
+        ]);
+        
+        Role::create($validated);
+
+        return redirect(route('roles.index'))->with('succcess',  'Role added successfully');
     }
 
     /**
