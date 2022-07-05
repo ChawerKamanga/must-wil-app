@@ -18,7 +18,9 @@
               v-model="search"
               class="search-input"
             />
-            <a href="#" class="px-3 text-gray-500 text-base">Reset</a>
+            <button @click="erase()" class="px-3 text-gray-500 text-base">
+              Reset
+            </button>
           </div>
           <!-- Create button -->
           <div>
@@ -66,7 +68,7 @@
                     {{ role.createdAt }}
                   </td>
                   <td class="text-td relative">
-                   <!-- <div
+                    <!-- <div
                       class="flex space-x-1 justify-center hover:cursor-pointer bg-white absolute top-0 w-28 z-40"
                     >
                       <div class="bg-gray-500 rounded-sm w-full h-8 text-center">
@@ -106,6 +108,10 @@ const props = defineProps({
 });
 
 let search = ref(props.filters.search);
+
+const erase = () => {
+  Inertia.get("/roles");
+};
 
 watch(
   search,
