@@ -14,19 +14,23 @@ class RolesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return Inertia::render('Roles/Index', [
-            'roles' => Role::all()->map(function ($role) {
-                return [
+            'roles' => Role::query()
+                ->when($request->input('search'), function ($query, $search) {
+                    $query->where('name', 'like', "%{$search}%");
+                })
+                ->paginate(10)
+                ->withQueryString()
+                ->through(fn ($role) => [
                     'id' => $role->id,
                     'name' => $role->name,
                     'description' => $role->description,
                     'createdAt' =>  Carbon::parse($role->created_at)->format('l jS \of F Y h:i:s A')
-                ];
-            }),
+                ]),
+            'filters' => $request->only(['search']),
         ]);
-        // return Inertia::render('Roles/Index');
     }
 
     /**

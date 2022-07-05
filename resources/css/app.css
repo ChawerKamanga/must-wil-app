@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  th {
+    @apply border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4;
+  }
+}
+
 .inactive-nav-item {
     @apply transition-all duration-200 hover:bg-gray-300;
   }
@@ -22,6 +28,10 @@
   @apply h-10 w-10 xl:h-6  xl:w-6;
 }
 
+.create-btn {
+  @apply bg-veryDarkBlue text-white py-3 px-4 rounded-md ;
+}
+
 .menu-text {
   @apply text-xs xl:text-base;
 }
@@ -29,6 +39,11 @@
 .search-input {
   @apply py-3 px-4 text-left lg:w-[400px] w-[300px] text-gray-700 border placeholder:text-left border-gray-300 rounded-md placeholder:text-base focus:border-gray-200 focus:outline-none;
 }
+
+.text-td {
+  @apply  border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4;
+}
+
 /* Hamburger Menu */
 .hamburger {
   cursor: pointer;
