@@ -35,6 +35,8 @@
           </div>
         </div>
 
+        
+
         <div class="bg-white rounded-xl w-full">
           <div class="w-full mt-6 flex flex-col space-y-6">
             <table class="items-center w-full bg-transparent border-collapse">
@@ -94,7 +96,7 @@
                         <span class="text-veryDarkBlue">Edit</span>
                       </div>
 
-                      <div class="flex space-x-1">
+                      <div class="flex space-x-1" @click="destroy(role)">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           class="h-4 w-4 text-red-700"
@@ -140,6 +142,12 @@ let search = ref(props.filters.search);
 
 const erase = () => {
   Inertia.get(route("roles.index"));
+};
+
+const destroy = (role) => {
+  if (confirm("Are you sure you want to delete this children?")) {
+    Inertia.delete(route('roles.destroy', role));
+  }
 };
 
 watch(

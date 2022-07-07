@@ -50,16 +50,13 @@ class RolesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRoleRequest $request)
     {
-        $validated = $request->validate([
-            'name' => ['required', 'max:100'],
-            'description' => ['required', 'max:200'],
-        ]);
         
-        Role::create($validated);
+        Role::create($request->validated ());
 
-        return redirect(route('roles.index'))->with('succcess',  'Role added successfully');
+        return redirect(route('roles.index'))
+            ->with('message',  'Role added successfully');
     }
 
     /**
@@ -102,8 +99,9 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        //
+        $role->delete();
+        return back()->with('message', 'Deleted Successfully');
     }
 }

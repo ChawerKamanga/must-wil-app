@@ -2,8 +2,12 @@
   <main class="bg-lightGray">
      <section class="lg:relative hidden lg:block">
       <div class="flex justify-between">
-        <!-- NavBar -->
+        
         <slot />
+         <div v-if="true" class="text-blue-600">
+          {{ $page.props.flash.message }}
+          Message
+        </div>
 
         <!-- Main Content -->
         
