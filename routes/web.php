@@ -18,7 +18,8 @@ use Inertia\Inertia;
 */
 
 Route::middleware(['auth'])->group(function () {
-    Route::resource('roles', RolesController::class);
+    Route::resource('roles', RolesController::class)->except(['edit', 'show']);
+    Route::get('role/{name}', [RolesController::class, 'edit'])->name('roles.edit');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
