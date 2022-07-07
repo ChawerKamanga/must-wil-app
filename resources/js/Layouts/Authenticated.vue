@@ -4,12 +4,6 @@
       <div class="flex justify-between">
         
         <slot />
-         <div v-if="true" class="text-blue-600">
-          {{ $page.props.flash.message }}
-          Message
-        </div>
-
-        <!-- Main Content -->
         
       </div>
     </section>

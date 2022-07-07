@@ -35,7 +35,9 @@
           </div>
         </div>
 
-        
+        <Alert v-if="$page.props.flash.message">
+          {{ $page.props.flash.message }}
+        </Alert>
 
         <div class="bg-white rounded-xl w-full">
           <div class="w-full mt-6 flex flex-col space-y-6">
@@ -132,6 +134,7 @@ import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import debounce from "lodash/debounce";
 import { Head, Link } from "@inertiajs/inertia-vue3";
+import Alert from "@/Components/Alert.vue";
 
 const props = defineProps({
   roles: Object,
@@ -146,7 +149,7 @@ const erase = () => {
 
 const destroy = (role) => {
   if (confirm("Are you sure you want to delete this children?")) {
-    Inertia.delete(route('roles.destroy', role));
+    Inertia.delete(route("roles.destroy", role));
   }
 };
 

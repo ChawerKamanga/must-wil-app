@@ -29,7 +29,7 @@
 }
 
 .create-btn {
-  @apply bg-veryDarkBlue text-white py-3 px-4 rounded-md ;
+  @apply bg-[#466498] text-white py-3 px-4 rounded-md ;
 }
 
 .menu-text {
