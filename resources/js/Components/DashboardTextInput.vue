@@ -1,0 +1,11 @@
+<template>
+  <input
+    type="text"
+    required
+    id="name"
+    class="
+      dashboard-textinput
+    "
+  />
+</template>
+<script></script>
