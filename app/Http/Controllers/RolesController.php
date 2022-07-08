@@ -7,6 +7,7 @@ use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class RolesController extends Controller
 {
@@ -27,6 +28,7 @@ class RolesController extends Controller
                 ->through(fn ($role) => [
                     'id' => $role->id,
                     'name' => $role->name,
+                    'slug' => $role->slug,
                     'description' => $role->description,
                     'createdAt' =>  Carbon::parse($role->created_at)->format('l jS \of F Y h:i:s A')
                 ]),
@@ -52,8 +54,11 @@ class RolesController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-        
-        Role::create($request->validated ());
+        Role::create([
+            'name'        => $request->name,
+            'slug'        => Str::slug($request->name),
+            'description' => $request->description
+        ]);
 
         return redirect(route('roles.index'))
             ->with('message',  'Role added successfully');
@@ -76,9 +81,15 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        //
+        return Inertia::render('Roles/Edit', [
+            'role' => [
+                'id' => $role->id,
+                'name' => $role->name,
+                'description' => $role->description,
+            ],
+        ]);
     }
 
     /**

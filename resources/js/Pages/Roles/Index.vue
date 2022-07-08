@@ -80,7 +80,7 @@
                         hover:cursor-pointer
                       "
                     >
-                      <EditTableRow :href="route('roles.edit', role.name)" />
+                      <EditTableRow :href="route('roles.edit', role.slug)" />
                       <DeleteTableRow @click="destroy(role)" />
                     </div>
                   </td>
@@ -117,7 +117,7 @@ const erase = () => {
 };
 
 const destroy = (role) => {
-  if (confirm("Are you sure you want to delete this children?")) {
+  if (confirm("Are you sure you want to delete this role?")) {
     Inertia.delete(route("roles.destroy", role));
   }
 };
