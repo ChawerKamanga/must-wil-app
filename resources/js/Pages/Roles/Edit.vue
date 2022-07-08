@@ -45,7 +45,7 @@
                     >Role Name<sup class="text-red-500">*</sup></label
                   >
                   
-                  <DashboardTextInput v-model="form.name" />
+                  <DashboardTextInput :value="role.name" v-model="form.name" />
 
                   <div v-if="errors.name" class="text-sm text-red-500">{{ errors.name }}</div>
                 </div>
@@ -55,26 +55,7 @@
                 <label for="description"
                   >Description<sup class="text-red-500">*</sup></label
                 >
-                <textarea
-                  id="description"
-                  v-model="form.description"
-                  required
-                  class="
-                    py-2
-                    px-4
-                    text-left
-                    w-full
-                    text-gray-700
-                    border
-                    placeholder:text-left
-                    border-gray-300
-                    rounded-md
-                    placeholder:text-base
-                    focus:border-gray-200 focus:outline-none
-                  "
-                  cols="30"
-                  rows="10"
-                ></textarea>
+                 <DashboardTextArea v-model="form.description" />
                 <div v-if="errors.description" class="text-sm text-red-500">{{ errors.description }}</div>
               </div>
             </div>
@@ -151,6 +132,7 @@ import { ref } from "vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import { useForm } from "@inertiajs/inertia-vue3";
 import DashboardTextInput from "@/Components/DashboardTextInput.vue";
+import DashboardTextArea from "@/Components/DashboardTextArea.vue";
 
 defineProps({
   errors: Object,

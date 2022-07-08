@@ -81,8 +81,9 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit($id)
     {
+        $role = Role::find($id);
         return Inertia::render('Roles/Edit', [
             'role' => [
                 'id' => $role->id,
