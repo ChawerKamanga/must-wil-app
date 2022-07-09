@@ -59,7 +59,7 @@ class ProgrammesController extends Controller
             'code' => $request->code
         ]);
 
-        return redirect(route('programme.create'))
+        return redirect(route('programmes.create'))
             ->with('message',  'Programme added successfully');
     }
 
@@ -103,8 +103,10 @@ class ProgrammesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Programme $programme)
     {
-        //
+        $programme->delete();
+
+        return redirect()->back()->with('message', 'Programme deleted successfully!');
     }
 }

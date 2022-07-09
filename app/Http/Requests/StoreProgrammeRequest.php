@@ -24,8 +24,8 @@ class StoreProgrammeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:100'],
-            'code' => ['required', 'max:5'],
+            'name' => ['required', 'max:100', 'unique:programmes'],
+            'code' => ['required', 'max:5', 'unique:programmes'],
         ];
     }
 }
