@@ -81,14 +81,15 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        $role = Role::find($id);
         return Inertia::render('Roles/Edit', [
             'role' => [
                 'id' => $role->id,
                 'name' => $role->name,
                 'description' => $role->description,
+                'createdAt' => Carbon::parse($role->created_at)->format('l jS \of F Y h:i:s A'),
+                'updatedAt' => Carbon::parse($role->updated_at)->format('l jS \of F Y h:i:s A')
             ],
         ]);
     }
@@ -100,9 +101,16 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreRoleRequest $request, Role $role)
     {
-        //
+        $role->update([
+            'name'        => $request->name,
+            'slug'        => Str::slug($request->name),
+            'description' => $request->description
+        ]);
+
+        return redirect(route('roles.index'))
+            ->with('message',  'Role updated successfully');
     }
 
     /**

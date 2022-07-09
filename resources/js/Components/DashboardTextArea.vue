@@ -3,17 +3,7 @@
     id="description"
     required
     class="
-      py-2
-      px-4
-      text-left
-      w-full
-      text-gray-700
-      border
-      placeholder:text-left
-      border-gray-300
-      rounded-md
-      placeholder:text-base
-      focus:border-gray-200 focus:outline-none
+      dashboard-textarea 
     "
     cols="30"
     rows="10"

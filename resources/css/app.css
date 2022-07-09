@@ -29,11 +29,24 @@
 }
 
 .create-btn {
-  @apply bg-[#466498] text-white py-3 px-4 rounded-md ;
+  @apply bg-[#466498] text-white py-3 px-4 rounded-md;
+}
+
+.dashboard-textarea {
+  @apply py-2 px-4 text-left w-full text-gray-700 border placeholder:text-left border-gray-300 rounded-md placeholder:text-base
+  focus:border-gray-200 focus:outline-none;
+}
+
+.create-secondaryBtn {
+  @apply bg-none border border-gray-300 text-veryDarkBlue py-2 px-4 rounded-md;
 }
 
 .menu-text {
   @apply text-xs xl:text-base;
+}
+
+.white-card {
+  @apply bg-white p-5 shadow-md border w-[400px] border-gray-200  rounded-lg space-y-2
 }
 
 .search-input {
