@@ -62,7 +62,7 @@
                   </th>
                   <td class="text-td text-center">
                     <span>
-                      {{ programme.code }}
+                      {{ programme.code.toUpperCase() }}
                     </span>
                   </td>
                   <td class="text-td">

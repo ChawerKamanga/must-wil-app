@@ -23,6 +23,7 @@ class RolesController extends Controller
                 ->when($request->input('search'), function ($query, $search) {
                     $query->where('name', 'like', "%{$search}%");
                 })
+                ->orderBy('name')
                 ->paginate(10)
                 ->withQueryString()
                 ->through(fn ($role) => [

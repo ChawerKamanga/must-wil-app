@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProgrammeRequest;
 use App\Models\Programme;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ class ProgrammesController extends Controller
                 ->when($request->input('search'), function ($query, $search) {
                     $query->where('name', 'like', "%{$search}%");
                 })
+                ->orderBy('code')
                 ->paginate(10)
                 ->withQueryString()
                 ->through(fn ($programme) => [
@@ -50,9 +52,15 @@ class ProgrammesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProgrammeRequest $request)
     {
-        //
+        Programme::create([
+            'name' => $request->name,
+            'code' => $request->code
+        ]);
+
+        return redirect(route('programme.create'))
+            ->with('message',  'Programme added successfully');
     }
 
     /**
