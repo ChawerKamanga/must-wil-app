@@ -54,13 +54,13 @@ class RolesController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-        Role::create([
+       Role::create([
             'name'        => $request->name,
             'slug'        => Str::slug($request->name),
             'description' => $request->description
         ]);
 
-        return redirect(route('roles.index'))
+        return redirect(route('roles.create'))
             ->with('message',  'Role added successfully');
     }
 

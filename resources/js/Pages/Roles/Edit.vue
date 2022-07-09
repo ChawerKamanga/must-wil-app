@@ -114,8 +114,6 @@
 import Authenticated from "@/Layouts/Authenticated.vue";
 import RolesNav from "@/Components/RolesNav.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
-import DashboardTextInput from "@/Components/DashboardTextInput.vue";
-import DashboardTextArea from "@/Components/DashboardTextArea.vue";
 
 const props = defineProps({
   errors: Object,
