@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Programme;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
@@ -15,7 +16,7 @@ class ProgrammeSeeder extends Seeder
      */
     public function run()
     {
-        $roles = [
+        $programmes = [
             [
                 'name' => 'Bsc in Business Information Technology',
                 'code' => 'bit',
@@ -48,6 +49,6 @@ class ProgrammeSeeder extends Seeder
             ],
         ];
 
-        Role::insert($roles);
+        Programme::insert($programmes);
     }
 }

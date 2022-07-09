@@ -65,7 +65,7 @@
         
 
         <!-- Menu Item 6 -->
-        <InactiveNavItem routeName="dashboard" itemName="Programs">
+        <InactiveNavItem routeName="programmes.index" itemName="Programmes">
           <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
