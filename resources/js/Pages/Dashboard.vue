@@ -1,7 +1,9 @@
 <template>
   <Authenticated>
     <Head title="Dashboard" />
-    <DashboardNav />
+    <DashboardNav>
+      {{ authUser.name }}
+    </DashboardNav>
 
     <!-- Main Content -->
     <div class="flex flex-col w-10/12 items-center mx-auto space-y-10">
@@ -790,5 +792,8 @@
 <script setup>
 import Authenticated from "@/Layouts/Authenticated.vue";
 import DashboardNav from "@/Components/DashboardNav.vue";
-import {Head, Link} from "@inertiajs/inertia-vue3";
+import {Head, Link, usePage} from "@inertiajs/inertia-vue3";
+
+const authUser = usePage().props.value.auth.user;
+
 </script>
