@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProgrammeRequest;
+use App\Http\Requests\UpdateProgrammeRequest;
 use App\Models\Programme;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -80,9 +81,17 @@ class ProgrammesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Programme $programme)
     {
-        //
+        return Inertia::render('Programme/Edit', [
+            'programme' => [
+                'id' => $programme->id,
+                'name' => $programme->name,
+                'code' => $programme->code,
+                'createdAt' => Carbon::parse($programme->created_at)->format('l jS \of F Y h:i:s A'),
+                'updatedAt' => Carbon::parse($programme->updated_at)->format('l jS \of F Y h:i:s A')
+            ],
+        ]);
     }
 
     /**
@@ -92,9 +101,15 @@ class ProgrammesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProgrammeRequest $request, Programme $programme)
     {
-        //
+        $programme->update([
+            'name' => $request->name,
+            'code' => $request->code
+        ]);
+
+        return redirect(route('programmes.index'))
+            ->with('message',  'Programme updated successfully');
     }
 
     /**
