@@ -25,6 +25,8 @@ return new class extends Migration
             $table->foreignId('role_id')->constrained();
             $table->string('reg_number')->nullable()->unique();
             $table->unsignedTinyInteger('year_of_study')->nullable();
+            $table->string('profile_img_url')->nullable();
+            $table->string('profile_img_name')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

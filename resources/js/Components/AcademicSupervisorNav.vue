@@ -135,7 +135,7 @@
 
         <div class="hidden xl:block w-full">
           <div class="flex space-x-3 text-white px-4">
-            <img src="/images/pic_3.jpg" class="w-12" alt="profile pic" />
+            <img src="/images/male_avataar.png" class="w-12" alt="profile pic" />
             <div class="flex flex-col">
               <h6 class="text-lg"><slot name="username"></slot></h6>
               <span class="text-sm"><slot name="userrole"></slot></span>
