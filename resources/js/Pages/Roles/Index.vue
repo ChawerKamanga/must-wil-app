@@ -11,7 +11,7 @@
       </template>
     </RolesNav>
 
-    <section class="w-full lg:w-11/12 lg:items-center lg:mx-auto space-y-10">
+    <section class="w-full lg:w-10/12 lg:items-center lg:mx-auto space-y-10">
       <div class="container w-full mx-auto px-5 py-5 flex flex-col space-y-10">
         <div>
           <h1 class="text-veryDarkBlue text-3xl font-bold">Roles</h1>

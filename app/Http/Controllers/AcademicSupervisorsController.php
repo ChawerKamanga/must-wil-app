@@ -17,7 +17,7 @@ class AcademicSupervisorsController extends Controller
     public function index(Request $request)
     {
         return Inertia::render('AcademicSupervisor/Index', [
-            'academicSupervisors' => User::query()
+            'academicSupervisors' => User::query()->where('role_id', '=', 2)
                 ->when($request->input('search'), function ($query, $search) {
                     $query->where('name', 'like', "%{$search}%");
                 })
@@ -28,7 +28,10 @@ class AcademicSupervisorsController extends Controller
                     'id' => $academicSupervisor->id,
                     'name' => $academicSupervisor->name,
                     'slug' => $academicSupervisor->slug,
+                    'slug' => $academicSupervisor->slug,
                     'email' => $academicSupervisor->email,
+                    'gender' => $academicSupervisor->gender,
+                    'phoneNumber' => $academicSupervisor->phone_number,
                     'createdAt' =>  Carbon::parse($academicSupervisor->created_at)->format('l jS \of F Y h:i:s A')
                 ]),
             'filters' => $request->only(['search']),
