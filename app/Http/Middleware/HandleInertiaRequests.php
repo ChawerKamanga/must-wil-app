@@ -42,6 +42,9 @@ class HandleInertiaRequests extends Middleware
             'auth.user' => fn () => $request->user()
                 ? $request->user()->only('id', 'name', 'email',)
                 : null,
+            'auth.user.role' => fn () => $request->user()
+                ? Auth::user()->role
+                : null,
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [
                     'location' => $request->url(),

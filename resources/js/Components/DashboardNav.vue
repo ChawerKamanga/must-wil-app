@@ -234,9 +234,11 @@
             <img src="images/pic_3.jpg" class="w-12" alt="profile pic" />
             <div class="flex flex-col">
               <h6 class="text-lg"> 
-                <slot />
+                <slot name="username"></slot>
               </h6>
-              <span class="text-sm">Accademic Supervisor</span>
+              <span class="text-sm">
+                <slot name="userrole"></slot>
+              </span>
             </div>
           </div>
         </div>

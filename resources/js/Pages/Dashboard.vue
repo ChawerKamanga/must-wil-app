@@ -2,7 +2,13 @@
   <Authenticated>
     <Head title="Dashboard" />
     <DashboardNav>
-      {{ authUser.name }}
+      <template v-slot:username>
+        {{ authUser.name }}
+      </template>
+
+       <template v-slot:userrole>
+        {{ authUserRole.name }}
+      </template>
     </DashboardNav>
 
     <!-- Main Content -->
@@ -795,5 +801,6 @@ import DashboardNav from "@/Components/DashboardNav.vue";
 import {Head, Link, usePage} from "@inertiajs/inertia-vue3";
 
 const authUser = usePage().props.value.auth.user;
+const authUserRole = usePage().props.value.auth.user.role;
 
 </script>
