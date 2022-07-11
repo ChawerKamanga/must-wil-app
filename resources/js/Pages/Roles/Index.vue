@@ -1,7 +1,15 @@
 <template>
   <Authenticated>
     <Head title="Roles" />
-    <RolesNav />
+    <RolesNav>
+      <template v-slot:username>
+        {{ authUser.name }}
+      </template>
+
+       <template v-slot:userrole>
+        {{ authUserRole.name }}
+      </template>
+    </RolesNav>
 
     <section class="w-full lg:w-11/12 lg:items-center lg:mx-auto space-y-10">
       <div class="container w-full mx-auto px-5 py-5 flex flex-col space-y-10">
@@ -100,10 +108,13 @@ import RolesNav from "@/Components/RolesNav.vue";
 import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import debounce from "lodash/debounce";
-import { Head, Link } from "@inertiajs/inertia-vue3";
+import { Head, Link, usePage } from "@inertiajs/inertia-vue3";
 import Alert from "@/Components/Alert.vue";
 import DeleteTableRow from "@/Components/DeleteTableRow.vue";
 import EditTableRow from "@/Components/EditTableRow.vue";
+
+const authUser = usePage().props.value.auth.user;
+const authUserRole = usePage().props.value.auth.user.role;
 
 const props = defineProps({
   roles: Object,
