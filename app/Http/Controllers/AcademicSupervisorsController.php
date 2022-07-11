@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAcademicSupRequest;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 class AcademicSupervisorsController extends Controller
 {
     /**
@@ -45,7 +47,7 @@ class AcademicSupervisorsController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('AcademicSupervisor/Create');
     }
 
     /**
@@ -54,9 +56,20 @@ class AcademicSupervisorsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAcademicSupRequest $request)
     {
-        //
+        User::create([
+            'name'        => $request->name,
+            'slug'        => Str::slug($request->name),
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'role_id' => $request->role_id,
+            'gender' => $request->gender,
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect(route('academic-supervisors.create'))
+            ->with('message',  'Academic Supervisors added successfully');
     }
 
     /**
@@ -101,6 +114,11 @@ class AcademicSupervisorsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+
+        $user->delete();
+
+        return redirect(route('academic-supervisors.index'))
+            ->with('message',  'Academic Supervisors deleted successfully');        
     }
 }

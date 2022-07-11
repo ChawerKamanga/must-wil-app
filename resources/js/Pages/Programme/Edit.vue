@@ -1,7 +1,16 @@
 <template>
   <Authenticated>
-    <Head title="Create Programmes" />
-    <ProgrammesNavVue />
+    <Head title="Edit Programmes" />
+     <ProgrammesNav>
+      <template v-slot:username>
+        {{ authUser.name }}
+      </template>
+
+       <template v-slot:userrole>
+        {{ authUserRole.name }}
+      </template>
+    </ProgrammesNav>
+
 
     <section class="w-full lg:w-10/12 lg:items-center m-4 mx-auto">
       <div class="container w-full mx-auto px-5 py-5 flex flex-col space-y-5">
@@ -116,9 +125,12 @@
 </template>
 
 <script setup>
-import ProgrammesNavVue from "@/Components/ProgrammesNav.vue";
+import ProgrammesNav from "@/Components/ProgrammesNav.vue";
 import Authenticated from "@/Layouts/Authenticated.vue";
-import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
+import { Head, Link, useForm, usePage } from "@inertiajs/inertia-vue3";
+
+const authUser = usePage().props.value.auth.user;
+const authUserRole = usePage().props.value.auth.user.role;
 
 const props = defineProps({
   errors: Object,

@@ -35,7 +35,7 @@
             <Link
               :href="route('academic-supervisors.create')"
               class="create-btn hidden lg:block"
-              >Create Role</Link
+              >Add Supervisor</Link
             >
             <a href="organization-create.html" class="create-btn lg:hidden"
               >Create</a
