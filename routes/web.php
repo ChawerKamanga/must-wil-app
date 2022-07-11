@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AcademicSupervisorsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProgrammesController;
 use App\Http\Controllers\RolesController;
@@ -21,6 +22,7 @@ use Inertia\Inertia;
 Route::middleware(['auth'])->group(function () {
     Route::resource('roles', RolesController::class)->except(['edit', 'show']);
     Route::resource('programmes', ProgrammesController::class)->except(['edit', 'show']);
+    Route::resource('academic-supervisors', AcademicSupervisorsController::class)->except(['edit', 'show']);
     Route::get('programmes/edit/{programme:code}', [ProgrammesController::class, 'edit'])->name('programmes.edit');
     Route::get('roles/edit/{role:slug}', [RolesController::class, 'edit'])->name('roles.edit');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
