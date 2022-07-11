@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules;
 
-class StoreAcademicSupRequest extends FormRequest
+class UpdateAcademicSupervisor extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class StoreAcademicSupRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -26,7 +26,7 @@ class StoreAcademicSupRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:100'],
-            'email' => ['required', 'max:50', 'email', 'unique:users'],
+            'email' => ['required', 'max:50', 'email'],
             'phone_number' => ['required', 'max:20'],
             'gender' => ['required', 'max:1'],
             'role_id' => ['required', 'numeric', 'min:1', 'max:4'],

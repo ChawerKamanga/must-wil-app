@@ -72,16 +72,6 @@ class AcademicSupervisorsController extends Controller
             ->with('message',  'Academic Supervisors added successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -89,9 +79,17 @@ class AcademicSupervisorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $academicSupervisor = User::where('slug', $slug)->first();
+        return Inertia::render('AcademicSupervisor/Edit', [
+            'academicSupervisor' => [
+                'id' => $academicSupervisor->id,
+                'name' => $academicSupervisor->name,
+                'email' => $academicSupervisor->email,
+                'phone_number' => $academicSupervisor->phone_number,
+            ],
+        ]);
     }
 
     /**
