@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAcademicSupRequest;
+use App\Http\Requests\UpdateAcademicSupervisor;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -99,9 +100,22 @@ class AcademicSupervisorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateAcademicSupervisor $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        $user->update([
+            'name'        => $request->name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'role_id' => $request->role_id,
+            'gender' => $request->gender,
+            'password' => Hash::make($request->password)
+        ]);
+        
+
+        return redirect(route('academic-supervisors.index'))
+            ->with('message',  'Academic Supervisor updated successfully');        
     }
 
     /**

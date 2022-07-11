@@ -24,7 +24,7 @@
         <div
           class="flex lg:flex-row flex-col space-x-10 space-y-10 lg:space-y-0"
         >
-          <form @submit.prevent="submit" method="post" class="space-y-7">
+          <form @submit.prevent="update" method="post" class="space-y-7">
             <div class="flex space-x-7">
               <div
                 class="
@@ -203,7 +203,7 @@
               </div>
             </div>
             <div class="flex space-x-3">
-              <button class="create-btn" type="submit">Create</button>
+              <button class="create-btn" type="submit">Update</button>
               <Link
                 :href="route('academic-supervisors.index')"
                 class="create-secondaryBtn"
@@ -220,6 +220,7 @@
 <script setup>
 import Authenticated from "@/Layouts/Authenticated.vue";
 import AcademicSupervisorNav from "@/Components/AcademicSupervisorNav.vue";
+import { ref } from "vue";
 import { Head, Link, usePage } from "@inertiajs/inertia-vue3";
 import Alert from "@/Components/Alert.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
@@ -229,7 +230,7 @@ const authUserRole = usePage().props.value.auth.user.role;
 
 const props = defineProps({
   errors: Object,
-  academicSupervisor: object
+  academicSupervisor: Object
 });
 
 let form = useForm({
@@ -241,7 +242,7 @@ let form = useForm({
   role_id: 2,
 });
 
-let submit = () => {
-  form.post(route("academic-supervisors.store"));
+let update = () => {
+  form.put(route("academic-supervisors.update", props.academicSupervisor.id));
 };
 </script>
