@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RegionsSeeder extends Seeder
+class DistrictSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,29 +16,33 @@ class RegionsSeeder extends Seeder
      */
     public function run()
     {
-        $regions = [
+         $districts = [
             [
-                'name' => 'Northern Region',
+                'name' => 'Mzuzu',
+                'region_id' => 1,
                 'updated_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
             ],
             [
-                'name' => 'Central Region',
+                'name' => 'Blantyre',
+                'region_id' => 3,
                 'updated_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
             ],
             [
-                'name' => 'Southern Supervisor',
+                'name' => 'Lilongwe',
+                'region_id' => 2,
                 'updated_at' => Carbon::now(),
-                'created_at' => Carbon::now()
+                'created_at' => Carbon::now(),
             ],
             [
-                'name' => 'Eastern Region',
+                'name' => 'Zomba',
+                'region_id' => 4,
                 'updated_at' => Carbon::now(),
-                'created_at' => Carbon::now()
-            ]
+                'created_at' => Carbon::now(),
+            ],
         ];
 
-        District::insert($regions);
+        District::insert($districts);
     }
 }

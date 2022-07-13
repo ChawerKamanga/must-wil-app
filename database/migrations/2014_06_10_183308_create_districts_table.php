@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('districts', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->foreignId('region_id')->constrained();
             $table->timestamps();
         });
     }
