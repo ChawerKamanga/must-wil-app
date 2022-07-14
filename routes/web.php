@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AcademicSupervisorsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ProgrammesController;
 use App\Http\Controllers\RolesController;
 use Illuminate\Foundation\Application;
@@ -22,8 +23,8 @@ use Inertia\Inertia;
 Route::middleware(['auth'])->group(function () {
     Route::resource('roles', RolesController::class)->except(['edit', 'show']);
     Route::get('roles/edit/{role:slug}', [RolesController::class, 'edit'])->name('roles.edit');
-    Route::resource('organizations', RolesController::class)->except(['edit', 'show']);
-    Route::get('roles/edit/{organizations:slug}', [RolesController::class, 'edit'])->name('organizations.edit');
+    Route::resource('organizations', OrganizationController::class)->except(['edit', 'show']);
+    Route::get('organizations/edit/{organization:slug}', [RolesController::class, 'edit'])->name('organizations.edit');
     Route::resource('programmes', ProgrammesController::class)->except(['edit', 'show']);
     Route::get('programmes/edit/{programme:code}', [ProgrammesController::class, 'edit'])->name('programmes.edit');
     Route::resource('academic-supervisors', AcademicSupervisorsController::class)->except(['edit', 'show']);
