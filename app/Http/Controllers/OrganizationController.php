@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Organization;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class OrganizationController extends Controller
 {
@@ -11,9 +14,24 @@ class OrganizationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return Inertia::render('Organization/Index', [
+            'programmes' => Organization::query()
+                ->when($request->input('search'), function ($query, $search) {
+                    $query->where('name', 'like', "%{$search}%");
+                })
+                ->orderBy('name')
+                ->paginate(10)
+                ->withQueryString()
+                ->through(fn ($organization) => [
+                    'id' => $organization->id,
+                    'name' => $organization->name,
+                    'district' => $organization->district_id,
+                    'createdAt' =>  Carbon::parse($organization->created_at)->format('l jS \of F Y h:i:s A')
+                ]),
+            'filters' => $request->only(['search']),
+        ]);   
     }
 
     /**

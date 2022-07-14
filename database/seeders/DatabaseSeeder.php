@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ProgrammeSeeder::class,
             RegionSeeder::class,
-            DistrictSeeder::class
+            DistrictSeeder::class,
+            OrganizationSeeder::class
         ]);
     }
 }
