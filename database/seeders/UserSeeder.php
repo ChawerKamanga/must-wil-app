@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         $users = [
+            // Academic Supervisor
             [
                 'name' => 'Menard Phiri',
                 'slug' => 'menard-phiri',
@@ -63,6 +64,7 @@ class UserSeeder extends Seeder
                 'updated_at' => Carbon::now(),
                 'created_at' => Carbon::now()
             ],
+            // Admin
             [
                 'name' => 'Chawer Kamanga',
                 'email' => 'ckamanga@must.ac.mw',
@@ -73,7 +75,38 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('abcd1234.'),
                 'updated_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
+            ],
+            // Intern
+            [
+                'name' => 'Chawanangwa Kamanga',
+                'email' => 'bit-023-19@must.ac.mw',
+                'slug' => 'chawanangwa-kamanga',
+                'phone_number' => '+265 998 400 111',
+                'gender' => 'M',
+                'role_id' => 4,
+                'program_id' => 1,
+                'year_of_study' => 3,
+                'reg_number' => 'BIT/023/19',
+                'password' => Hash::make('abcd1234.'),
+                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now(),
+            ],
+            // Industrial Supervisor
+            [
+                'name' => 'Chawanangwa Kamanga',
+                'email' => 'bit-023-19@must.ac.mw',
+                'slug' => 'chawanangwa-kamanga',
+                'phone_number' => '+265 998 400 111',
+                'gender' => 'M',
+                'role_id' => 4,
+                'program_id' => 1,
+                'year_of_study' => 3,
+                'reg_number' => 'BIT/023/19',
+                'password' => Hash::make('abcd1234.'),
+                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now(),
             ]
+        
         ];
 
         DB::table('users')->insert($users);
