@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Organization::class);
     }
+
+    public function programme()
+    {
+        return $this->belongsTo(Programme::class);
+    }
 }

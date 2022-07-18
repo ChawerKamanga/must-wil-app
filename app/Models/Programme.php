@@ -9,4 +9,9 @@ class Programme extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function users()
+    {
+        $this->hasMany(User::class);
+    }
 }

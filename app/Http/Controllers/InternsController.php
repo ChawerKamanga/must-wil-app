@@ -38,7 +38,7 @@ class InternsController extends Controller
                     'gender' => $intern->gender,
                     'organization' => $this->checkOrg($intern->organization),
                     'phoneNumber' => $intern->phone_number,
-                    'createdAt' =>  Carbon::parse($intern->created_at)->format('l jS \of F Y h:i:s A')
+                    'programme' => $intern->programme->name,
                 ]),
             'filters' => $request->only(['search']),
         ]);

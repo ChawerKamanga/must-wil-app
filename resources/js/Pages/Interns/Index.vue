@@ -50,7 +50,7 @@
                   <th class="dashboard-th text-left">Organization</th>
                   <th class="dashboard-th text-left">Gender</th>
                   <th class="dashboard-th text-left">Phone Number</th>
-                  <th class="dashboard-th text-left">Created At</th>
+                  <th class="dashboard-th text-left">Programme</th>
                   <th class="dashboard-th">Actions</th>
                 </tr>
               </thead>
@@ -89,7 +89,7 @@
                     </span>
                   </td>
                   <td class="text-td">
-                    {{ intern.createdAt }}
+                    {{ intern.programme }}
                   </td>
                   <td class="text-td relative">
                     <div

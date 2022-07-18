@@ -24,7 +24,7 @@
         </InactiveNavItem>
 
         <!-- Menu Item 2 -->
-        <InactiveNavItem routeName="dashboard" itemName="Organization">
+        <InactiveNavItem routeName="organizations.index" itemName="Organization">
            <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
