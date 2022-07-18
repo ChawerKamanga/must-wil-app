@@ -3,6 +3,7 @@
 use App\Http\Controllers\AcademicSupervisorsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndustrialSupervisorController;
+use App\Http\Controllers\InternsController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ProgrammesController;
 use App\Http\Controllers\RolesController;
@@ -30,6 +31,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('programmes/edit/{programme:code}', [ProgrammesController::class, 'edit'])->name('programmes.edit');
     Route::resource('industrial-supervisors', IndustrialSupervisorController::class)->except(['edit', 'show']);
     Route::get('industrial-supervisors/edit/{industrial_supervisors:slug}', [IndustrialSupervisorController::class, 'edit'])->name('industrial-supervisors.edit');
+    Route::resource('interns', InternsController::class)->except(['edit', 'show']);
+    Route::get('interns/edit/{interns:slug}', [InternsController::class, 'edit'])->name('interns.edit');
     Route::resource('academic-supervisors', AcademicSupervisorsController::class)->except(['edit', 'show']);
     Route::get('academic-supervisors/edit/{academic_supervisors:slug}', [AcademicSupervisorsController::class, 'edit'])->name('academic-supervisors.edit');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

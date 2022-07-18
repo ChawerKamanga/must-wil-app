@@ -36,7 +36,7 @@
         </InactiveNavItem>
 
         <!-- Menu Item 3 -->
-        <InactiveNavItem routeName="dashboard" itemName="Interns">
+        <InactiveNavItem routeName="interns.index" itemName="Interns">
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
