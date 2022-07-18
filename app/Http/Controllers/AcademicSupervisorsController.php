@@ -31,7 +31,6 @@ class AcademicSupervisorsController extends Controller
                     'id' => $academicSupervisor->id,
                     'name' => $academicSupervisor->name,
                     'slug' => $academicSupervisor->slug,
-                    'slug' => $academicSupervisor->slug,
                     'email' => $academicSupervisor->email,
                     'gender' => $academicSupervisor->gender,
                     'phoneNumber' => $academicSupervisor->phone_number,

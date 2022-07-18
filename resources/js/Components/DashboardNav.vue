@@ -74,28 +74,13 @@
         </div>
 
         <!-- Menu Item 4 -->
-        <div>
-          <a href="#" class="menu-item-link group inactive-nav-item">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="menu-icon text-gray-300 group-hover:text-darkBlue"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-              />
-            </svg>
-            <span
-              class="menu-text text-gray-300 text-xs group-hover:text-darkBlue"
-              >Ind. Supervisors</span
-            >
-          </a>
-        </div>
+          <InactiveNavItem routeName="industrial-supervisors.index" itemName="Ind. Supervisors">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+          />
+        </InactiveNavItem>
 
         <!-- Menu Item 5 -->
         <InactiveNavItem routeName="academic-supervisors.index" itemName="Acad. Supervisors">

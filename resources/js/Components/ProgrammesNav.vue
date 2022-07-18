@@ -42,7 +42,7 @@
         </InactiveNavItem>
 
         <!-- Menu Item 4 -->
-        <InactiveNavItem routeName="dashboard" itemName="Ind. Supervisors">
+        <InactiveNavItem routeName="industrial-supervisors.index" itemName="Ind. Supervisors">
           <path
                 stroke-linecap="round"
                 stroke-linejoin="round"

@@ -1,12 +1,12 @@
 <template>
   <Authenticated>
-    <Head title="organizations" />
-    <OrganizationNav />
+    <Head title="Industrial Supervisors" />
+    <IndustrialSupervisorNav />
 
-    <section class="w-full lg:w-10/12 lg:items-center lg:mx-auto space-y-10">
+     <section class="w-full lg:w-10/12 lg:items-center lg:mx-auto space-y-10">
       <div class="container w-full mx-auto px-5 py-5 flex flex-col space-y-10">
         <div>
-          <h1 class="text-veryDarkBlue text-3xl font-bold">Organizations</h1>
+          <h1 class="text-veryDarkBlue text-3xl font-bold">industrial Supervisors</h1>
         </div>
 
         <div class="flex justify-between items-center my-4">
@@ -25,9 +25,9 @@
           <!-- Create button -->
           <div>
             <Link
-              :href="route('organizations.create')"
+              :href="route('industrial-supervisors.create')"
               class="create-btn hidden lg:block"
-              >Create organization</Link
+              >Add Supervisor</Link
             >
             <a href="organization-create.html" class="create-btn lg:hidden"
               >Create</a
@@ -45,31 +45,51 @@
               <thead>
                 <tr>
                   <th class="dashboard-th text-left">Index</th>
-                  <th class="dashboard-th text-left">Organization Name</th>
-                  <th class="dashboard-th text-left">District of Origin</th>
+                  <th class="dashboard-th text-left">Name</th>
+                  <th class="dashboard-th text-left">Email</th>
+                  <th class="dashboard-th text-left">Organization</th>
+                  <th class="dashboard-th text-left">Gender</th>
+                  <th class="dashboard-th text-left">Phone Number</th>
                   <th class="dashboard-th text-left">Created At</th>
                   <th class="dashboard-th">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <tr
-                  v-for="(organization, index) in organizations.data"
-                  :key="organization.id"
+                  v-for="(industrialSupervisor, index) in industrialSupervisors.data"
+                  :key="industrialSupervisor.id"
                   class="border-b border-gray-200"
                 >
                   <th class="text-left">
                     <span class="font-normal">{{ index + 1 }}</span>
                   </th>
-                  <td class="text-td text-left">
+                  <td class="text-td">
+                    <span>{{ industrialSupervisor.name }}</span>
+                  </td>
+                  <td class="text-td">
                     <span>
-                      {{ organization.name }}
+                      {{ industrialSupervisor.email }}
                     </span>
                   </td>
                   <td class="text-td">
-                    <span>{{ organization.district }}</span>
+                    <span>
+                      {{ industrialSupervisor.organization }}
+                    </span>
                   </td>
                   <td class="text-td">
-                    {{ organization.createdAt }}
+                    <span v-if="industrialSupervisor.gender == 'M'">
+                      Male
+                    </span>
+                     <span v-else>
+                      Female
+                    </span>
+                  </td><td class="text-td">
+                    <span>
+                      {{ industrialSupervisor.phoneNumber }}
+                    </span>
+                  </td>
+                  <td class="text-td">
+                    {{ industrialSupervisor.createdAt }}
                   </td>
                   <td class="text-td relative">
                     <div
@@ -80,8 +100,8 @@
                         hover:cursor-pointer
                       "
                     >
-                      <EditTableRow :href="route('organizations.edit', organization.slug)" />
-                      <DeleteTableRow @click="destroy(organization)" />
+                      <EditTableRow :href="route('industrial-supervisors.edit', industrialSupervisor.slug)" />
+                      <DeleteTableRow @click="destroy(industrialSupervisor)" />
                     </div>
                   </td>
                 </tr>
@@ -96,7 +116,7 @@
 
 <script setup>
 import Authenticated from "@/Layouts/Authenticated.vue";
-import OrganizationNav from "@/Components/OrganizationNav.vue";
+import IndustrialSupervisorNav from "@/Components/IndustrialSupervisorNav.vue";
 import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import debounce from "lodash/debounce";
@@ -107,19 +127,19 @@ import EditTableRow from "@/Components/EditTableRow.vue";
 
 
 const props = defineProps({
-  organizations: Object,
+  industrialSupervisors: Object,
   filters: Object,
 });
 
 let search = ref(props.filters.search);
 
 const erase = () => {
-  Inertia.get(route("organizations.index"));
+  Inertia.get(route("industrial-supervisors.index"));
 };
 
-const destroy = (organization) => {
-  if (confirm("Are you sure you want to delete this organization?")) {
-    Inertia.delete(route("organizations.destroy", organization));
+const destroy = (industrialSupervisor) => {
+  if (confirm("Are you sure you want to delete this industrial supervisor?")) {
+    Inertia.delete(route("industrial-supervisors.destroy", industrialSupervisor));
   }
 };
 
@@ -127,7 +147,7 @@ watch(
   search,
   debounce(function (value) {
     Inertia.get(
-      route("organizations.index"),
+      route("industrial-supervisors.index"),
       { search: value },
       {
         preserveState: true,

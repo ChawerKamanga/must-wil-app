@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AcademicSupervisorsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\IndustrialSupervisorController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ProgrammesController;
 use App\Http\Controllers\RolesController;
@@ -24,9 +25,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('roles', RolesController::class)->except(['edit', 'show']);
     Route::get('roles/edit/{role:slug}', [RolesController::class, 'edit'])->name('roles.edit');
     Route::resource('organizations', OrganizationController::class)->except(['edit', 'show']);
-    Route::get('organizations/edit/{organization:slug}', [RolesController::class, 'edit'])->name('organizations.edit');
+    Route::get('organizations/edit/{organization:slug}', [OrganizationController::class, 'edit'])->name('organizations.edit');
     Route::resource('programmes', ProgrammesController::class)->except(['edit', 'show']);
     Route::get('programmes/edit/{programme:code}', [ProgrammesController::class, 'edit'])->name('programmes.edit');
+    Route::resource('industrial-supervisors', IndustrialSupervisorController::class)->except(['edit', 'show']);
+    Route::get('industrial-supervisors/edit/{industrial_supervisors:slug}', [IndustrialSupervisorController::class, 'edit'])->name('industrial-supervisors.edit');
     Route::resource('academic-supervisors', AcademicSupervisorsController::class)->except(['edit', 'show']);
     Route::get('academic-supervisors/edit/{academic_supervisors:slug}', [AcademicSupervisorsController::class, 'edit'])->name('academic-supervisors.edit');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
