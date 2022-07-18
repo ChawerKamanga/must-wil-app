@@ -1,15 +1,7 @@
 <template>
   <Authenticated>
     <Head title="organizations" />
-    <ProgrammesNav>
-      <template v-slot:username>
-        {{ authUser.name }}
-      </template>
-
-       <template v-slot:userrole>
-        {{ authUserRole.name }}
-      </template>
-    </ProgrammesNav>
+    <OrganizationNav />
 
     <section class="w-full lg:w-10/12 lg:items-center lg:mx-auto space-y-10">
       <div class="container w-full mx-auto px-5 py-5 flex flex-col space-y-10">
@@ -104,17 +96,15 @@
 
 <script setup>
 import Authenticated from "@/Layouts/Authenticated.vue";
-import ProgrammesNav from "@/Components/ProgrammesNav.vue";
+import OrganizationNav from "@/Components/OrganizationNav.vue";
 import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import debounce from "lodash/debounce";
-import { Head, Link, usePage } from "@inertiajs/inertia-vue3";
+import { Head, Link } from "@inertiajs/inertia-vue3";
 import Alert from "@/Components/Alert.vue";
 import DeleteTableRow from "@/Components/DeleteTableRow.vue";
 import EditTableRow from "@/Components/EditTableRow.vue";
 
-const authUser = usePage().props.value.auth.user;
-const authUserRole = usePage().props.value.auth.user.role;
 
 const props = defineProps({
   organizations: Object,
