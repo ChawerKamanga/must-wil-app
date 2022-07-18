@@ -17,7 +17,7 @@ class OrganizationController extends Controller
     public function index(Request $request)
     {
         return Inertia::render('Organization/Index', [
-            'programmes' => Organization::query()
+            'organizations' => Organization::query()
                 ->when($request->input('search'), function ($query, $search) {
                     $query->where('name', 'like', "%{$search}%");
                 })
@@ -27,7 +27,8 @@ class OrganizationController extends Controller
                 ->through(fn ($organization) => [
                     'id' => $organization->id,
                     'name' => $organization->name,
-                    'district' => $organization->district_id,
+                    'slug' => $organization->slug,
+                    'district' => $organization->district->name,
                     'createdAt' =>  Carbon::parse($organization->created_at)->format('l jS \of F Y h:i:s A')
                 ]),
             'filters' => $request->only(['search']),

@@ -1,6 +1,6 @@
 <template>
   <Authenticated>
-    <Head title="Programmes" />
+    <Head title="organizations" />
     <ProgrammesNav>
       <template v-slot:username>
         {{ authUser.name }}
@@ -14,7 +14,7 @@
     <section class="w-full lg:w-10/12 lg:items-center lg:mx-auto space-y-10">
       <div class="container w-full mx-auto px-5 py-5 flex flex-col space-y-10">
         <div>
-          <h1 class="text-veryDarkBlue text-3xl font-bold">Programmes</h1>
+          <h1 class="text-veryDarkBlue text-3xl font-bold">Organizations</h1>
         </div>
 
         <div class="flex justify-between items-center my-4">
@@ -33,7 +33,7 @@
           <!-- Create button -->
           <div>
             <Link
-              :href="route('programmes.create')"
+              :href="route('organizations.create')"
               class="create-btn hidden lg:block"
               >Create Programme</Link
             >
@@ -53,15 +53,15 @@
               <thead>
                 <tr>
                   <th class="dashboard-th text-left">Index</th>
-                  <th class="dashboard-th ">Programme Code</th>
-                  <th class="dashboard-th text-left">Programme Name</th>
+                  <th class="dashboard-th ">Organization Name</th>
+                  <th class="dashboard-th text-left">District of Origin</th>
                   <th class="dashboard-th text-left">Created At</th>
                   <th class="dashboard-th">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <tr
-                  v-for="(programme, index) in programmes.data"
+                  v-for="(programme, index) in organizations.data"
                   :key="programme.id"
                   class="border-b border-gray-200"
                 >
@@ -70,11 +70,11 @@
                   </th>
                   <td class="text-td text-center">
                     <span>
-                      {{ programme.code.toUpperCase() }}
+                      {{ programme.name }}
                     </span>
                   </td>
                   <td class="text-td">
-                    <span>{{ programme.name }}</span>
+                    <span>{{ programme.district }}</span>
                   </td>
                   <td class="text-td">
                     {{ programme.createdAt }}
@@ -88,7 +88,7 @@
                         hover:cursor-pointer
                       "
                     >
-                      <EditTableRow :href="route('programmes.edit', programme.code)" />
+                      <EditTableRow :href="route('organizations.edit', programme.slug)" />
                       <DeleteTableRow @click="destroy(programme)" />
                     </div>
                   </td>
@@ -117,19 +117,19 @@ const authUser = usePage().props.value.auth.user;
 const authUserRole = usePage().props.value.auth.user.role;
 
 const props = defineProps({
-  programmes: Object,
+  organizations: Object,
   filters: Object,
 });
 
 let search = ref(props.filters.search);
 
 const erase = () => {
-  Inertia.get(route("programmes.index"));
+  Inertia.get(route("organizations.index"));
 };
 
 const destroy = (programme) => {
   if (confirm("Are you sure you want to delete this programme?")) {
-    Inertia.delete(route("programmes.destroy", programme));
+    Inertia.delete(route("organizations.destroy", programme));
   }
 };
 
@@ -137,7 +137,7 @@ watch(
   search,
   debounce(function (value) {
     Inertia.get(
-      route("programmes.index"),
+      route("organizations.index"),
       { search: value },
       {
         preserveState: true,
