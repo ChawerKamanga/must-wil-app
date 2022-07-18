@@ -1,15 +1,8 @@
 <template>
   <Authenticated>
     <Head title="Dashboard" />
-    <DashboardNav>
-      <template v-slot:username>
-        {{ authUser.name }}
-      </template>
-
-       <template v-slot:userrole>
-        {{ authUserRole.name }}
-      </template>
-    </DashboardNav>
+    <DashboardNav />
+      
 
     <!-- Main Content -->
     <div class="flex flex-col w-10/12 items-center mx-auto space-y-10">
