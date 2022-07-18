@@ -108,13 +108,10 @@ import RolesNav from "@/Components/RolesNav.vue";
 import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import debounce from "lodash/debounce";
-import { Head, Link, usePage } from "@inertiajs/inertia-vue3";
+import { Head, Link } from "@inertiajs/inertia-vue3";
 import Alert from "@/Components/Alert.vue";
 import DeleteTableRow from "@/Components/DeleteTableRow.vue";
 import EditTableRow from "@/Components/EditTableRow.vue";
-
-const authUser = usePage().props.value.auth.user;
-const authUserRole = usePage().props.value.auth.user.role;
 
 const props = defineProps({
   roles: Object,
