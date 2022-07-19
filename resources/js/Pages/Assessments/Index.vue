@@ -11,11 +11,11 @@
             <h1 class="text-veryDarkBlue text-3xl font-bold">Assements</h1>
           </div>
           <!-- Create button -->
-          <div>
-            <a
-              href="assessment-create.html"
-              class="bg-veryDarkBlue text-white py-2 px-4 rounded-md text-sm"
-              >Add Assements</a
+           <div>
+            <Link
+              :href="route('assessments.create')"
+              class="create-btn hidden lg:block"
+              >Add Assessment</Link
             >
           </div>
         </div>
@@ -35,11 +35,11 @@
           <div v-for="(assessment, index) in assessments.data" :key="index" class="rounded-xl bg-white w-full lg:w-1/4 p-5">
             <p class="text-gray-400 text-xs font-bold">{{ assessment.type }}</p>
             <p class="text-veryDarkBlue font-bold text-lg">
-              <a href="industrial-supervisor-evaluation.html"
-                >{{ assessment.name }}</a
+              <Link :href="route('assessments.show', assessment)"
+                >{{ assessment.name }}</Link
               >
             </p>
-            <p class="text-veryDarkBlue text-3xl">5</p>
+            <p class="text-veryDarkBlue text-3xl">{{ assessment.count }}</p>
           </div>
 
          
@@ -312,6 +312,7 @@
 <script setup>
 import Authenticated from "@/Layouts/Authenticated.vue";
 import AssessmentsNav from "@/Components/AssessmentsNav.vue";
+import { Link } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
   assessments: Object,

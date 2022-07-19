@@ -23,7 +23,8 @@ class AssessmentsController extends Controller
                     'name' => $assessment->name,
                     'slug' => $assessment->slug,
                     'email' => $assessment->email,
-                    'type' => $assessment->assessmentType->name
+                    'type' => $assessment->assessmentType->name,
+                    'count' => $assessment->count()
                 ]),
         ]);
     }
