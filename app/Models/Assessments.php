@@ -11,6 +11,6 @@ class Assessments extends Model
 
     public function assessmentType()
     {
-        return $this->belongsTo(AssesmentType::class);
+        return $this->belongsTo(AssesmentType::class, 'assesment_type_id');
     }
 }

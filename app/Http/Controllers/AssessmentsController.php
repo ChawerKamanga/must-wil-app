@@ -15,10 +15,8 @@ class AssessmentsController extends Controller
      */
     public function index()
     {
-        // return Inertia::render('Assessments/Index');
         return Inertia::render('Assessments/Index', [
             'assessments' => Assessments::query()
-                ->orderBy('name')
                 ->paginate(10)
                 ->through(fn ($assessment) => [
                     'id' => $assessment->id,
