@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assessments;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,7 +15,19 @@ class AssessmentsController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Assessments/Index');
+        // return Inertia::render('Assessments/Index');
+        return Inertia::render('Assessments/Index', [
+            'assessments' => Assessments::query()
+                ->orderBy('name')
+                ->paginate(10)
+                ->through(fn ($assessment) => [
+                    'id' => $assessment->id,
+                    'name' => $assessment->name,
+                    'slug' => $assessment->slug,
+                    'email' => $assessment->email,
+                    'type' => $assessment->assessmentType->name
+                ]),
+        ]);
     }
 
     /**

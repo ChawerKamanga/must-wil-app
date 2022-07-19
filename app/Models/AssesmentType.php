@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class AssesmentType extends Model
 {
     use HasFactory;
+
+    public function assessments()
+    {
+        return $this->hasMany(Assessments::class);
+    }
 }

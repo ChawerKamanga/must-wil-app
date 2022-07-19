@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             ProgrammeSeeder::class,
             UserSeeder::class,
-            AssesmentTypeSeeder::class
+            AssesmentTypeSeeder::class,
+            AssessmentSeeder::class
         ]);
     }
 }
