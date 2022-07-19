@@ -15,7 +15,7 @@
               />
         </InactiveNavItem>
 
-        <InactiveNavItem routeName="dashboard" itemName="Assessment">
+        <InactiveNavItem routeName="assessments.index" itemName="Assessment">
           <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -33,7 +33,7 @@
         </InactiveNavItem>
 
         <!-- Menu Item 3 -->
-        <ActiveNavItem routeName="dashboard" itemName="Interns">
+        <ActiveNavItem routeName="interns.index" itemName="Interns">
           <path
                 stroke-linecap="round"
                 stroke-linejoin="round"

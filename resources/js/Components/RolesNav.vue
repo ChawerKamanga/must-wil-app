@@ -15,7 +15,7 @@
               />
         </InactiveNavItem>
 
-        <InactiveNavItem routeName="dashboard" itemName="Assessment">
+        <InactiveNavItem routeName="assessments.index" itemName="Assessment">
           <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
