@@ -125,7 +125,6 @@ import Alert from "@/Components/Alert.vue";
 import DeleteTableRow from "@/Components/DeleteTableRow.vue";
 import EditTableRow from "@/Components/EditTableRow.vue";
 
-
 const props = defineProps({
   interns: Object,
   filters: Object,
