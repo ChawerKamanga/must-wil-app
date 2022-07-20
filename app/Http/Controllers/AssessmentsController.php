@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assessments;
+use App\Models\Evaluations;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -19,13 +20,20 @@ class AssessmentsController extends Controller
             'assessments' => Assessments::query()
                 ->paginate(10)
                 ->through(fn ($assessment) => [
-                    'id' => $assessment->id,
                     'name' => $assessment->name,
                     'slug' => $assessment->slug,
-                    'email' => $assessment->email,
                     'type' => $assessment->assessmentType->name,
                     'count' => $assessment->count()
                 ]),
+            
+            'evaluations' => Evaluations::query()
+            ->paginate(10)
+            ->through(fn ($evaluation) => [
+                'name' => $evaluation->name,
+                'slug' => $evaluation->slug,
+                'description' => $evaluation->description,
+                'type' => $evaluation->assessment()->assessmentType->name
+            ]),
         ]);
     }
 

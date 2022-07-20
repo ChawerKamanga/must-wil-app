@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug');
             $table->string('description');
             $table->foreignId('assessment_id')->constrained();
             $table->timestamps();

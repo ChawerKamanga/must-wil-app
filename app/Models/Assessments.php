@@ -13,4 +13,9 @@ class Assessments extends Model
     {
         return $this->belongsTo(AssesmentType::class, 'assesment_type_id');
     }
+
+    public function evaluations()
+    {
+        return $this->hasMany(Evaluations::class);
+    }
 }
