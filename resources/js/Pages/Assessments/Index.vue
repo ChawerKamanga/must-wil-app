@@ -84,11 +84,15 @@
                   <td class="text-td">{{ evaluation.createdAt }}</td>
                   <td class="text-td">
                     <div
-                      class="flex space-x-1 justify-center hover:cursor-pointer"
+                      class="
+                        flex
+                        space-x-5
+                        justify-center
+                        hover:cursor-pointer
+                      "
                     >
-                      <div class="bg-gray-500 rounded-full w-1 h-1"></div>
-                      <div class="bg-gray-500 rounded-full w-1 h-1"></div>
-                      <div class="bg-gray-500 rounded-full w-1 h-1"></div>
+                      <EditTableRow :href="route('evaluations.edit', evaluation.slug)" />
+                      <DeleteTableRow @click="destroy(evaluation)" />
                     </div>
                   </td>
                 </tr>
@@ -104,6 +108,8 @@
 <script setup>
 import Authenticated from "@/Layouts/Authenticated.vue";
 import AssessmentsNav from "@/Components/AssessmentsNav.vue";
+import EditTableRow from "@/Components/EditTableRow.vue";
+import DeleteTableRow from "@/Components/DeleteTableRow.vue";
 import { Link } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
