@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Assessments;
 use App\Models\Evaluations;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -32,7 +33,8 @@ class AssessmentsController extends Controller
                 'name' => $evaluation->name,
                 'slug' => $evaluation->slug,
                 'description' => $evaluation->description,
-                'type' => $evaluation->assessment()->assessmentType->name
+                'type' => $evaluation->assessment->assessmentType->name,
+                'createdAt' =>  Carbon::parse($evaluation->created_at)->format('l jS \of F Y h:i:s A')
             ]),
         ]);
     }

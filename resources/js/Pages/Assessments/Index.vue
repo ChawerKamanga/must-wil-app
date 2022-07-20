@@ -11,7 +11,7 @@
             <h1 class="text-veryDarkBlue text-3xl font-bold">Assements</h1>
           </div>
           <!-- Create button -->
-           <div>
+          <div>
             <Link
               :href="route('assessments.create')"
               class="create-btn hidden lg:block"
@@ -32,17 +32,19 @@
             lg:space-y-0
           "
         >
-          <div v-for="(assessment, index) in assessments.data" :key="index" class="rounded-xl bg-white w-full lg:w-1/4 p-5">
+          <div
+            v-for="(assessment, index) in assessments.data"
+            :key="index"
+            class="rounded-xl bg-white w-full lg:w-1/4 p-5"
+          >
             <p class="text-gray-400 text-xs font-bold">{{ assessment.type }}</p>
             <p class="text-veryDarkBlue font-bold text-lg">
-              <Link :href="route('assessments.show', assessment)"
-                >{{ assessment.name }}</Link
-              >
+              <Link :href="route('assessments.show', assessment)">{{
+                assessment.name
+              }}</Link>
             </p>
             <p class="text-veryDarkBlue text-3xl">{{ assessment.count }}</p>
           </div>
-
-         
         </div>
 
         <div class="bg-white rounded-xl w-full">
@@ -53,244 +55,34 @@
                   <th class="dashboard-th text-left">Title</th>
                   <th class="dashboard-th text-left">Description</th>
                   <th class="dashboard-th text-left">Assement Type</th>
-                  <th class="dashboard-th text-left">Created At</th>
+                  <th class="dashboard-th text-left">Created On</th>
                   <th class="dashboard-th">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b border-gray-200">
-                  <th
-                    class="
-                      border-t-0
-                      px-6
-                      align-middle
-                      border-l-0 border-r-0
-                      text-xs
-                      whitespace-nowrap
-                      p-4
-                      text-left
-                    "
-                  >
+                <tr
+                  class="border-b border-gray-200"
+                  v-for="evaluation in evaluations.data"
+                  :key="evaluation.slug"
+                >
+                  <th class="text-td text-left">
                     <div class="flex items-center space-x-2">
                       <div class="rounded-full bg-gray-800"></div>
                       <span class="font-normal"
-                        >Supervisors Assessment of Intern Presentation</span
+                        >{{ evaluation.name }}</span
                       >
                     </div>
                   </th>
-                  <td
-                    class="
-                      border-t-0
-                      px-6
-                      align-middle
-                      border-l-0 border-r-0
-                      text-xs
-                      whitespace-nowrap
-                      p-4
-                    "
-                  >
+                  <td class="text-td">
                     <div>
-                      This is the Academic & Industrial Supervisor Evaluation of
-                      Intern Presentation description.
+                      {{ evaluation.description }}
                     </div>
                   </td>
-                  <td
-                    class="
-                      border-t-0
-                      px-6
-                      text-left
-                      border-l-0 border-r-0
-                      text-xs
-                      whitespace-nowrap
-                      p-4
-                    "
-                  >
-                    <div>Questionnaire</div>
+                  <td class="text-td">
+                    <div>{{ evaluation.type }}</div>
                   </td>
-                  <td
-                    class="
-                      border-t-0
-                      px-6
-                      align-middle
-                      border-l-0 border-r-0
-                      text-xs
-                      whitespace-nowrap
-                      p-4
-                    "
-                  >
-                    2 days ago
-                  </td>
-                  <td
-                    class="
-                      border-t-0
-                      px-6
-                      align-middle
-                      border-l-0 border-r-0
-                      text-xs
-                      whitespace-nowrap
-                      p-4
-                    "
-                  >
-                    <div
-                      class="flex space-x-1 justify-center hover:cursor-pointer"
-                    >
-                      <div class="bg-gray-500 rounded-full w-1 h-1"></div>
-                      <div class="bg-gray-500 rounded-full w-1 h-1"></div>
-                      <div class="bg-gray-500 rounded-full w-1 h-1"></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="border-b border-gray-200">
-                  <th
-                    class="
-                      border-t-0
-                      px-6
-                      align-middle
-                      border-l-0 border-r-0
-                      text-xs
-                      whitespace-nowrap
-                      p-4
-                      text-left
-                    "
-                  >
-                    <div class="flex items-center space-x-2">
-                      <div class="rounded-full bg-gray-800"></div>
-                      <span class="font-normal"
-                        >Industrial Supervisor Evaluation of Intern</span
-                      >
-                    </div>
-                  </th>
-                  <td
-                    class="
-                      border-t-0
-                      px-6
-                      align-middle
-                      border-l-0 border-r-0
-                      text-xs
-                      whitespace-nowrap
-                      p-4
-                    "
-                  >
-                    <div>
-                      This is the Academic Supervisor Assessment of Intern
-                      Presentation description.
-                    </div>
-                  </td>
-                  <td
-                    class="
-                      border-t-0
-                      px-6
-                      text-left
-                      border-l-0 border-r-0
-                      text-xs
-                      whitespace-nowrap
-                      p-4
-                    "
-                  >
-                    <div>Questionnaire</div>
-                  </td>
-                  <td
-                    class="
-                      border-t-0
-                      px-6
-                      align-middle
-                      border-l-0 border-r-0
-                      text-xs
-                      whitespace-nowrap
-                      p-4
-                    "
-                  >
-                    2 days ago
-                  </td>
-                  <td
-                    class="
-                      border-t-0
-                      px-6
-                      align-middle
-                      border-l-0 border-r-0
-                      text-xs
-                      whitespace-nowrap
-                      p-4
-                    "
-                  >
-                    <div
-                      class="flex space-x-1 justify-center hover:cursor-pointer"
-                    >
-                      <div class="bg-gray-500 rounded-full w-1 h-1"></div>
-                      <div class="bg-gray-500 rounded-full w-1 h-1"></div>
-                      <div class="bg-gray-500 rounded-full w-1 h-1"></div>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr class="border-b border-gray-200">
-                  <th
-                    class="
-                      border-t-0
-                      px-6
-                      align-middle
-                      border-l-0 border-r-0
-                      text-xs
-                      whitespace-nowrap
-                      p-4
-                      text-left
-                    "
-                  >
-                    <div class="flex items-center space-x-2">
-                      <div class="rounded-full bg-gray-800"></div>
-                      <span class="font-normal">Internship Activity Log</span>
-                    </div>
-                  </th>
-                  <td
-                    class="
-                      border-t-0
-                      px-6
-                      align-middle
-                      border-l-0 border-r-0
-                      text-xs
-                      whitespace-nowrap
-                      p-4
-                    "
-                  >
-                    <div>This is the Internship Activity Log description.</div>
-                  </td>
-                  <td
-                    class="
-                      border-t-0
-                      px-6
-                      text-left
-                      border-l-0 border-r-0
-                      text-xs
-                      whitespace-nowrap
-                      p-4
-                    "
-                  >
-                    <div>Calender Form</div>
-                  </td>
-                  <td
-                    class="
-                      border-t-0
-                      px-6
-                      align-middle
-                      border-l-0 border-r-0
-                      text-xs
-                      whitespace-nowrap
-                      p-4
-                    "
-                  >
-                    2 days ago
-                  </td>
-                  <td
-                    class="
-                      border-t-0
-                      px-6
-                      align-middle
-                      border-l-0 border-r-0
-                      text-xs
-                      whitespace-nowrap
-                      p-4
-                    "
-                  >
+                  <td class="text-td">{{ evaluation.createdAt }}</td>
+                  <td class="text-td">
                     <div
                       class="flex space-x-1 justify-center hover:cursor-pointer"
                     >
@@ -316,5 +108,6 @@ import { Link } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
   assessments: Object,
+  evaluations: Object,
 });
 </script>
