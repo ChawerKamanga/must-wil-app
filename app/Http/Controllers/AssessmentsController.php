@@ -24,7 +24,7 @@ class AssessmentsController extends Controller
                     'name' => $assessment->name,
                     'slug' => $assessment->slug,
                     'type' => $assessment->assessmentType->name,
-                    'count' => $assessment->count()
+                    'count' => '1',
                 ]),
             
             'evaluations' => Evaluations::query()

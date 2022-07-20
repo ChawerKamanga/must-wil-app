@@ -68,8 +68,8 @@
                   <th class="text-td text-left">
                     <div class="flex items-center space-x-2">
                       <div class="rounded-full bg-gray-800"></div>
-                      <span class="font-normal"
-                        >{{ evaluation.name }}</span
+                      <Link :href="route('evaluations.show', evaluation)" class="font-normal"
+                        >{{ evaluation.name }}</Link
                       >
                     </div>
                   </th>
@@ -110,7 +110,7 @@ import Authenticated from "@/Layouts/Authenticated.vue";
 import AssessmentsNav from "@/Components/AssessmentsNav.vue";
 import EditTableRow from "@/Components/EditTableRow.vue";
 import DeleteTableRow from "@/Components/DeleteTableRow.vue";
-import { Link } from "@inertiajs/inertia-vue3";
+import { Link, Head } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
   assessments: Object,
