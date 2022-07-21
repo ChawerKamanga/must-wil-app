@@ -53,7 +53,7 @@
               <thead>
                 <tr>
                   <th class="dashboard-th text-left">Title</th>
-                  <th class="dashboard-th text-left">Description</th>
+                  <th class="dashboard-th">Weight Percentage</th>
                   <th class="dashboard-th text-left">Assement Type</th>
                   <th class="dashboard-th text-left">Created On</th>
                   <th class="dashboard-th">Actions</th>
@@ -73,9 +73,9 @@
                       >
                     </div>
                   </th>
-                  <td class="text-td">
+                   <td class="text-td text-center">
                     <div>
-                      {{ evaluation.description }}
+                      {{ evaluation.weight }}
                     </div>
                   </td>
                   <td class="text-td">

@@ -34,6 +34,7 @@ class AssessmentsController extends Controller
                 'slug' => $evaluation->slug,
                 'description' => $evaluation->description,
                 'type' => $evaluation->assessment->assessmentType->name,
+                'weight' => $evaluation->total_weight_percentage,
                 'createdAt' =>  Carbon::parse($evaluation->created_at)->format('l jS \of F Y h:i:s A')
             ]),
         ]);
