@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('description');
+            $table->unsignedSmallInteger('total_weight_percentage');
             $table->foreignId('assessment_id')->constrained();
             $table->timestamps();
         });
