@@ -8,6 +8,7 @@ use App\Http\Controllers\IndustrialSupervisorController;
 use App\Http\Controllers\InternsController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ProgrammesController;
+use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\RolesController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('organizations/edit/{organization:slug}', [OrganizationController::class, 'edit'])->name('organizations.edit');
     Route::resource('programmes', ProgrammesController::class)->except(['edit', 'show']);
     Route::get('programmes/edit/{programme:code}', [ProgrammesController::class, 'edit'])->name('programmes.edit');
+    Route::resource('questions', QuestionsController::class)->except(['show']);
     Route::resource('roles', RolesController::class)->except(['edit', 'show']);
     Route::get('roles/edit/{role:slug}', [RolesController::class, 'edit'])->name('roles.edit');
 });
