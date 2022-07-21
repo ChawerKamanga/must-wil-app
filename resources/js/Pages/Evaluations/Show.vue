@@ -1,6 +1,6 @@
 <template>
   <Authenticated>
-    <Head title="Assessments" />
+    <Head title="Evaluation" />
     <AssessmentsNav />
 
     <section class="w-full lg:w-10/12 lg:items-center lg:mx-auto space-y-10">
@@ -8,14 +8,14 @@
         <div class="flex justify-between items-center my-4">
           <!-- Assement -->
           <div>
-            <h1 class="text-veryDarkBlue text-3xl font-bold">Assements</h1>
+            <h1 class="text-veryDarkBlue text-3xl font-bold">{{ evaluation.name }}</h1>
           </div>
           <!-- Create button -->
           <div>
             <Link
               :href="route('assessments.create')"
               class="create-btn hidden lg:block"
-              >Add Assessment</Link
+              >Add Question</Link
             >
           </div>
         </div>
@@ -32,29 +32,13 @@
             lg:space-y-0
           "
         >
-          <div
-            v-for="(assessment, index) in assessments.data"
-            :key="index"
-            class="rounded-xl bg-white w-full lg:w-1/4 p-5"
-          >
-            <p class="text-gray-400 text-xs font-bold">{{ assessment.type }}</p>
-            <p class="text-veryDarkBlue font-bold text-lg">
-              <Link :href="route('assessments.show', assessment)">{{
-                assessment.name
-              }}</Link>
-            </p>
-            <p class="text-veryDarkBlue text-3xl">{{ assessment.count }}</p>
-          </div>
-        </div>
-
         <div class="bg-white rounded-xl w-full">
           <div class="w-full mt-6 flex flex-col space-y-6">
             <table class="items-center w-full bg-transparent border-collapse">
               <thead>
                 <tr>
-                  <th class="dashboard-th text-left">Title</th>
-                  <th class="dashboard-th">Weight Percentage</th>
-                  <th class="dashboard-th text-left">Assement Type</th>
+                  <th class="dashboard-th text-left">Question</th>
+                  <th class="dashboard-th">Maximum Marks</th>
                   <th class="dashboard-th text-left">Created On</th>
                   <th class="dashboard-th">Actions</th>
                 </tr>
@@ -62,26 +46,20 @@
               <tbody>
                 <tr
                   class="border-b border-gray-200"
-                  v-for="evaluation in evaluations.data"
-                  :key="evaluation.slug"
+                  v-for="question in questions.data"
+                  :key="question.slug"
                 >
                   <th class="text-td text-left">
-                    <div class="flex items-center space-x-2">
-                      <div class="rounded-full bg-gray-800"></div>
-                      <Link :href="route('evaluations.show', evaluation)" class="font-normal"
-                        >{{ evaluation.name }}</Link
-                      >
+                    <div>
+                      {{ question.question }}%
                     </div>
                   </th>
                    <td class="text-td text-center">
                     <div>
-                      {{ evaluation.weight }}%
+                      {{ question.marks }}%
                     </div>
                   </td>
-                  <td class="text-td">
-                    <div>{{ evaluation.type }}</div>
-                  </td>
-                  <td class="text-td">{{ evaluation.createdAt }}</td>
+                  <td class="text-td">{{ question.createdAt }}</td>
                   <td class="text-td">
                     <div
                       class="
@@ -91,8 +69,8 @@
                         hover:cursor-pointer
                       "
                     >
-                      <EditTableRow :href="route('evaluations.edit', evaluation.slug)" />
-                      <DeleteTableRow @click="destroy(evaluation)" />
+                      <EditTableRow :href="route('questions.edit', question.slug)" />
+                      <DeleteTableRow @click="destroy(question)" />
                     </div>
                   </td>
                 </tr>
@@ -113,7 +91,7 @@ import DeleteTableRow from "@/Components/DeleteTableRow.vue";
 import { Link, Head } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
-  assessments: Object,
-  evaluations: Object,
+  evaluation: Object,
+  questions: Object,
 });
 </script>

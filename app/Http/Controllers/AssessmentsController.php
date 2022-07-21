@@ -26,7 +26,6 @@ class AssessmentsController extends Controller
                     'type' => $assessment->assessmentType->name,
                     'count' => '1',
                 ]),
-            
             'evaluations' => Evaluations::query()
             ->paginate(10)
             ->through(fn ($evaluation) => [
