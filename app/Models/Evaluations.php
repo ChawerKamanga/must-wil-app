@@ -13,4 +13,9 @@ class Evaluations extends Model
     {
         return $this->belongsTo(Assessments::class);   
     }
+
+    public function questions()
+    {
+        return $this->hasMany(Questions::class);
+    }
 }
