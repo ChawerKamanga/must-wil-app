@@ -121,7 +121,7 @@ class UserSeeder extends Seeder
                 'role_id' => 4,
                 'programme_id' => 1,
                 'year_of_study' => 3,
-                'organization_id' => null,
+                'organization_id' => 2,
                 'reg_number' => 'BIT/025/19',
                 'password' => Hash::make('abcd1234.'),
                 'updated_at' => Carbon::now(),
