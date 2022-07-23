@@ -46,6 +46,7 @@
                 <tr>
                   <th class="dashboard-th text-left">Index</th>
                   <th class="dashboard-th text-left">Organization Name</th>
+                  <th class="dashboard-th text-left">Supervisor</th>
                   <th class="dashboard-th text-left">District of Origin</th>
                   <th class="dashboard-th text-left">Created At</th>
                   <th class="dashboard-th">Actions</th>
