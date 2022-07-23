@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Evaluations;
+use App\Models\Evaluation;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -37,6 +37,6 @@ class EvaluationSeeder extends Seeder
             ],
         ];
 
-        Evaluations::insert($evaluations);
+        Evaluation::insert($evaluations);
     }
 }
