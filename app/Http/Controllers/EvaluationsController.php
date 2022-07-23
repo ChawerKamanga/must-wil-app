@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Evaluations;
+use App\Models\Evaluation;
 use App\Models\Questions;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -46,16 +46,16 @@ class EvaluationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show(Evaluation $evaluation)
     {
-        $evaluation = Evaluations::where('slug', $slug)->get();
         return Inertia::render('Evaluations/Show', [
             'evaluation' => $evaluation->only('name'),
-            'questions' => Questions::query()
+            'questions' => $evaluation->questions()
             ->paginate(10)
+            ->withQueryString()
             ->through(fn ($question) => [
-                'name' => $question->question,
-                'slug' => $question->slug,
+                'id' => $question->id,
+                'question' => $question->question,
                 'marks' => $question->total_marks,
             ]),
         ]);

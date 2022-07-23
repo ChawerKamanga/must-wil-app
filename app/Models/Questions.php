@@ -11,6 +11,6 @@ class Questions extends Model
 
     public function evaluation()
     {
-        return $this->belongsTo(Evaluations::class);
+        return $this->belongsTo(Evaluation::class);
     }
 }

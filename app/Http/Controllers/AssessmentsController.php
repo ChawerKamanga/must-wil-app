@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assessments;
-use App\Models\Evaluations;
+use App\Models\Evaluation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -26,7 +26,7 @@ class AssessmentsController extends Controller
                     'type' => $assessment->assessmentType->name,
                     'count' => '1',
                 ]),
-            'evaluations' => Evaluations::query()
+            'evaluations' => Evaluation::query()
             ->paginate(10)
             ->through(fn ($evaluation) => [
                 'name' => $evaluation->name,

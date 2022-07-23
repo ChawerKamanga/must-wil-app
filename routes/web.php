@@ -33,7 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('academic-supervisors/edit/{academic_supervisors:slug}', [AcademicSupervisorsController::class, 'edit'])->name('academic-supervisors.edit');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('evaluations', EvaluationsController::class)->except(['edit', 'show']);
-    Route::get('evaluations/{evaluations:slug}', [EvaluationsController::class, 'show'])->name('evaluations.show');
+    Route::get('evaluations/{evaluation:slug}', [EvaluationsController::class, 'show'])->name('evaluations.show');
     Route::get('evaluations/edit/{evaluations:slug}', [EvaluationsController::class, 'edit'])->name('evaluations.edit');
     Route::resource('industrial-supervisors', IndustrialSupervisorController::class)->except(['edit', 'show']);
     Route::get('industrial-supervisors/edit/{industrial_supervisors:slug}', [IndustrialSupervisorController::class, 'edit'])->name('industrial-supervisors.edit');

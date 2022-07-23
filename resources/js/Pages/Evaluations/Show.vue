@@ -55,7 +55,7 @@
                       <div>{{ index + 1 }}</div>
                     </td>
                     <td class="text-td text-left">
-                      <div>{{ question.name }}</div>
+                      <div>{{ question.question }}</div>
                     </td>
                     <td class="text-td text-center">
                       <div>{{ question.marks }}</div>
@@ -70,7 +70,7 @@
                         "
                       >
                         <EditTableRow
-                          :href="route('questions.edit', question.slug)"
+                          :href="route('questions.edit', question)"
                         />
                         <DeleteTableRow @click="destroy(question)" />
                       </div>
