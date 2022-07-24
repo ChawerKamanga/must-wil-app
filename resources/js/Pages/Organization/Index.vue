@@ -66,6 +66,13 @@
                       {{ organization.name }}
                     </span>
                   </td>
+                   <td class="text-td text-left">
+                    <span v-for="supervisor in organization.supervisor" :key="supervisor.id">
+                      <span v-if="supervisor.role_id == 3">
+                        {{ supervisor.name }}
+                      </span>
+                    </span>
+                  </td>
                   <td class="text-td">
                     <span>{{ organization.district }}</span>
                   </td>

@@ -20,7 +20,7 @@ class AcademicSupervisorsController extends Controller
     public function index(Request $request)
     {
         return Inertia::render('AcademicSupervisor/Index', [
-            'academicSupervisors' => User::query()->where('role_id', '=', 2)
+            'academicSupervisors' => User::query()->where('role_id', 2)
                 ->when($request->input('search'), function ($query, $search) {
                     $query->where('name', 'like', "%{$search}%");
                 })
