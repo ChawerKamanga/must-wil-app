@@ -29,10 +29,15 @@ class OrganizationController extends Controller
                     'name' => $organization->name,
                     'slug' => $organization->slug,
                     'district' => $organization->district->name,
+                    'supervisor' => $organization->users()->through(fn ($question) => [
+                        'id' => $question->id,
+                        'question' => $question->question,
+                        'marks' => $question->total_marks,
+                    ]),,
                     'createdAt' =>  Carbon::parse($organization->created_at)->format('l jS \of F Y h:i:s A')
                 ]),
             'filters' => $request->only(['search']),
-        ]);   
+        ]);
     }
 
     /**
