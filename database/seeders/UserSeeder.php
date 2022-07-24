@@ -130,7 +130,7 @@ class UserSeeder extends Seeder
             // Industrial Supervisor
             [
                 'name' => 'John Kamanga',
-                'email' => 'jkamanga@ehub.com',
+                'email' => 'jkamanga@fhdbank.com',
                 'slug' => 'john-kamanga',
                 'phone_number' => '+265 998 800 111',
                 'gender' => 'M',
@@ -142,8 +142,52 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('abcd1234.'),
                 'updated_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Jane Banda',
+                'email' => 'jbanda@ehub.com',
+                'slug' => 'jane-banda',
+                'phone_number' => '+265 998 812 111',
+                'gender' => 'F',
+                'role_id' => 3,
+                'programme_id' => null,
+                'year_of_study' => null,
+                'reg_number' => null,
+                'organization_id' => 2,
+                'password' => Hash::make('abcd1234.'),
+                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now(),
+            ], 
+            [
+                'name' => 'Joseph Phiri',
+                'email' => 'jphiri@mzuzuhub.com',
+                'slug' => 'joseph-phiri',
+                'phone_number' => '+265 888 800 111',
+                'gender' => 'M',
+                'role_id' => 3,
+                'programme_id' => null,
+                'year_of_study' => null,
+                'reg_number' => null,
+                'organization_id' => 1,
+                'password' => Hash::make('abcd1234.'),
+                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now(),
+            ], [
+                'name' => 'Tiwonge Nkhoma',
+                'email' => 'tnkhoma@maneb.com',
+                'slug' => 'tiwonge-nkhoma',
+                'phone_number' => '+265 98 800 111',
+                'gender' => 'F',
+                'role_id' => 3,
+                'programme_id' => null,
+                'year_of_study' => null,
+                'reg_number' => null,
+                'organization_id' => 4,
+                'password' => Hash::make('abcd1234.'),
+                'updated_at' => Carbon::now(),
+                'created_at' => Carbon::now(),
             ]
-        
+
         ];
 
         DB::table('users')->insert($users);
