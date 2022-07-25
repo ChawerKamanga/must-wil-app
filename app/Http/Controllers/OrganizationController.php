@@ -68,6 +68,7 @@ class OrganizationController extends Controller
         return Inertia::render('Organization/Show', [
             'organization' => $organization->only('name'),
             'interns' => $organization->users()
+            ->where('role_id', 4)
             ->paginate(10)
             ->withQueryString()
             ->through(fn ($intern) => [
