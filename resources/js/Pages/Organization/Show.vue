@@ -6,7 +6,7 @@
     <section class="w-full lg:w-10/12 lg:items-center lg:mx-auto space-y-10">
       <div class="container w-full mx-auto px-5 py-5 flex flex-col space-y-10">
         <div>
-          <h1 class="text-veryDarkBlue text-3xl font-bold">Organizations</h1>
+          <h1 class="text-veryDarkBlue text-3xl font-bold">{{ organization.name }}</h1>
         </div>
 
         <div class="flex justify-between items-center my-4">
@@ -54,30 +54,23 @@
               </thead>
               <tbody>
                 <tr
-                  v-for="(organization, index) in organizations.data"
-                  :key="organization.id"
+                  v-for="(intern, index) in interns.data"
+                  :key="intern.id"
                   class="border-b border-gray-200"
                 >
                   <th class="text-left">
                     <span class="font-normal">{{ index + 1 }}</span>
                   </th>
                   <td class="text-td text-left">
-                    <Link :href="route('organizations.show', organization)">
-                      {{ organization.name }}
-                    </Link>
-                  </td>
-                   <td class="text-td text-left">
-                    <span v-for="supervisor in organization.supervisor" :key="supervisor.id">
-                      <span v-if="supervisor.role_id == 3">
-                        {{ supervisor.name }}
-                      </span>
+                    <span>
+                      {{ intern.name }}
                     </span>
                   </td>
                   <td class="text-td">
-                    <span>{{ organization.district }}</span>
+                    <span>{{ intern.gender }}</span>
                   </td>
                   <td class="text-td">
-                    {{ organization.createdAt }}
+                    {{ intern.createdAt }}
                   </td>
                   <td class="text-td relative">
                     <div
@@ -88,8 +81,8 @@
                         hover:cursor-pointer
                       "
                     >
-                      <EditTableRow :href="route('organizations.edit', organization.slug)" />
-                      <DeleteTableRow @click="destroy(organization)" />
+                      <EditTableRow :href="route('organizations.index')" />
+                      <DeleteTableRow @click="destroy(intern)" />
                     </div>
                   </td>
                 </tr>
@@ -115,11 +108,9 @@ import EditTableRow from "@/Components/EditTableRow.vue";
 
 
 const props = defineProps({
-  organizations: Object,
-  filters: Object,
+  organization: Object,
+  interns: Object
 });
-
-let search = ref(props.filters.search);
 
 const erase = () => {
   Inertia.get(route("organizations.index"));
@@ -131,17 +122,16 @@ const destroy = (organization) => {
   }
 };
 
-watch(
-  search,
-  debounce(function (value) {
-    Inertia.get(
-      route("organizations.index"),
-      { search: value },
-      {
-        preserveState: true,
-        replace: true,
-      }
-    );
-  }, 300)
-);
+// watch(
+//   debounce(function (value) {
+//     Inertia.get(
+//       route("organizations.index"),
+//       { search: value },
+//       {
+//         preserveState: true,
+//         replace: true,
+//       }
+//     );
+//   }, 300)
+// );
 </script>

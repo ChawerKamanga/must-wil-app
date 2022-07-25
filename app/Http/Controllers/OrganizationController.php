@@ -63,9 +63,20 @@ class OrganizationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Organization $organization)
     {
-        //
+        return Inertia::render('Organization/Show', [
+            'organization' => $organization->only('name'),
+            'interns' => $organization->users()
+            ->paginate(10)
+            ->withQueryString()
+            ->through(fn ($intern) => [
+                'id' => $intern->id,
+                'name' => $intern->name,
+                'gender' => $intern->gender,
+                'email' => $intern->email,
+            ]),
+        ]);
     }
 
     /**
