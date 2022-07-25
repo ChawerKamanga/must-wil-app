@@ -41,6 +41,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('interns/edit/{interns:slug}', [InternsController::class, 'edit'])->name('interns.edit');
     Route::resource('organizations', OrganizationController::class)->except(['edit', 'show']);
     Route::get('organizations/edit/{organization:slug}', [OrganizationController::class, 'edit'])->name('organizations.edit');
+    Route::get('organizations/{organization:slug}', [OrganizationController::class, 'show'])->name('organizations.show');
     Route::resource('programmes', ProgrammesController::class)->except(['edit', 'show']);
     Route::get('programmes/edit/{programme:code}', [ProgrammesController::class, 'edit'])->name('programmes.edit');
     Route::resource('questions', QuestionsController::class)->except(['show']);

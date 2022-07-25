@@ -62,9 +62,9 @@
                     <span class="font-normal">{{ index + 1 }}</span>
                   </th>
                   <td class="text-td text-left">
-                    <span>
+                    <Link :href="route('organizations.show', organization)">
                       {{ organization.name }}
-                    </span>
+                    </Link>
                   </td>
                    <td class="text-td text-left">
                     <span v-for="supervisor in organization.supervisor" :key="supervisor.id">
