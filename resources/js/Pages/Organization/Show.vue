@@ -45,10 +45,11 @@
               <thead>
                 <tr>
                   <th class="dashboard-th text-left">Index</th>
-                  <th class="dashboard-th text-left">Organization Name</th>
-                  <th class="dashboard-th text-left">Supervisor</th>
-                  <th class="dashboard-th text-left">District of Origin</th>
-                  <th class="dashboard-th text-left">Created At</th>
+                  <th class="dashboard-th text-left">Name</th>
+                  <th class="dashboard-th text-left">Gender</th>
+                  <th class="dashboard-th text-left">Email</th>
+                  <th class="dashboard-th text-left">Phonenumber</th>
+                  <th class="dashboard-th text-left">Program Code</th>
                   <th class="dashboard-th">Actions</th>
                 </tr>
               </thead>
@@ -70,20 +71,16 @@
                     <span>{{ intern.gender }}</span>
                   </td>
                   <td class="text-td">
-                    {{ intern.createdAt }}
+                    {{ intern.email }}
                   </td>
-                  <td class="text-td relative">
-                    <div
-                      class="
-                        flex
-                        space-x-5
-                        justify-center
-                        hover:cursor-pointer
-                      "
-                    >
-                      <EditTableRow :href="route('organizations.index')" />
-                      <DeleteTableRow @click="destroy(intern)" />
-                    </div>
+                 <td class="text-td">
+                    {{ intern.phonenumber }}
+                  </td>
+                  <td class="text-td">
+                    {{ intern.email }}
+                  </td>
+                  <td class="text-td text-center">
+                    <button class="text-red-800">Deallocate</button>
                   </td>
                 </tr>
               </tbody>

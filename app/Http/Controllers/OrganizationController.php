@@ -76,6 +76,7 @@ class OrganizationController extends Controller
                 'name' => $intern->name,
                 'gender' => $intern->gender,
                 'email' => $intern->email,
+                'phonenumber' => $intern->phone_number
             ]),
         ]);
     }
