@@ -62,7 +62,7 @@ class InternsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -71,9 +71,22 @@ class InternsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $intern)
     {
-        //
+        return Inertia::render('Interns/Show', [
+            'intern' => $intern->only('name'),
+            // 'interns' => $organization->users()
+            // ->where('role_id', 4)
+            // ->paginate(10)
+            // ->withQueryString()
+            // ->through(fn ($intern) => [
+            //     'id' => $intern->id,
+            //     'name' => $intern->name,
+            //     'gender' => $intern->gender,
+            //     'email' => $intern->email,
+            //     'phonenumber' => $intern->phone_number
+            // ]),
+        ]);
     }
 
     /**
