@@ -64,7 +64,7 @@
                     <span class="font-normal">{{ index + 1 }}</span>
                   </th>
                   <td class="text-td">
-                    <span>{{ intern.name }}</span>
+                    <Link :href="route('interns.show', intern)">{{ intern.name }}</Link>
                   </td>
                   <td class="text-td">
                     <span>

@@ -39,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('industrial-supervisors/edit/{industrial_supervisors:slug}', [IndustrialSupervisorController::class, 'edit'])->name('industrial-supervisors.edit');
     Route::resource('interns', InternsController::class)->except(['edit', 'show']);
     Route::get('interns/edit/{interns:slug}', [InternsController::class, 'edit'])->name('interns.edit');
+    Route::get('interns/{interns:slug}', [InternsController::class, 'show'])->name('interns.show');
     Route::resource('organizations', OrganizationController::class)->except(['edit', 'show']);
     Route::get('organizations/edit/{organization:slug}', [OrganizationController::class, 'edit'])->name('organizations.edit');
     Route::get('organizations/{organization:slug}', [OrganizationController::class, 'show'])->name('organizations.show');
