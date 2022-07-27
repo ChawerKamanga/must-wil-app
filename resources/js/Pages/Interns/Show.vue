@@ -56,7 +56,6 @@
                   <th class="dashboard-th">Weight Percentage</th>
                   <th class="dashboard-th text-left">Assement Type</th>
                   <th class="dashboard-th text-left">Created On</th>
-                  <th class="dashboard-th">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -80,19 +79,6 @@
                     <div>{{ intern.name }}</div>
                   </td>
                   <td class="text-td">{{ intern.name }}</td>
-                  <td class="text-td">
-                    <div
-                      class="
-                        flex
-                        space-x-5
-                        justify-center
-                        hover:cursor-pointer
-                      "
-                    >
-                      <EditTableRow :href="route('interns.edit', intern)" />
-                      <DeleteTableRow @click="destroy(intern)" />
-                    </div>
-                  </td>
                 </tr>
               </tbody>
             </table>
