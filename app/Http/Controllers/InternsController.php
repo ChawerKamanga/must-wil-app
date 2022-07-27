@@ -82,7 +82,6 @@ class InternsController extends Controller
                     'name' => $assessment->name,
                     'slug' => $assessment->slug,
                     'type' => $assessment->assessmentType->name,
-                    'count' => '1',
                 ]),
             // 'interns' => $organization->users()
             // ->where('role_id', 4)

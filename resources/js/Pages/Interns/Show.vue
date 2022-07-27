@@ -43,7 +43,7 @@
                 assessment.name
               }}</Link>
             </p>
-            <p class="text-veryDarkBlue text-3xl">{{ assessment.count }}</p>
+            <p class="text-veryDarkBlue text-3xl">20%</p>
           </div>
         </div>
 
