@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assessments;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class InternsController extends Controller
@@ -12,7 +14,7 @@ class InternsController extends Controller
 
     private function checkOrg($value)
     {
-        return ($value == null) ? 'Not yet Allocated' : $value->name;   
+        return ($value == null) ? 'Not yet Allocated' : $value->name;
     }
 
     /**
@@ -62,7 +64,6 @@ class InternsController extends Controller
      */
     public function store(Request $request)
     {
-        
     }
 
     /**
@@ -71,10 +72,18 @@ class InternsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $intern)
+    public function show(User $user)
     {
         return Inertia::render('Interns/Show', [
-            'intern' => $intern->only('name'),
+            'intern' => $user->only('name'),
+            'assessments' => Assessments::query()
+                ->paginate(10)
+                ->through(fn ($assessment) => [
+                    'name' => $assessment->name,
+                    'slug' => $assessment->slug,
+                    'type' => $assessment->assessmentType->name,
+                    'count' => '1',
+                ]),
             // 'interns' => $organization->users()
             // ->where('role_id', 4)
             // ->paginate(10)
