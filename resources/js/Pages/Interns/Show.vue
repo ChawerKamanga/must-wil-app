@@ -52,10 +52,9 @@
             <table class="items-center w-full bg-transparent border-collapse">
               <thead>
                 <tr>
-                  <th class="dashboard-th text-left">Title</th>
-                  <th class="dashboard-th">Weight Percentage</th>
-                  <th class="dashboard-th text-left">Assement Type</th>
-                  <th class="dashboard-th text-left">Created On</th>
+                  <th class="dashboard-th text-left">Name</th>
+                  <th class="dashboard-th text-left">Final Score</th>
+                  <th class="dashboard-th text-left">Assessed On</th>
                 </tr>
               </thead>
               <tbody>
@@ -70,15 +69,12 @@
                       >
                     </div>
                   </th>
-                   <td class="text-td text-center">
+                   <td class="text-td">
                     <div>
-                      {{ intern.name }}%
+                      70%
                     </div>
                   </td>
-                  <td class="text-td">
-                    <div>{{ intern.name }}</div>
-                  </td>
-                  <td class="text-td">{{ intern.name }}</td>
+                  <td class="text-td">54 minutes</td>
                 </tr>
               </tbody>
             </table>
