@@ -39,6 +39,16 @@ class AssessmentsController extends Controller
         ]);
     }
 
+    public function showQuestions($id)
+    {
+        return $id;
+    }
+
+    public function assess($id)
+    {
+        return $id;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
