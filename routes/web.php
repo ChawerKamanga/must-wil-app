@@ -28,7 +28,7 @@ use Inertia\Inertia;
 Route::middleware(['auth'])->group(function () {
     Route::resource('assessments', AssessmentsController::class)->except(['edit', 'show']);
     Route::get('assessments/{assessments:slug}', [AssessmentsController::class, 'show'])->name('assessments.show');
-    Route::get('assessments/{assessments:slug}/assess/{user:slug}', [AssessmentsController::class, 'assess'])->name('assessments.assess');
+    Route::get('assessments/{assessments:slug}/{user:slug}', [AssessmentsController::class, 'assess'])->name('assessments.assess');
     Route::get('assessments/edit/{assessments:slug}', [AssessmentsController::class, 'edit'])->name('assessments.edit');
     Route::resource('academic-supervisors', AcademicSupervisorsController::class)->except(['edit', 'show']);
     Route::get('academic-supervisors/edit/{academic_supervisors:slug}', [AcademicSupervisorsController::class, 'edit'])->name('academic-supervisors.edit');
