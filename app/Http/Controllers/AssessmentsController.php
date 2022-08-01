@@ -44,10 +44,6 @@ class AssessmentsController extends Controller
         return $id;
     }
 
-    public function assess($id)
-    {
-        return $id;
-    }
 
     /**
      * Show the form for creating a new resource.

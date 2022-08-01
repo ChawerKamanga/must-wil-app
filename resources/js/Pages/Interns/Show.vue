@@ -39,7 +39,7 @@
           >
             <p class="text-gray-400 text-xs font-bold">{{ assessment.type }}</p>
             <p class="text-veryDarkBlue font-bold text-lg">
-              <Link :href="route('assessments.show', assessment)">{{
+              <Link :href="route('assessments.assess', assessment)">{{
                 assessment.name
               }}</Link>
             </p>
