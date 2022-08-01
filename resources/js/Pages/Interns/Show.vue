@@ -8,7 +8,9 @@
         <div class="flex justify-between items-center my-4">
           <!-- Assement -->
           <div>
-            <h1 class="text-veryDarkBlue text-3xl font-bold">{{ intern.name }}</h1>
+            <h1 class="text-veryDarkBlue text-3xl font-bold">
+              {{ intern.name }}
+            </h1>
           </div>
           <!-- Create button -->
           <div>
@@ -39,9 +41,10 @@
           >
             <p class="text-gray-400 text-xs font-bold">{{ assessment.type }}</p>
             <p class="text-veryDarkBlue font-bold text-lg">
-              <Link :href="route('assessments.assess', assessment)">{{
-                assessment.name
-              }}</Link>
+              <Link
+                :href="route('assessment.student.show', [assessment, intern])"
+                >{{ assessment.name }}</Link
+              >
             </p>
             <p class="text-veryDarkBlue text-3xl">20%</p>
           </div>
@@ -58,21 +61,15 @@
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  class="border-b border-gray-200"
-                >
+                <tr class="border-b border-gray-200">
                   <th class="text-td text-left">
                     <div class="flex items-center space-x-2">
                       <div class="rounded-full bg-gray-800"></div>
-                      <span class="font-normal"
-                        >{{ intern.name }}</span
-                      >
+                      <span class="font-normal">{{ intern.name }}</span>
                     </div>
                   </th>
-                   <td class="text-td">
-                    <div>
-                      70%
-                    </div>
+                  <td class="text-td">
+                    <div>70%</div>
                   </td>
                   <td class="text-td">54 minutes</td>
                 </tr>

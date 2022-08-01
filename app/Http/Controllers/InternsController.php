@@ -75,7 +75,7 @@ class InternsController extends Controller
     public function show(User $user)
     {
         return Inertia::render('Interns/Show', [
-            'intern' => $user->only('name'),
+            'intern' => $user->only('name', 'slug', 'id'),
             'assessments' => Assessments::query()
                 ->paginate(10)
                 ->through(fn ($assessment) => [
