@@ -39,9 +39,9 @@ class AssessmentsController extends Controller
         ]);
     }
 
-    public function showQuestions($id)
+    public function showQuestions()
     {
-        return $id;
+        
     }
 
 

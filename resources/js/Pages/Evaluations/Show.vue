@@ -22,63 +22,23 @@
           </div>
         </div>
 
-        <div
+         <div
           class="
-            flex flex-col
-            lg:flex-row
-            justify-between
-            items-center
-            space-x-0
-            lg:space-x-5
-            space-y-5
-            lg:space-y-0
+            dashboard-grid
           "
         >
-          <div class="bg-white rounded-xl w-full">
-            <div class="w-full mt-6 flex flex-col space-y-6">
-              <table class="items-center w-full bg-transparent border-collapse">
-                <thead>
-                  <tr>
-                    <th class="dashboard-th text-left">Question #</th>
-                    <th class="dashboard-th text-left">Question</th>
-                    <th class="dashboard-th">Maximum Marks</th>
-                    <th class="dashboard-th">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    class="border-b border-gray-200"
-                    v-for="(question, index) in questions.data"
-                    :key="question.slug"
-                  >
-                    <td class="text-td text-left">
-                      <div>{{ index + 1 }}</div>
-                    </td>
-                    <td class="text-td text-left">
-                      <div>{{ question.question }}</div>
-                    </td>
-                    <td class="text-td text-center">
-                      <div>{{ question.marks }}</div>
-                    </td>
-                    <td class="text-td">
-                      <div
-                        class="
-                          flex
-                          space-x-5
-                          justify-center
-                          hover:cursor-pointer
-                        "
-                      >
-                        <EditTableRow
-                          :href="route('questions.edit', question)"
-                        />
-                        <DeleteTableRow @click="destroy(question)" />
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          <div
+            v-for="(question, index) in questions.data"
+                    :key="index"
+            class="rounded-xl bg-white w-full p-5"
+          >
+            <p class="text-gray-400 text-xs font-bold">Question #{{ index+1 }}</p>
+            <p class="text-veryDarkBlue font-bold text-lg">
+              <span>{{
+                question.question 
+              }}</span>
+            </p>
+            <p class="text-veryDarkBlue text-3xl">{{ question.marks }}</p>
           </div>
         </div>
       </div>
