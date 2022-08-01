@@ -39,9 +39,20 @@ class AssessmentsController extends Controller
         ]);
     }
 
-    public function showQuestions()
+    public function showQuestions(Evaluation $evaluation)
     {
-        
+        return $evaluation;
+        return Inertia::render('Interns/Assess', [
+            'evaluation' => $evaluation->only('name'),
+            'questions' => $evaluation->questions()
+            ->paginate(10)
+            ->withQueryString()
+            ->through(fn ($question) => [
+                'id' => $question->id,
+                'question' => $question->question,
+                'marks' => $question->total_marks,
+            ]),
+        ]);
     }
 
 
