@@ -83,17 +83,6 @@ class InternsController extends Controller
                     'slug' => $assessment->slug,
                     'type' => $assessment->assessmentType->name,
                 ]),
-            // 'interns' => $organization->users()
-            // ->where('role_id', 4)
-            // ->paginate(10)
-            // ->withQueryString()
-            // ->through(fn ($intern) => [
-            //     'id' => $intern->id,
-            //     'name' => $intern->name,
-            //     'gender' => $intern->gender,
-            //     'email' => $intern->email,
-            //     'phonenumber' => $intern->phone_number
-            // ]),
         ]);
     }
 
