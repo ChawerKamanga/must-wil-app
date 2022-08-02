@@ -35,15 +35,15 @@
           "
         >
           <div
-            v-for="(assessment, index) in assessments.data"
+            v-for="(evaluation, index) in evaluations.data"
             :key="index"
-            class="rounded-xl bg-white w-full lg:w-1/4 p-5"
+            class="rounded-xl bg-white w-full lg:w-1/2 p-5"
           >
-            <p class="text-gray-400 text-xs font-bold">{{ assessment.type }}</p>
+            <p class="text-gray-400 text-xs font-bold">{{ evaluation.type }}</p>
             <p class="text-veryDarkBlue font-bold text-lg">
               <Link
-                :href="route('assessment.student.show', [assessment, intern])"
-                >{{ assessment.name }}</Link
+                :href="route('assessment.student.show', [evaluation, intern])"
+                >{{ evaluation.name }}</Link
               >
             </p>
             <p class="text-veryDarkBlue text-3xl">20%</p>
@@ -90,7 +90,7 @@ import DeleteTableRow from "@/Components/DeleteTableRow.vue";
 import { Link, Head } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
-  assessments: Object,
+  evaluations: Object,
   intern: Object,
 });
 </script>
