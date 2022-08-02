@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assessments;
+use App\Models\Evaluation;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -76,12 +77,13 @@ class InternsController extends Controller
     {
         return Inertia::render('Interns/Show', [
             'intern' => $user->only('name', 'slug', 'id'),
-            'assessments' => Assessments::query()
+            'evaluations' => Evaluation::query()
                 ->paginate(10)
-                ->through(fn ($assessment) => [
-                    'name' => $assessment->name,
-                    'slug' => $assessment->slug,
-                    'type' => $assessment->assessmentType->name,
+                ->through(fn ($evaluation) => [
+                    'name' => $evaluation->name,
+                    'slug' => $evaluation->slug,
+                    'type' => $evaluation->assessment->assessmentType->name,
+                    'createdAt' =>  Carbon::parse($evaluation->created_at)->format('l jS \of F Y h:i:s A')
                 ]),
         ]);
     }
