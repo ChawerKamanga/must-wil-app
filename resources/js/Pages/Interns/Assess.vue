@@ -23,26 +23,27 @@
         </div>
 
         <div>
-            <h1 class="text-veryDarkBlue text-lg font-bold">Intern: {{ intern.name }}</h1>
+          <h1 class="text-veryDarkBlue text-lg font-bold">
+            Intern: {{ intern.name }}
+          </h1>
         </div>
 
-         <div
-          class="
-            dashboard-grid
-          "
-        >
+        <div class="dashboard-grid">
           <div
             v-for="(question, index) in questions.data"
-                    :key="index"
+            :key="index"
             class="rounded-xl bg-white w-full p-5"
           >
-            <p class="text-gray-400 text-xs font-bold">Question #{{ index+1 }}</p>
-            <p class="text-veryDarkBlue font-bold text-lg">
-              <span>{{
-                question.question 
-              }}</span>
+            <p class="text-gray-400 text-xs font-bold">
+              Question #{{ index + 1 }}
             </p>
-            <p class="text-veryDarkBlue text-3xl">{{ question.marks }}</p>
+            <p class="text-veryDarkBlue font-bold text-lg">
+              <span>{{ question.question }}</span>
+            </p>
+            <p class="text-veryDarkBlue text-3xl">
+              <input type="text" class="w-10 border-none form-input" /> /
+              {{ question.marks }}
+            </p>
           </div>
         </div>
       </div>
@@ -63,3 +64,10 @@ const props = defineProps({
   intern: String,
 });
 </script>
+
+<style>
+.form-input:active {
+  border: none;
+  outline: none;
+}
+</style>
