@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Assessments;
 use App\Models\Evaluation;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -39,20 +40,21 @@ class AssessmentsController extends Controller
         ]);
     }
 
-    public function showQuestions(Evaluation $evaluation)
+    public function showQuestions(Assessments $assessment, User $user)
     {
-        return $evaluation;
-        return Inertia::render('Interns/Assess', [
-            'evaluation' => $evaluation->only('name'),
-            'questions' => $evaluation->questions()
-            ->paginate(10)
-            ->withQueryString()
-            ->through(fn ($question) => [
-                'id' => $question->id,
-                'question' => $question->question,
-                'marks' => $question->total_marks,
-            ]),
-        ]);
+        return $user;
+        // return $evaluation;
+        // return Inertia::render('Interns/Assess', [
+        //     'evaluation' => $evaluation->only('name'),
+        //     'questions' => $evaluation->questions()
+        //     ->paginate(10)
+        //     ->withQueryString()
+        //     ->through(fn ($question) => [
+        //         'id' => $question->id,
+        //         'question' => $question->question,
+        //         'marks' => $question->total_marks,
+        //     ]),
+        // ]);
     }
 
 
