@@ -28,34 +28,33 @@ class AssessmentsController extends Controller
                     'count' => '1',
                 ]),
             'evaluations' => Evaluation::query()
-            ->paginate(10)
-            ->through(fn ($evaluation) => [
-                'name' => $evaluation->name,
-                'slug' => $evaluation->slug,
-                'description' => $evaluation->description,
-                'type' => $evaluation->assessment->assessmentType->name,
-                'weight' => $evaluation->total_weight_percentage,
-                'createdAt' =>  Carbon::parse($evaluation->created_at)->format('l jS \of F Y h:i:s A')
-            ]),
+                ->paginate(10)
+                ->through(fn ($evaluation) => [
+                    'name' => $evaluation->name,
+                    'slug' => $evaluation->slug,
+                    'description' => $evaluation->description,
+                    'type' => $evaluation->assessment->assessmentType->name,
+                    'weight' => $evaluation->total_weight_percentage,
+                    'createdAt' =>  Carbon::parse($evaluation->created_at)->format('l jS \of F Y h:i:s A')
+                ]),
         ]);
     }
 
 
     public function showQuestions(Evaluation $evaluation, User $user)
     {
-        return $user;
-        // return $evaluation;
-        // return Inertia::render('Interns/Assess', [
-        //     'evaluation' => $evaluation->only('name'),
-        //     'questions' => $evaluation->questions()
-        //     ->paginate(10)
-        //     ->withQueryString()
-        //     ->through(fn ($question) => [
-        //         'id' => $question->id,
-        //         'question' => $question->question,
-        //         'marks' => $question->total_marks,
-        //     ]),
-        // ]);
+        return Inertia::render('Interns/Assess', [
+            'intern' => $user->only('name'),
+            'evaluation' => $evaluation->only('name'),
+            'questions' => $evaluation->questions()
+                ->paginate(10)
+                ->withQueryString()
+                ->through(fn ($question) => [
+                    'id' => $question->id,
+                    'question' => $question->question,
+                    'marks' => $question->total_marks,
+                ]),
+        ]);
     }
 
 
