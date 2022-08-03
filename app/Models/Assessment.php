@@ -18,4 +18,9 @@ class Assessment extends Model
     {
         return $this->hasMany(Evaluations::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

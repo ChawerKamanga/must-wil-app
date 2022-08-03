@@ -11,11 +11,16 @@ class Evaluation extends Model
 
     public function assessment()
     {
-        return $this->belongsTo(Assessments::class);   
+        return $this->belongsTo(Assessment::class);   
     }
 
     public function questions()
     {
         return $this->hasMany(Questions::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

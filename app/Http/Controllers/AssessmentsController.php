@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assessment;
-use App\Models\Assessments;
 use App\Models\Evaluation;
 use App\Models\User;
 use Carbon\Carbon;
@@ -41,7 +40,8 @@ class AssessmentsController extends Controller
         ]);
     }
 
-    public function showQuestions(Assessment $assessment, User $user)
+
+    public function showQuestions(Evaluation $evaluation, User $user)
     {
         return $user;
         // return $evaluation;

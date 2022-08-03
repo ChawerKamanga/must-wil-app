@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Programme::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

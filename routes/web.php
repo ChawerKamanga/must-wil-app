@@ -30,7 +30,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('assessments', AssessmentsController::class)->except(['edit', 'show']);
     Route::get('assessments/{assessments:slug}', [AssessmentsController::class, 'show'])->name('assessments.show');
     Route::get('assessments/edit/{assessments:slug}', [AssessmentsController::class, 'edit'])->name('assessments.edit');
-    Route::get('assessments/{assessment:slug}/interns/{user:slug}', [AssessmentsController::class, 'showQuestions'])->name('assessment.student.show');
+    Route::get('assessments/{evaluation}/interns/{user}', [AssessmentsController::class, 'showQuestions'])->name('assessment.student.show');
     Route::resource('academic-supervisors', AcademicSupervisorsController::class)->except(['edit', 'show']);
     Route::get('academic-supervisors/edit/{academic_supervisors:slug}', [AcademicSupervisorsController::class, 'edit'])->name('academic-supervisors.edit');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');

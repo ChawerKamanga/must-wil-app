@@ -13,4 +13,9 @@ class District extends Model
     {
         return $this->hasMany(Organization::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
