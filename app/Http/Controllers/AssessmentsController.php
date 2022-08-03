@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assessment;
 use App\Models\Assessments;
 use App\Models\Evaluation;
 use App\Models\User;
@@ -19,7 +20,7 @@ class AssessmentsController extends Controller
     public function index()
     {
         return Inertia::render('Assessments/Index', [
-            'assessments' => Assessments::query()
+            'assessments' => Assessment::query()
                 ->paginate(10)
                 ->through(fn ($assessment) => [
                     'name' => $assessment->name,
@@ -40,7 +41,7 @@ class AssessmentsController extends Controller
         ]);
     }
 
-    public function showQuestions(Assessments $assessment, User $user)
+    public function showQuestions(Assessment $assessment, User $user)
     {
         return $user;
         // return $evaluation;
