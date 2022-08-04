@@ -17,7 +17,7 @@
             <Link
               :href="route('assessments.create')"
               class="create-btn hidden lg:block"
-              >Add Question</Link
+              >Submit Assessment</Link
             >
           </div>
         </div>
@@ -41,7 +41,7 @@
               <span>{{ question.question }}</span>
             </p>
             <p class="text-veryDarkBlue text-3xl">
-              <input type="text" class="border border-blue-500 w-10 border-none form-input" /> /
+              <input type="text" class="border text-2xl border-blue-500 w-10 border-none form-input" /> /
               {{ question.marks }}
             </p>
           </div>
