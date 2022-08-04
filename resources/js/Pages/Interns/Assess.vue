@@ -41,7 +41,7 @@
               <span>{{ question.question }}</span>
             </p>
             <p class="text-veryDarkBlue text-3xl">
-              <input type="text" class="w-10 border-none form-input" /> /
+              <input type="text" class="border border-blue-500 w-10 border-none form-input" /> /
               {{ question.marks }}
             </p>
           </div>
