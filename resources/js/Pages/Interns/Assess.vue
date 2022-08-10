@@ -4,7 +4,10 @@
     <InternsNav />
 
     <section class="w-full lg:w-10/12 lg:items-center lg:mx-auto space-y-10">
-      <form  @submit.prevent="submit" class="container w-full mx-auto px-5 py-5 flex flex-col space-y-10">
+      <form
+        @submit.prevent="submit"
+        class="container w-full mx-auto px-5 py-5 flex flex-col space-y-10"
+      >
         <div class="flex justify-between items-center my-4">
           <!-- Assement -->
           <div>
@@ -14,11 +17,9 @@
           </div>
           <!-- Create button -->
           <div>
-            <button
-            type="submit"
-              class="create-btn hidden lg:block"
-              >Submit Assessment</button
-            >
+            <button type="submit" class="create-btn hidden lg:block">
+              Submit Assessment
+            </button>
           </div>
         </div>
 
@@ -41,7 +42,19 @@
               <span>{{ question.question }}</span>
             </p>
             <p class="text-veryDarkBlue text-3xl">
-              <input type="text" class="border text-2xl border-blue-500 w-10 border-none form-input" /> /
+              <input type="hidden" value="{{ question.id }}" />
+              <input
+                type="text"
+                class="
+                  border
+                  text-2xl
+                  border-blue-500
+                  w-10
+                  border-none
+                  form-input
+                "
+              />
+              /
               {{ question.marks }}
             </p>
           </div>
@@ -57,11 +70,18 @@ import InternsNav from "@/Components/InternsNav.vue";
 import EditTableRow from "@/Components/EditTableRow.vue";
 import DeleteTableRow from "@/Components/DeleteTableRow.vue";
 import { Link, Head } from "@inertiajs/inertia-vue3";
+import { useForm } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
   evaluation: Object,
   questions: Object,
   intern: String,
+});
+
+const form = useForm({
+  email: null,
+  password: null,
+  remember: false,
 });
 
 let submit = () => {
