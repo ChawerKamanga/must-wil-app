@@ -4,7 +4,7 @@
     <InternsNav />
 
     <section class="w-full lg:w-10/12 lg:items-center lg:mx-auto space-y-10">
-      <form class="container w-full mx-auto px-5 py-5 flex flex-col space-y-10">
+      <form  @submit.prevent="submit" class="container w-full mx-auto px-5 py-5 flex flex-col space-y-10">
         <div class="flex justify-between items-center my-4">
           <!-- Assement -->
           <div>
@@ -15,6 +15,7 @@
           <!-- Create button -->
           <div>
             <button
+            type="submit"
               class="create-btn hidden lg:block"
               >Submit Assessment</button
             >
@@ -62,6 +63,10 @@ const props = defineProps({
   questions: Object,
   intern: String,
 });
+
+let submit = () => {
+  form.post(route("response.store"));
+};
 </script>
 
 <style>
