@@ -44,7 +44,7 @@ class AssessmentsController extends Controller
     public function showQuestions(Evaluation $evaluation, User $user)
     {
         return Inertia::render('Interns/Assess', [
-            'intern' => $user->only('name'),
+            'intern' => $user->only('id', 'name'),
             'evaluation' => $evaluation->only('name'),
             'questions' => $evaluation->questions()
                 ->paginate(10)

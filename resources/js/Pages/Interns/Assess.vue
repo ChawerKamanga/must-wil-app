@@ -79,9 +79,9 @@ const props = defineProps({
 });
 
 const form = useForm({
-  email: null,
-  password: null,
-  remember: false,
+  question_id: null,
+  score: null,
+  intern_id: props.intern.id,
 });
 
 let submit = () => {
