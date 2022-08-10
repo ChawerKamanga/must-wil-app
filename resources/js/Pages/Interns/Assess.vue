@@ -4,7 +4,7 @@
     <InternsNav />
 
     <section class="w-full lg:w-10/12 lg:items-center lg:mx-auto space-y-10">
-      <div class="container w-full mx-auto px-5 py-5 flex flex-col space-y-10">
+      <form class="container w-full mx-auto px-5 py-5 flex flex-col space-y-10">
         <div class="flex justify-between items-center my-4">
           <!-- Assement -->
           <div>
@@ -14,10 +14,9 @@
           </div>
           <!-- Create button -->
           <div>
-            <Link
-              :href="route('assessments.create')"
+            <button
               class="create-btn hidden lg:block"
-              >Submit Assessment</Link
+              >Submit Assessment</button
             >
           </div>
         </div>
@@ -46,7 +45,7 @@
             </p>
           </div>
         </div>
-      </div>
+      </form>
     </section>
   </Authenticated>
 </template>
