@@ -42,17 +42,9 @@
               <span>{{ question.question }}</span>
             </p>
             <p class="text-veryDarkBlue text-3xl">
-              <input type="hidden" value="{{ question.id }}" />
               <input
                 type="text"
-                class="
-                  border
-                  text-2xl
-                  border-blue-500
-                  w-10
-                  border-none
-                  form-input
-                "
+                class="assement-form"
               />
               /
               {{ question.marks }}
