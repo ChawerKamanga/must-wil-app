@@ -24,6 +24,10 @@
   @apply px-6 align-middle border border-solid py-3 text-xs border-l-0 border-r-0 border-t-0 text-gray-600;
 }
 
+.form-label {
+  @apply font-bold text-base;
+}
+
 .auth-wrapper {
   @apply min-h-screen flex justify-center items-center pt-6  bg-gradient-to-l from-[#E3F2F9] to-[#ACD5F3];
 }
