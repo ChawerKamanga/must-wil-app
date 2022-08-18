@@ -42,10 +42,8 @@
               <span>{{ question.question }}</span>
             </p>
             <p class="text-veryDarkBlue text-3xl">
-              <input
-                type="text"
-                class="assement-form"
-              />
+              <input v-model="form.questions_ids" />
+              <input type="text" class="assement-form" v-model="form.scores" />
               /
               {{ question.marks }}
             </p>
@@ -70,9 +68,9 @@ const props = defineProps({
   intern: String,
 });
 
-const form = useForm({
-  question_id: null,
-  score: null,
+let form = useForm({
+  questions_ids: [],
+  scores: [],
   intern_id: props.intern.id,
 });
 
