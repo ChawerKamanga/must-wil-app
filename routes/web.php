@@ -52,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('assessments/{assessments:slug}/{user:slug}', [AssessmentsController::class, 'showQuestions'])->name('assessments.questions');
 });
 
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),

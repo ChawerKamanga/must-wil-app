@@ -10,7 +10,7 @@
     "
   >
     <div class="w-full">
-      <a href="#" class="menu-item-link group inactive-nav-item">
+      <Link method="post" :href="route('logout')" class="menu-item-link group inactive-nav-item">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="menu-icon text-gray-300 group-hover:text-darkBlue"
@@ -35,7 +35,7 @@
           "
           >Logout</span
         >
-      </a>
+      </Link>
     </div>
 
     <div class="xl:hidden hidden lg:block">
@@ -60,6 +60,7 @@
 
 <script setup>
 import { usePage } from "@inertiajs/inertia-vue3";
+import { Link } from "@inertiajs/inertia-vue3";
 const authUser = usePage().props.value.auth.user;
 const authUserRole = usePage().props.value.auth.user.role;
 </script>
