@@ -28,6 +28,11 @@
   @apply font-bold text-base;
 }
 
+.progress-round {
+  @apply w-10 h-10 rounded-full text-white flex justify-center items-center;
+}
+
+
 .auth-wrapper {
   @apply min-h-screen flex justify-center items-center pt-6  bg-gradient-to-l from-[#E3F2F9] to-[#ACD5F3];
 }
