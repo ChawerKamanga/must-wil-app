@@ -11,6 +11,7 @@ use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ProgrammesController;
 use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\StudentRegisterController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -51,6 +52,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('roles/edit/{role:slug}', [RolesController::class, 'edit'])->name('roles.edit');
     Route::get('assessments/{assessments:slug}/{user:slug}', [AssessmentsController::class, 'showQuestions'])->name('assessments.questions');
 });
+
+Route::get('student-register', [StudentRegisterController::class, 'create'])->name('register.create');
+Route::post('student-register', [StudentRegisterController::class, 'register'])->name('register');
 
 
 Route::get('/', function () {

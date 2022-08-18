@@ -24,6 +24,14 @@
   @apply px-6 align-middle border border-solid py-3 text-xs border-l-0 border-r-0 border-t-0 text-gray-600;
 }
 
+.auth-wrapper {
+  @apply  min-h-screen flex justify-center sm:justify-center items-center pt-6 sm:pt-0 bg-gradient-to-l from-[#E3F2F9] to-[#ACD5F3];
+}
+
+.mult-form {
+  @apply flex flex-col items-center sm:max-w-md rounded-lg mt-6 pr-6 py-4 bg-white shadow-mdoverflow-hidden sm:rounded-lg justify-center;
+}
+
 .active-menu-item-wrapper {
   @apply xl:border xl:border-r-8 xl:border-white xl:border-t-0 xl:border-b-0 xl:border-l-0;
 }
