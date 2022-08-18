@@ -25,11 +25,11 @@
 }
 
 .auth-wrapper {
-  @apply  min-h-screen flex justify-center sm:justify-center items-center pt-6 sm:pt-0 bg-gradient-to-l from-[#E3F2F9] to-[#ACD5F3];
+  @apply  min-h-screen flex justify-center items-center pt-6  bg-gradient-to-l from-[#E3F2F9] to-[#ACD5F3];
 }
 
 .mult-form {
-  @apply flex flex-col items-center sm:max-w-md rounded-lg mt-6 pr-6 py-4 bg-white shadow-mdoverflow-hidden sm:rounded-lg justify-center;
+  @apply flex flex-col items-center max-w-md rounded-lg mt-6 pr-6 py-4 bg-white shadow-md overflow-hidden  justify-center;
 }
 
 .active-menu-item-wrapper {
