@@ -117,8 +117,7 @@
               <div class="flex flex-col space-y-2">
                 <label for="program" class="form-label">Program of Study</label>
                 <select v-model="program_of_study" id="program-select">
-                  <option value="dog">Business Information Technology</option>
-                  <option value="cat">Computer Systems and Security</option>
+                  <option v-for="programme in programmes.data" :key="programme.id" :value="programme.id">{{ programme.name }}</option>
                 </select>
               </div>
 
@@ -366,6 +365,10 @@ const form = useForm({
 });
 
 let formStep = ref(1);
+
+const props = defineProps({
+  programmes: Object
+})
 
 function nextStep() {
   Inertia.post(

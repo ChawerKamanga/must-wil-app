@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Programme;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -9,7 +10,14 @@ class StudentRegisterController extends Controller
 {
     public function create()
     {
-        return Inertia::render('Auth/StudentRegister');
+        return Inertia::render('Auth/StudentRegister', [
+            'programmes' => Programme::query()
+                ->paginate(20)
+                ->through(fn ($program) => [
+                    'id' => $program->id,
+                    'name' => $program->name,
+                ]),
+        ]);
     }
 
     public function firstStep(Request $request)
@@ -27,8 +35,8 @@ class StudentRegisterController extends Controller
     public function secondStep(Request $request)
     {
         $request->validate([
-            'program_of_study' => ['required'],
             'reg_number' => ['required'],
+            'program_of_study' => ['required'],
             'gender' => ['required'],
             'profile_pic' => ['required'],
         ]);
