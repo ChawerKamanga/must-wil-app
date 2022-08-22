@@ -14,12 +14,11 @@ class StudentRegisterController extends Controller
 
     public function firstStep(Request $request)
     {
-        return 'I am here';
         $request->validate([
             'name' => ['required'],
-            'email' => ['required', 'email', 'unique'],
-            'phone_number' => ['required','unique'],
-            'next_of_kin' => ['required', 'unique'],
+            'email' => ['required', 'unique:users'],
+            'phone_number' => ['required','unique:users'],
+            'next_of_kin' => ['required', 'unique:users'],
         ]);
         
         return to_route('register.create');

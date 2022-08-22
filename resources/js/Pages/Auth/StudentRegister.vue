@@ -20,9 +20,9 @@
         </div>
 
         <form>
-          <BreezeValidationErrors class="mb-4" />
           <div class="space-y-2 bg-white px-10 py-10 shadow-2xl rounded-lg">
             <div class="flex flex-col space-y-2">
+              <BreezeValidationErrors class="mb-4" />
               <h1 class="font-bold text-2xl mb-3">Register as a Student</h1>
               <h6 class="text-gray-700 text-sm font-bold">Step 1 of 3</h6>
             </div>
@@ -100,6 +100,7 @@
               <button
                 class="bg-veryDarkBlue text-white px-4 py-3 rounded"
                 type="button"
+                @click="nextStep"
               >
                 Next Step
               </button>
@@ -129,10 +130,10 @@ let formStep = ref(1);
 
 function nextStep() {
   Inertia.post(
-    route("products.first.step"),
+    route("student-register.first.step"),
     {
       name: form.name,
-      email: form.body,
+      email: form.email,
       phone_number: form.phone_number,
       next_of_kin: form.next_of_kin,
     },
