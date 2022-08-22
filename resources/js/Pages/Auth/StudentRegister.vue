@@ -26,7 +26,7 @@
               </div>
 
             <!-- First step -->
-            <div class="space-y-5">
+            <div class="space-y-5" v-if="formStep == 1">
               <div class="flex flex-col space-y-2">
                 <label for="fullname" class="form-label">Fullname</label>
                 <input
@@ -77,7 +77,7 @@
             </div>
 
             <!-- Second step -->
-            <div class="space-y-5">
+            <div class="space-y-5"  v-if="formStep == 1">
               <div class="flex flex-col space-y-2">
                 <label for="personal-number" class="form-label"
                   >Program of Study</label
@@ -118,4 +118,27 @@ const form = useForm({
   phone_number: "",
   next_of_kin: "",
 });
+
+let formStep = ref(1);
+
+function nextStep() {
+  Inertia.post(
+    route("products.first.step"),
+    {
+      name: form.name,
+      email: form.body,
+      phone_number: form.phone_number,
+      next_of_kin: form.next_of_kin,
+    },
+    {
+      onSuccess: () => {
+        formStep.value++;
+      },
+    }
+  );
+}
+
+function prevStep() {
+  formStep.value--;
+}
 </script>
