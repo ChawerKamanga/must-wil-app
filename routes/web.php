@@ -56,7 +56,6 @@ Route::middleware(['auth'])->group(function () {
 Route::get('student-register', [StudentRegisterController::class, 'create'])->name('register.create');
 Route::post('student-register', [StudentRegisterController::class, 'register'])->name('register');
 
-
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),

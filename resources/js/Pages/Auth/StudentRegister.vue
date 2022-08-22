@@ -6,7 +6,7 @@
       >
       <div class="min-w-[600px]">
         <div class="flex justify-center items-center mb-5">
-            <div class="progress-round bg-gray-800">1</div>
+            <div class="progress-round bg-veryDarkBlue">1</div>
             <div class="w-48 h-1 bg-gray-100"></div>
             <div class="progress-round bg-gray-500">2</div>
             <div class="w-48 h-1 bg-gray-100"></div>
@@ -29,8 +29,13 @@
         </div>
 
          <div class="flex flex-col space-y-2">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" id="password" placeholder="Enter your password" class="text-xs text-gray-700 py-4"/>
+          <label for="personal-number" class="form-label">Phonenumber</label>
+          <input type="text" id="personal-number" placeholder="Enter your phonenumber" class="text-xs text-gray-700 py-4"/>
+        </div>
+
+         <div class="flex flex-col space-y-2">
+          <label for="personal-number" class="form-label">Next of Kin</label>
+          <input type="text" id="personal-number" placeholder="Enter your phonenumber" class="text-xs text-gray-700 py-4"/>
         </div>
 
         <div>
@@ -44,4 +49,14 @@
 
 <script setup>
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
+import { ref } from "vue";
+import { Inertia } from "@inertiajs/inertia";
+
+const form = useForm({
+  name: "",
+  email: "",
+  user_name: "",
+  address: "",
+});
+
 </script>
