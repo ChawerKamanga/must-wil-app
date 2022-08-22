@@ -24,6 +24,16 @@ class StudentRegisterController extends Controller
         return to_route('register.create');
     }
 
+    public function secondStep(Request $request)
+    {
+        $request->validate([
+            'program_of_study' => ['required'],
+            'reg_number' => ['required'],
+            'gender' => ['required'],
+            'profile_pic' => ['required'],
+        ]);
+    }
+
     public function register()
     {
         

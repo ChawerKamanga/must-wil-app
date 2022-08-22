@@ -27,6 +27,14 @@
           <div class="progress-round bg-gray-500">3</div>
         </div>
 
+        <div v-if="formStep == 3" class="flex justify-center items-center mb-5">
+          <div class="progress-round bg-veryDarkBlue">1</div>
+          <div class="w-48 h-1 bg-veryDarkBlue"></div>
+          <div class="progress-round bg-veryDarkBlue">2</div>
+          <div class="w-48 h-1 bg-veryDarkBlue"></div>
+          <div class="progress-round bg-veryDarkBlue">3</div>
+        </div>
+
         <form>
           <div class="space-y-5 bg-white px-10 py-10 shadow-2xl rounded-lg">
             <div class="flex flex-col space-y-2">
@@ -123,7 +131,7 @@
                   id="profile-pic"
                   placeholder="Enter your reg number"
                   accept="image/png, image/jpeg"
-                  class=" placeholder:text-gray-700 py-4"
+                  class="placeholder:text-gray-700 py-4"
                 />
               </div>
 
@@ -141,8 +149,80 @@
                     <label for="male">Male</label>
                   </div>
 
-                  <div  class="space-x-2">
-                    <input type="radio" id="female" name="gender" value="dewey" />
+                  <div class="space-x-2">
+                    <input
+                      type="radio"
+                      id="female"
+                      name="gender"
+                      value="dewey"
+                    />
+                    <label for="female">Female</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Third Step -->
+            <div class="space-y-5" v-if="formStep == 3">
+              <div class="flex flex-col space-y-2">
+                <label for="personal-number" class="form-label"
+                  >Registration Number</label
+                >
+                <input
+                  type="text"
+                  id="personal-number"
+                  placeholder="Enter your reg number"
+                  class="text-xs placeholder:text-gray-700 py-4"
+                  v-model="form.reg_number"
+                />
+              </div>
+
+              <div class="flex flex-col space-y-2">
+                <label for="program" class="form-label">Program of Study</label>
+                <select
+                  v-model="program_of_study"
+                  id="program-select"
+                  class="text-xs"
+                >
+                  <option value="dog">Business Information Technology</option>
+                  <option value="cat">Computer Systems and Security</option>
+                </select>
+              </div>
+
+              <div class="flex flex-col">
+                <label for="profile-pic" class="form-label"
+                  >Profile Picture</label
+                >
+                <input
+                  type="file"
+                  id="profile-pic"
+                  placeholder="Enter your reg number"
+                  accept="image/png, image/jpeg"
+                  class="placeholder:text-gray-700 py-4"
+                />
+              </div>
+
+              <div class="flex flex-col space-y-2">
+                <label for="program" class="form-label">Gender</label>
+                <div class="flex space-x-4">
+                  <div class="space-x-2">
+                    <input
+                      type="radio"
+                      id="male"
+                      name="gender"
+                      value="M"
+                      checked
+                    />
+                    <label for="male">Male</label>
+                  </div>
+
+                  <div class="space-x-2">
+                    <input
+                      type="radio"
+                      id="female"
+                      name="gender"
+                      value="dewey"
+                    />
                     <label for="female">Female</label>
                   </div>
                 </div>
@@ -150,16 +230,100 @@
             </div>
 
             <div v-if="formStep == 1">
-              <button
-                class="bg-veryDarkBlue text-white px-4 py-3 rounded"
-                type="button"
+              <div
+                class="
+                  bg-veryDarkBlue
+                  text-white
+                  px-4
+                  py-3
+                  rounded
+                  cursor-pointer
+                  flex
+                  items-center
+                  justify-between
+                  w-24
+                "
                 @click="nextStep"
               >
-                Next Step
-              </button>
+                <span>Next</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
             </div>
 
             <div v-if="formStep == 2" class="flex justify-between">
+              <div
+                class="
+                  bg-veryDarkBlue
+                  text-white
+                  px-4
+                  py-3
+                  rounded
+                  flex
+                  items-center
+                  justify-between
+                  w-24
+                  cursor-pointer
+                "
+                @click="prevStep"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span>Prev</span>
+              </div>
+
+              <div
+                class="
+                  bg-veryDarkBlue
+                  text-white
+                  px-4
+                  py-3
+                  rounded
+                  cursor-pointer
+                  flex
+                  items-center
+                  justify-between
+                  w-24
+                "
+                @click="lastStep"
+              >
+                <span>Next</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <div v-if="formStep == 3" class="flex justify-between">
               <button
                 class="bg-veryDarkBlue text-white px-4 py-3 rounded"
                 type="button"
@@ -171,9 +335,9 @@
               <button
                 class="bg-veryDarkBlue text-white px-4 py-3 rounded"
                 type="button"
-                @click="nextStep"
+                @click="submit"
               >
-                Next Step
+                Submit
               </button>
             </div>
           </div>
@@ -198,13 +362,14 @@ const form = useForm({
   program_of_study: "",
   reg_number: "",
   gender: "",
+  profile_pic: "",
 });
 
 let formStep = ref(1);
 
 function nextStep() {
   Inertia.post(
-    route("student-register.first.step"),
+    route("student-register.step.first"),
     {
       name: form.name,
       email: form.email,
@@ -221,5 +386,22 @@ function nextStep() {
 
 function prevStep() {
   formStep.value--;
+}
+
+function lastStep() {
+  Inertia.post(
+    route("student-register.step.second"),
+    {
+      name: form.name,
+      email: form.email,
+      phone_number: form.phone_number,
+      next_of_kin: form.next_of_kin,
+    },
+    {
+      onSuccess: () => {
+        formStep.value++;
+      },
+    }
+  );
 }
 </script>
