@@ -11,7 +11,8 @@
       "
     >
       <div class="min-w-[600px]">
-        <div class="flex justify-center items-center mb-5">
+
+        <div v-if="formStep == 1" class="flex justify-center items-center mb-5">
           <div class="progress-round bg-veryDarkBlue">1</div>
           <div class="w-48 h-1 bg-gray-100"></div>
           <div class="progress-round bg-gray-500">2</div>
@@ -19,8 +20,16 @@
           <div class="progress-round bg-gray-500">3</div>
         </div>
 
+         <div v-if="formStep == 2" class="flex justify-center items-center mb-5">
+          <div class="progress-round bg-veryDarkBlue">1</div>
+          <div class="w-48 h-1 bg-veryDarkBlue"></div>
+          <div class="progress-round bg-veryDarkBlue">2</div>
+          <div class="w-48 h-1 bg-gray-100"></div>
+          <div class="progress-round bg-gray-500">3</div>
+        </div>
+
         <form>
-          <div class="space-y-2 bg-white px-10 py-10 shadow-2xl rounded-lg">
+          <div class="space-y-5 bg-white px-10 py-10 shadow-2xl rounded-lg">
             <div class="flex flex-col space-y-2">
               <BreezeValidationErrors class="mb-4" />
               <h1 class="font-bold text-2xl mb-3">Register as a Student</h1>
@@ -96,7 +105,25 @@
               </div>
             </div>
 
-            <div>
+            <div  v-if="formStep == 1">
+              <button
+                class="bg-veryDarkBlue text-white px-4 py-3 rounded"
+                type="button"
+                @click="nextStep"
+              >
+                Next Step
+              </button>
+            </div>
+
+            <div v-if="formStep == 2" class="flex justify-between">
+              <button
+                class="bg-veryDarkBlue text-white px-4 py-3 rounded"
+                type="button"
+                @click="prevStep"
+              >
+                Prev
+              </button>
+
               <button
                 class="bg-veryDarkBlue text-white px-4 py-3 rounded"
                 type="button"
