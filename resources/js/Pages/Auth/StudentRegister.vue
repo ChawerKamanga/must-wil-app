@@ -35,7 +35,7 @@
           <div class="progress-round bg-veryDarkBlue">3</div>
         </div>
 
-        <form>
+        <form enctype="multipart/form-data">
           <div class="space-y-5 bg-white px-10 py-10 shadow-2xl rounded-lg">
             <div class="flex flex-col space-y-2">
               <BreezeValidationErrors class="mb-4" />
@@ -45,6 +45,9 @@
               </h6>
               <h6 class="text-gray-700 text-sm font-bold" v-if="formStep == 2">
                 Step 2 of 3
+              </h6>
+              <h6 class="text-gray-700 text-sm font-bold" v-if="formStep == 3">
+                Step 3 of 3
               </h6>
             </div>
 
@@ -117,7 +120,13 @@
               <div class="flex flex-col space-y-2">
                 <label for="program" class="form-label">Program of Study</label>
                 <select v-model="program_of_study" id="program-select">
-                  <option v-for="programme in programmes.data" :key="programme.id" :value="programme.id">{{ programme.name }}</option>
+                  <option
+                    v-for="programme in programmes.data"
+                    :key="programme.id"
+                    :value="programme.id"
+                  >
+                    {{ programme.name }}
+                  </option>
                 </select>
               </div>
 
@@ -131,7 +140,15 @@
                   placeholder="Enter your reg number"
                   accept="image/png, image/jpeg"
                   class="placeholder:text-gray-700 py-4"
+                  @input="form.profile_pic = $event.target.files[0]"
                 />
+                <progress
+                  v-if="form.progress"
+                  :value="form.progress.percentage"
+                  max="100"
+                >
+                  {{ form.progress.percentage }}%
+                </progress>
               </div>
 
               <div class="flex flex-col space-y-2">
@@ -208,7 +225,7 @@
                     <input
                       type="radio"
                       id="male"
-                      name="gender"
+                      v-model="form.gender"
                       value="M"
                       checked
                     />
@@ -219,8 +236,8 @@
                     <input
                       type="radio"
                       id="female"
-                      name="gender"
-                      value="dewey"
+                      v-model="form.gender"
+                      value="F"
                     />
                     <label for="female">Female</label>
                   </div>
@@ -228,7 +245,7 @@
               </div>
             </div>
 
-            <div v-if="formStep == 1">
+            <div v-if="formStep == 1" class="flex justify-end">
               <div
                 class="
                   bg-veryDarkBlue
@@ -323,13 +340,35 @@
             </div>
 
             <div v-if="formStep == 3" class="flex justify-between">
-              <button
-                class="bg-veryDarkBlue text-white px-4 py-3 rounded"
-                type="button"
+               <div
+                class="
+                  bg-veryDarkBlue
+                  text-white
+                  px-4
+                  py-3
+                  rounded
+                  flex
+                  items-center
+                  justify-between
+                  w-24
+                  cursor-pointer
+                "
                 @click="prevStep"
               >
-                Prev
-              </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span>Prev</span>
+              </div>
 
               <button
                 class="bg-veryDarkBlue text-white px-4 py-3 rounded"
@@ -367,8 +406,8 @@ const form = useForm({
 let formStep = ref(1);
 
 const props = defineProps({
-  programmes: Object
-})
+  programmes: Object,
+});
 
 function nextStep() {
   Inertia.post(
@@ -395,10 +434,10 @@ function lastStep() {
   Inertia.post(
     route("student-register.step.second"),
     {
-      name: form.name,
-      email: form.email,
-      phone_number: form.phone_number,
-      next_of_kin: form.next_of_kin,
+      reg_number: form.reg_number,
+      program_of_study: form.program_of_study,
+      profile_pic: form.profile_pic,
+      gender: form.gender
     },
     {
       onSuccess: () => {
