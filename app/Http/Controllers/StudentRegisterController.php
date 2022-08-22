@@ -14,6 +14,7 @@ class StudentRegisterController extends Controller
 
     public function firstStep(Request $request)
     {
+        return 'I am here';
         $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email', 'unique'],
@@ -21,7 +22,7 @@ class StudentRegisterController extends Controller
             'next_of_kin' => ['required', 'unique'],
         ]);
         
-        return to_route('products.create');
+        return to_route('register.create');
     }
 
     public function register()

@@ -18,12 +18,14 @@
           <div class="w-48 h-1 bg-gray-100"></div>
           <div class="progress-round bg-gray-500">3</div>
         </div>
+
         <form>
+          <BreezeValidationErrors class="mb-4" />
           <div class="space-y-2 bg-white px-10 py-10 shadow-2xl rounded-lg">
-              <div class="flex flex-col space-y-2">
-                <h1 class="font-bold text-2xl mb-3">Register as a Student</h1>
-                <h6 class="text-gray-700 text-sm font-bold">Step 1 of 3</h6>
-              </div>
+            <div class="flex flex-col space-y-2">
+              <h1 class="font-bold text-2xl mb-3">Register as a Student</h1>
+              <h6 class="text-gray-700 text-sm font-bold">Step 1 of 3</h6>
+            </div>
 
             <!-- First step -->
             <div class="space-y-5" v-if="formStep == 1">
@@ -33,7 +35,7 @@
                   type="text"
                   id="fullname"
                   placeholder="Enter your fullname"
-                  class="text-xs text-gray-700 py-4"
+                  class="text-xs placeholder:placeholder:text-gray-700 py-4"
                   v-model="form.name"
                 />
               </div>
@@ -44,7 +46,7 @@
                   type="email"
                   id="email"
                   placeholder="Enter your school email"
-                  class="text-xs text-gray-700 py-4"
+                  class="text-xs placeholder:text-gray-700 py-4"
                   v-model="form.email"
                 />
               </div>
@@ -57,7 +59,7 @@
                   type="text"
                   id="personal-number"
                   placeholder="Enter your phonenumber"
-                  class="text-xs text-gray-700 py-4"
+                  class="text-xs placeholder:text-gray-700 py-4"
                   v-model="form.phone_number"
                 />
               </div>
@@ -77,7 +79,7 @@
             </div>
 
             <!-- Second step -->
-            <div class="space-y-5"  v-if="formStep == 1">
+            <div class="space-y-5" v-if="formStep == 2">
               <div class="flex flex-col space-y-2">
                 <label for="personal-number" class="form-label"
                   >Program of Study</label
@@ -95,7 +97,10 @@
             </div>
 
             <div>
-              <button class="bg-veryDarkBlue text-white px-4 py-3 rounded">
+              <button
+                class="bg-veryDarkBlue text-white px-4 py-3 rounded"
+                type="button"
+              >
                 Next Step
               </button>
             </div>
@@ -110,6 +115,7 @@
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref } from "vue";
 import { Inertia } from "@inertiajs/inertia";
+import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
 
 const form = useForm({
   name: "",
