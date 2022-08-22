@@ -20,68 +20,74 @@
         </div>
         <form>
           <div class="space-y-7 bg-white px-10 py-10 shadow-2xl rounded-lg">
-            <div class="flex flex-col space-y-2">
-              <h1 class="font-bold text-2xl mb-3">Register as a Student</h1>
-              <h6 class="text-gray-700 text-sm font-bold">Step 1 of 3</h6>
+              <div class="flex flex-col space-y-2">
+                <h1 class="font-bold text-2xl mb-3">Register as a Student</h1>
+                <h6 class="text-gray-700 text-sm font-bold">Step 1 of 3</h6>
+              </div>
+
+            <!-- First step -->
+            <div>
+              <div class="flex flex-col space-y-2">
+                <label for="fullname" class="form-label">Fullname</label>
+                <input
+                  type="text"
+                  id="fullname"
+                  placeholder="Enter your fullname"
+                  class="text-xs text-gray-700 py-4"
+                />
+              </div>
+
+              <div class="flex flex-col space-y-2">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Enter your school email"
+                  class="text-xs text-gray-700 py-4"
+                />
+              </div>
+
+              <div class="flex flex-col space-y-2">
+                <label for="personal-number" class="form-label"
+                  >Phonenumber</label
+                >
+                <input
+                  type="text"
+                  id="personal-number"
+                  placeholder="Enter your phonenumber"
+                  class="text-xs text-gray-700 py-4"
+                />
+              </div>
+
+              <div class="flex flex-col space-y-2">
+                <label for="personal-number" class="form-label"
+                  >Next of Kin #</label
+                >
+                <input
+                  type="text"
+                  id="personal-number"
+                  placeholder="Enter your next of kin phonenumber"
+                  class="text-xs text-gray-700 py-4"
+                />
+              </div>
             </div>
 
-            <div class="flex flex-col space-y-2">
-              <label for="fullname" class="form-label">Fullname</label>
-              <input
-                type="text"
-                id="fullname"
-                placeholder="Enter your fullname"
-                class="text-xs text-gray-700 py-4"
-              />
-            </div>
-
-            <div class="flex flex-col space-y-2">
-              <label for="email" class="form-label">Email</label>
-              <input
-                type="email"
-                id="email"
-                placeholder="Enter your school email"
-                class="text-xs text-gray-700 py-4"
-              />
-            </div>
-
-            <div class="flex flex-col space-y-2">
-              <label for="personal-number" class="form-label"
-                >Phonenumber</label
-              >
-              <input
-                type="text"
-                id="personal-number"
-                placeholder="Enter your phonenumber"
-                class="text-xs text-gray-700 py-4"
-              />
-            </div>
-
-            <div class="flex flex-col space-y-2">
-              <label for="personal-number" class="form-label"
-                >Next of Kin #</label
-              >
-              <input
-                type="text"
-                id="personal-number"
-                placeholder="Enter your next of kin phonenumber"
-                class="text-xs text-gray-700 py-4"
-              />
-            </div>
-
-            <div class="flex flex-col space-y-2">
-              <label for="personal-number" class="form-label"
-                >Program of Study</label
-              >
-              <select name="pets" id="pet-select">
-                <option value="">--Please choose an option--</option>
-                <option value="dog">Dog</option>
-                <option value="cat">Cat</option>
-                <option value="hamster">Hamster</option>
-                <option value="parrot">Parrot</option>
-                <option value="spider">Spider</option>
-                <option value="goldfish">Goldfish</option>
-              </select>
+            <!-- Second step -->
+            <div>
+              <div class="flex flex-col space-y-2">
+                <label for="personal-number" class="form-label"
+                  >Program of Study</label
+                >
+                <select name="pets" id="pet-select">
+                  <option value="">--Please choose an option--</option>
+                  <option value="dog">Dog</option>
+                  <option value="cat">Cat</option>
+                  <option value="hamster">Hamster</option>
+                  <option value="parrot">Parrot</option>
+                  <option value="spider">Spider</option>
+                  <option value="goldfish">Goldfish</option>
+                </select>
+              </div>
             </div>
 
             <div>
