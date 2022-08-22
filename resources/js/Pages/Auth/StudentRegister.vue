@@ -19,14 +19,14 @@
           <div class="progress-round bg-gray-500">3</div>
         </div>
         <form>
-          <div class="space-y-7 bg-white px-10 py-10 shadow-2xl rounded-lg">
+          <div class="space-y-2 bg-white px-10 py-10 shadow-2xl rounded-lg">
               <div class="flex flex-col space-y-2">
                 <h1 class="font-bold text-2xl mb-3">Register as a Student</h1>
                 <h6 class="text-gray-700 text-sm font-bold">Step 1 of 3</h6>
               </div>
 
             <!-- First step -->
-            <div>
+            <div class="space-y-5">
               <div class="flex flex-col space-y-2">
                 <label for="fullname" class="form-label">Fullname</label>
                 <input
@@ -34,6 +34,7 @@
                   id="fullname"
                   placeholder="Enter your fullname"
                   class="text-xs text-gray-700 py-4"
+                  v-model="form.name"
                 />
               </div>
 
@@ -44,6 +45,7 @@
                   id="email"
                   placeholder="Enter your school email"
                   class="text-xs text-gray-700 py-4"
+                  v-model="form.email"
                 />
               </div>
 
@@ -56,6 +58,7 @@
                   id="personal-number"
                   placeholder="Enter your phonenumber"
                   class="text-xs text-gray-700 py-4"
+                  v-model="form.phone_number"
                 />
               </div>
 
@@ -68,12 +71,13 @@
                   id="personal-number"
                   placeholder="Enter your next of kin phonenumber"
                   class="text-xs text-gray-700 py-4"
+                  v-model="form.next_of_kin"
                 />
               </div>
             </div>
 
             <!-- Second step -->
-            <div>
+            <div class="space-y-5">
               <div class="flex flex-col space-y-2">
                 <label for="personal-number" class="form-label"
                   >Program of Study</label
