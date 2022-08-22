@@ -20,7 +20,7 @@ return new class extends Migration
             $table->char('gender'); 
             $table->string('email')->unique();
             $table->string('phone_number')->nullable()->unique();
-            $table->string('next_of_kin')->nullable();
+            $table->string('next_of_kin')->nullable()->unique();
             $table->foreignId('programme_id')->nullable()->constrained();
             $table->foreignId('organization_id')->nullable()->constrained();
             $table->foreignId('role_id')->constrained();
