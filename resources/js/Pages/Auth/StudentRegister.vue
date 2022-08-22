@@ -11,7 +11,6 @@
       "
     >
       <div class="min-w-[600px]">
-
         <div v-if="formStep == 1" class="flex justify-center items-center mb-5">
           <div class="progress-round bg-veryDarkBlue">1</div>
           <div class="w-48 h-1 bg-gray-100"></div>
@@ -20,7 +19,7 @@
           <div class="progress-round bg-gray-500">3</div>
         </div>
 
-         <div v-if="formStep == 2" class="flex justify-center items-center mb-5">
+        <div v-if="formStep == 2" class="flex justify-center items-center mb-5">
           <div class="progress-round bg-veryDarkBlue">1</div>
           <div class="w-48 h-1 bg-veryDarkBlue"></div>
           <div class="progress-round bg-veryDarkBlue">2</div>
@@ -33,7 +32,12 @@
             <div class="flex flex-col space-y-2">
               <BreezeValidationErrors class="mb-4" />
               <h1 class="font-bold text-2xl mb-3">Register as a Student</h1>
-              <h6 class="text-gray-700 text-sm font-bold">Step 1 of 3</h6>
+              <h6 class="text-gray-700 text-sm font-bold" v-if="formStep == 1">
+                Step 1 of 3
+              </h6>
+              <h6 class="text-gray-700 text-sm font-bold" v-if="formStep == 2">
+                Step 2 of 3
+              </h6>
             </div>
 
             <!-- First step -->
@@ -81,7 +85,7 @@
                   type="text"
                   id="personal-number"
                   placeholder="Enter your next of kin phonenumber"
-                  class="text-xs text-gray-700 py-4"
+                  class="text-xs placeholder:text-gray-700 py-4"
                   v-model="form.next_of_kin"
                 />
               </div>
@@ -91,21 +95,61 @@
             <div class="space-y-5" v-if="formStep == 2">
               <div class="flex flex-col space-y-2">
                 <label for="personal-number" class="form-label"
-                  >Program of Study</label
+                  >Registration Number</label
                 >
-                <select name="pets" id="pet-select">
-                  <option value="">--Please choose an option--</option>
-                  <option value="dog">Dog</option>
-                  <option value="cat">Cat</option>
-                  <option value="hamster">Hamster</option>
-                  <option value="parrot">Parrot</option>
-                  <option value="spider">Spider</option>
-                  <option value="goldfish">Goldfish</option>
+                <input
+                  type="text"
+                  id="personal-number"
+                  placeholder="Enter your reg number"
+                  class="text-xs placeholder:text-gray-700 py-4"
+                  v-model="form.reg_number"
+                />
+              </div>
+
+              <div class="flex flex-col space-y-2">
+                <label for="program" class="form-label">Program of Study</label>
+                <select v-model="program_of_study" id="program-select">
+                  <option value="dog">Business Information Technology</option>
+                  <option value="cat">Computer Systems and Security</option>
                 </select>
+              </div>
+
+              <div class="flex flex-col">
+                <label for="profile-pic" class="form-label"
+                  >Profile Picture</label
+                >
+                <input
+                  type="file"
+                  id="profile-pic"
+                  placeholder="Enter your reg number"
+                  accept="image/png, image/jpeg"
+                  class=" placeholder:text-gray-700 py-4"
+                />
+              </div>
+
+              <div class="flex flex-col space-y-2">
+                <label for="program" class="form-label">Gender</label>
+                <div class="flex space-x-4">
+                  <div class="space-x-2">
+                    <input
+                      type="radio"
+                      id="male"
+                      name="gender"
+                      value="M"
+                      checked
+                    />
+                    <label for="male">Male</label>
+                  </div>
+
+                  <div  class="space-x-2">
+                    <input type="radio" id="female" name="gender" value="dewey" />
+                    <label for="female">Female</label>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div  v-if="formStep == 1">
+            <div v-if="formStep == 1">
               <button
                 class="bg-veryDarkBlue text-white px-4 py-3 rounded"
                 type="button"
@@ -151,6 +195,9 @@ const form = useForm({
   user_name: "",
   phone_number: "",
   next_of_kin: "",
+  program_of_study: "",
+  reg_number: "",
+  gender: "",
 });
 
 let formStep = ref(1);
