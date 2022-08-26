@@ -180,23 +180,72 @@
 
             <!-- Third Step -->
             <div class="space-y-5" v-if="formStep == 3">
+              <span class="form-label"
+                >Select fields of interest</span
+              >
+              <div class="flex space-x-4">
+                <div class="flex space-x-2 items-center">
+                  <input
+                    type="checkbox"
+                    id="networking"
+                    name="networking"
+                    checked
+                  />
+                  <label for="networking">Network Engineering</label>
+                </div>
+
+                <div class="flex space-x-2 items-center">
+                  <input
+                    type="checkbox"
+                    id="softweare-development"
+                    name="softweare_development"
+                  />
+                  <label for="softweare-development"
+                    >Software Development</label
+                  >
+                </div>
+
+                <div class="flex space-x-2 items-center">
+                  <input
+                    type="checkbox"
+                    id="database-admin"
+                    name="database_admin"
+                  />
+                  <label for="database-admin">Database Adminstration</label>
+                </div>
+              </div>
+
+              <div class="flex space-x-4">
+                <div class="flex space-x-2 items-center">
+                  <input
+                    type="checkbox"
+                    id="cyber-security"
+                    name="cyber-security"
+                  />
+                  <label for="cyber-security">Cyber Security</label>
+                </div>
+
+                <div class="flex space-x-2 items-center">
+                  <input
+                    type="checkbox"
+                    id="data-science"
+                    name="data-science"
+                  />
+                  <label for="data-science">Data Science</label>
+                </div>
+              </div>
+
               <div class="flex flex-col space-y-2">
-                <label for="personal-number" class="form-label"
-                  >Location</label
-                >
-               <select
-                  id="program-select"
-                >
+                <label for="personal-number" class="form-label">Location</label>
+                <select id="program-select">
                   <option value="dog">Mzuzu</option>
                   <option value="cat">Lilongwe</option>
                   <option value="cat">Blantyre</option>
                   <option value="cat">Lilongwe</option>
                 </select>
               </div>
-             <div class="flex flex-col space-y-2">
-                <label for="password" class="form-label"
-                  >Enter Password</label
-                >
+              <div class="flex flex-col space-y-2">
+                <label for="password" class="form-label">Enter Password</label>
                 <input
                   type="password"
                   id="password"
@@ -206,7 +255,7 @@
                 />
               </div>
 
-               <div class="flex flex-col space-y-2">
+              <div class="flex flex-col space-y-2">
                 <label for="confirm-password" class="form-label"
                   >Confirm Password</label
                 >
@@ -219,41 +268,14 @@
                 />
               </div>
 
-              <div class="flex flex-col">
-                <label for="profile-pic" class="form-label"
-                  >Profile Picture</label
-                >
-                <input
-                  type="file"
-                  id="profile-pic"
-                  placeholder="Enter your reg number"
-                  accept="image/png, image/jpeg"
-                  class="placeholder:text-gray-700 py-4"
-                />
-              </div>
-
               <div class="flex flex-col space-y-2">
-                <label for="program" class="form-label">Gender</label>
                 <div class="flex space-x-4">
-                  <div class="space-x-2">
-                    <input
-                      type="radio"
-                      id="male"
-                      v-model="form.gender"
-                      value="M"
-                      checked
-                    />
-                    <label for="male">Male</label>
-                  </div>
-
-                  <div class="space-x-2">
-                    <input
-                      type="radio"
-                      id="female"
-                      v-model="form.gender"
-                      value="F"
-                    />
-                    <label for="female">Female</label>
+                  <div class="flex space-x-2 items-center">
+                    <input type="checkbox" id="agree" name="agree" />
+                    <label for="agree" class="text-sm text-gray-600"
+                      >Are you okay being allocated to an area of your intrest
+                      even outside your district?</label
+                    >
                   </div>
                 </div>
               </div>
@@ -354,7 +376,7 @@
             </div>
 
             <div v-if="formStep == 3" class="flex justify-between">
-               <div
+              <div
                 class="
                   bg-veryDarkBlue
                   text-white
@@ -451,7 +473,7 @@ function lastStep() {
       reg_number: form.reg_number,
       program_of_study: form.program_of_study,
       profile_pic: form.profile_pic,
-      gender: form.gender
+      gender: form.gender,
     },
     {
       onSuccess: () => {
