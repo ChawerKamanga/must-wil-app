@@ -193,17 +193,30 @@
                   <option value="cat">Lilongwe</option>
                 </select>
               </div>
-
-              <div class="flex flex-col space-y-2">
-                <label for="program" class="form-label">Program of Study</label>
-                <select
-                  v-model="program_of_study"
-                  id="program-select"
-                  class="text-xs"
+             <div class="flex flex-col space-y-2">
+                <label for="password" class="form-label"
+                  >Enter Password</label
                 >
-                  <option value="dog">Business Information Technology</option>
-                  <option value="cat">Computer Systems and Security</option>
-                </select>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Enter Password"
+                  class="text-xs placeholder:text-gray-700 py-4"
+                  v-model="form.password"
+                />
+              </div>
+
+               <div class="flex flex-col space-y-2">
+                <label for="confirm-password" class="form-label"
+                  >Confirm Password</label
+                >
+                <input
+                  type="password"
+                  id="confirm-password"
+                  placeholder="Confirm Password"
+                  class="text-xs placeholder:text-gray-700 py-4"
+                  v-model="form.password"
+                />
               </div>
 
               <div class="flex flex-col">
