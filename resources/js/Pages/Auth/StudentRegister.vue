@@ -182,15 +182,16 @@
             <div class="space-y-5" v-if="formStep == 3">
               <div class="flex flex-col space-y-2">
                 <label for="personal-number" class="form-label"
-                  >Registration Number</label
+                  >Location</label
                 >
-                <input
-                  type="text"
-                  id="personal-number"
-                  placeholder="Enter your reg number"
-                  class="text-xs placeholder:text-gray-700 py-4"
-                  v-model="form.reg_number"
-                />
+               <select
+                  id="program-select"
+                >
+                  <option value="dog">Mzuzu</option>
+                  <option value="cat">Lilongwe</option>
+                  <option value="cat">Blantyre</option>
+                  <option value="cat">Lilongwe</option>
+                </select>
               </div>
 
               <div class="flex flex-col space-y-2">
