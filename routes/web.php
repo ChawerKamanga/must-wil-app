@@ -56,7 +56,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('student-register', [StudentRegisterController::class, 'create'])->name('register.create');
 Route::post('/student-register/first-step', [StudentRegisterController::class, 'firstStep'])->name('student-register.step.first');
 Route::post('/student-register/second-step', [StudentRegisterController::class, 'secondStep'])->name('student-register.step.second');
-Route::post('student-register', [StudentRegisterController::class, 'register'])->name('register');
+Route::post('/student-register', [StudentRegisterController::class, 'register'])->name('student.register');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

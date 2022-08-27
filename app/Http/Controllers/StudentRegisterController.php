@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\District;
 use App\Models\Intrest;
 use App\Models\Programme;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Hash;
 
 class StudentRegisterController extends Controller
 {
@@ -25,7 +27,7 @@ class StudentRegisterController extends Controller
                     'id' => $intrest->id,
                     'name' => $intrest->name,
                 ]),
-                'districts' => District::query()
+            'districts' => District::query()
                 ->paginate(100)
                 ->through(fn ($district) => [
                     'id' => $district->id,
@@ -57,7 +59,27 @@ class StudentRegisterController extends Controller
         return to_route('register.create');
     }
 
-    public function register()
+    public function register(Request $request)
     {
+        $request->validate([
+            'district' => ['required'],
+            'password_confirmation' => ['required', 'min:6'],
+            'password' => ['required', 'confirmed']
+        ]);
+
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->phone_number = $request->input('phone_number');
+        $user->next_of_kin = $request->input('next_of_kin');
+        $user->reg_number = $request->input('reg_number');
+        $user->program_of_study = $request->input('program_of_study');
+        $user->gender = $request->input('gender');
+        $user->district = $request->input('district');
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        auth()->attempt($request->only('email', 'password'));
+
+        return redirect()->route('dashboard');
     }
 }

@@ -447,4 +447,26 @@ function lastStep() {
     }
   );
 }
+
+function submit() {
+  Inertia.post(
+    route("student.register"),
+    {
+      name: form.name,
+      email: form.email,
+      phone_number: form.phone_number,
+      next_of_kin: form.next_of_kin,
+      reg_number: form.reg_number,
+      program_of_study: form.program_of_study,
+      profile_pic: form.profile_pic,
+      gender: form.gender,
+      district: form.district,
+      password: form.password,
+      password_confirmation: form.password_confirmation,
+    },
+    {
+      forceFormData: true,
+    }
+  );
+}
 </script>
