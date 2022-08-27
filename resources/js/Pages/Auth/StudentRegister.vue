@@ -181,59 +181,21 @@
             <!-- Third Step -->
             <div class="space-y-5" v-if="formStep == 3">
               <span class="form-label"
-                >Select fields of interest</span
+                >Select your fields of interest</span
               >
-              <div class="flex space-x-4">
-                <div class="flex space-x-2 items-center">
-                  <input
+                <div class="flex flex-col" v-for="(interest, index) in interests.data" :key="index">
+                  <div class="space-x-2">
+                    <input
                     type="checkbox"
-                    id="networking"
-                    name="networking"
-                    checked
+                    :id="interest.id"
                   />
-                  <label for="networking">Network Engineering</label>
+                  <label :for="interest.id">{{ interest.name }}</label>
+                  </div>
                 </div>
 
-                <div class="flex space-x-2 items-center">
-                  <input
-                    type="checkbox"
-                    id="softweare-development"
-                    name="softweare_development"
-                  />
-                  <label for="softweare-development"
-                    >Software Development</label
-                  >
-                </div>
+                
 
-                <div class="flex space-x-2 items-center">
-                  <input
-                    type="checkbox"
-                    id="database-admin"
-                    name="database_admin"
-                  />
-                  <label for="database-admin">Database Adminstration</label>
-                </div>
-              </div>
-
-              <div class="flex space-x-4">
-                <div class="flex space-x-2 items-center">
-                  <input
-                    type="checkbox"
-                    id="cyber-security"
-                    name="cyber-security"
-                  />
-                  <label for="cyber-security">Cyber Security</label>
-                </div>
-
-                <div class="flex space-x-2 items-center">
-                  <input
-                    type="checkbox"
-                    id="data-science"
-                    name="data-science"
-                  />
-                  <label for="data-science">Data Science</label>
-                </div>
-              </div>
+            
 
               <div class="flex flex-col space-y-2">
                 <label for="personal-number" class="form-label">Location</label>
@@ -264,7 +226,7 @@
                   id="confirm-password"
                   placeholder="Confirm Password"
                   class="text-xs placeholder:text-gray-700 py-4"
-                  v-model="form.password"
+                  v-model="form.password_confirmation"
                 />
               </div>
 
@@ -437,12 +399,15 @@ const form = useForm({
   reg_number: "",
   gender: "",
   profile_pic: "",
+  password: "",
+  password_confirmation: ""
 });
 
 let formStep = ref(1);
 
 const props = defineProps({
   programmes: Object,
+  interests: Object
 });
 
 function nextStep() {

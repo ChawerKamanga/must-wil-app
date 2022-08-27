@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Intrest;
 use App\Models\Programme;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -17,6 +18,12 @@ class StudentRegisterController extends Controller
                     'id' => $program->id,
                     'name' => $program->name,
                 ]),
+            'interests' => Intrest::query()
+                ->paginate(20)
+                ->through(fn ($intrest) => [
+                    'id' => $intrest->id,
+                    'name' => $intrest->name,
+                ]),
         ]);
     }
 
@@ -25,10 +32,10 @@ class StudentRegisterController extends Controller
         $request->validate([
             'name' => ['required'],
             'email' => ['required', 'unique:users'],
-            'phone_number' => ['required','unique:users'],
+            'phone_number' => ['required', 'unique:users'],
             'next_of_kin' => ['required', 'unique:users'],
         ]);
-        
+
         return to_route('register.create');
     }
 
@@ -45,6 +52,5 @@ class StudentRegisterController extends Controller
 
     public function register()
     {
-        
     }
 }
