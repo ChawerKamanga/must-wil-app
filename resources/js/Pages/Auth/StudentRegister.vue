@@ -152,7 +152,7 @@
               </div>
 
               <div class="flex flex-col space-y-2">
-                <label for="program" class="form-label">Gender</label>
+                <label for="gender" class="form-label">Gender</label>
                 <div class="flex space-x-4">
                   <div class="space-x-2">
                     <input
@@ -167,10 +167,10 @@
 
                   <div class="space-x-2">
                     <input
-                      type="radio"
                       id="female"
+                      type="radio"
                       v-model="form.gender"
-                      value="dewey"
+                      value="F"
                     />
                     <label for="female">Female</label>
                   </div>
@@ -395,7 +395,7 @@ const form = useForm({
   next_of_kin: "",
   program_of_study: "",
   reg_number: "",
-  gender: "",
+  gender: null,
   profile_pic: "",
   password: "",
   password_confirmation: "",

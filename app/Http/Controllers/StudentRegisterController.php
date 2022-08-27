@@ -52,8 +52,9 @@ class StudentRegisterController extends Controller
     {
         $request->validate([
             'reg_number' => ['required', 'unique:users'],
+            'program_of_study' => 'required',
             'profile_pic' => ['required'],
-            'program_of_study' => 'required'
+            'gender' => 'required'
         ]);
 
         return to_route('register.create');
@@ -72,9 +73,9 @@ class StudentRegisterController extends Controller
         $user->phone_number = $request->input('phone_number');
         $user->next_of_kin = $request->input('next_of_kin');
         $user->reg_number = $request->input('reg_number');
-        $user->program_of_study = $request->input('program_of_study');
+        $user->programme_id = $request->input('program_of_study');
         $user->gender = $request->input('gender');
-        $user->district = $request->input('district');
+        $user->district_id = $request->input('district');
         $user->password = Hash::make($request->password);
         $user->save();
 
