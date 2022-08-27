@@ -68,8 +68,10 @@ class StudentRegisterController extends Controller
             'password' => ['required', 'confirmed']
         ]);
 
+
         $user = new User();
         $user->name = $request->input('name');
+        $user->email = $request->input('email');
         $user->phone_number = $request->input('phone_number');
         $user->next_of_kin = $request->input('next_of_kin');
         $user->reg_number = $request->input('reg_number');
@@ -77,6 +79,7 @@ class StudentRegisterController extends Controller
         $user->gender = $request->input('gender');
         $user->district_id = $request->input('district');
         $user->password = Hash::make($request->password);
+        $user->role_id = 4;
         $user->save();
 
         auth()->attempt($request->only('email', 'password'));
