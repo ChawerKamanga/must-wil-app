@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\District;
 use App\Models\Intrest;
 use App\Models\Programme;
 use Illuminate\Http\Request;
@@ -13,16 +14,22 @@ class StudentRegisterController extends Controller
     {
         return Inertia::render('Auth/StudentRegister', [
             'programmes' => Programme::query()
-                ->paginate(20)
+                ->paginate(100)
                 ->through(fn ($program) => [
                     'id' => $program->id,
                     'name' => $program->name,
                 ]),
             'interests' => Intrest::query()
-                ->paginate(20)
+                ->paginate(100)
                 ->through(fn ($intrest) => [
                     'id' => $intrest->id,
                     'name' => $intrest->name,
+                ]),
+                'districts' => District::query()
+                ->paginate(100)
+                ->through(fn ($district) => [
+                    'id' => $district->id,
+                    'name' => $district->name,
                 ]),
         ]);
     }

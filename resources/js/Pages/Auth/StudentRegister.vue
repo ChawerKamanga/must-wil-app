@@ -193,17 +193,10 @@
                   </div>
                 </div>
 
-                
-
-            
-
               <div class="flex flex-col space-y-2">
                 <label for="personal-number" class="form-label">Location</label>
-                <select id="program-select">
-                  <option value="dog">Mzuzu</option>
-                  <option value="cat">Lilongwe</option>
-                  <option value="cat">Blantyre</option>
-                  <option value="cat">Lilongwe</option>
+                <select id="program-select" v-model="form.district">
+                  <option v-for="(district, index) in districts.data" :key="index" :value="district.id">{{ district.name }}</option>
                 </select>
               </div>
               <div class="flex flex-col space-y-2">
@@ -400,14 +393,16 @@ const form = useForm({
   gender: "",
   profile_pic: "",
   password: "",
-  password_confirmation: ""
+  password_confirmation: "",
+  district: ""
 });
 
 let formStep = ref(1);
 
 const props = defineProps({
   programmes: Object,
-  interests: Object
+  interests: Object,
+  districts: Object
 });
 
 function nextStep() {
