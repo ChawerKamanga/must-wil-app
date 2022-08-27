@@ -119,7 +119,7 @@
 
               <div class="flex flex-col space-y-2">
                 <label for="program" class="form-label">Program of Study</label>
-                <select v-model="program_of_study" id="program-select">
+                <select v-model="form.program_of_study" id="program-select">
                   <option
                     v-for="programme in programmes.data"
                     :key="programme.id"
@@ -158,7 +158,7 @@
                     <input
                       type="radio"
                       id="male"
-                      name="gender"
+                      v-model="form.gender"
                       value="M"
                       checked
                     />
@@ -169,7 +169,7 @@
                     <input
                       type="radio"
                       id="female"
-                      name="gender"
+                      v-model="form.gender"
                       value="dewey"
                     />
                     <label for="female">Female</label>
