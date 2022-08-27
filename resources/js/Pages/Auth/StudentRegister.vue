@@ -180,23 +180,28 @@
 
             <!-- Third Step -->
             <div class="space-y-5" v-if="formStep == 3">
-              <span class="form-label"
-                >Select your fields of interest</span
+              <span class="form-label">Select your fields of interest</span>
+              <div
+                class="flex flex-col"
+                v-for="(interest, index) in interests.data"
+                :key="index"
               >
-                <div class="flex flex-col" v-for="(interest, index) in interests.data" :key="index">
-                  <div class="space-x-2">
-                    <input
-                    type="checkbox"
-                    :id="interest.id"
-                  />
+                <div class="space-x-2">
+                  <input type="checkbox" :id="interest.id" />
                   <label :for="interest.id">{{ interest.name }}</label>
-                  </div>
                 </div>
+              </div>
 
               <div class="flex flex-col space-y-2">
                 <label for="personal-number" class="form-label">Location</label>
                 <select id="program-select" v-model="form.district">
-                  <option v-for="(district, index) in districts.data" :key="index" :value="district.id">{{ district.name }}</option>
+                  <option
+                    v-for="(district, index) in districts.data"
+                    :key="index"
+                    :value="district.id"
+                  >
+                    {{ district.name }}
+                  </option>
                 </select>
               </div>
               <div class="flex flex-col space-y-2">
@@ -394,7 +399,7 @@ const form = useForm({
   profile_pic: "",
   password: "",
   password_confirmation: "",
-  district: ""
+  district: "",
 });
 
 let formStep = ref(1);
@@ -402,7 +407,7 @@ let formStep = ref(1);
 const props = defineProps({
   programmes: Object,
   interests: Object,
-  districts: Object
+  districts: Object,
 });
 
 function nextStep() {
