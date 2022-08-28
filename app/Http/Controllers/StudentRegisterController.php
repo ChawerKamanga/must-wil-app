@@ -70,7 +70,7 @@ class StudentRegisterController extends Controller
 
         $user = new User();
 
-        //dd($request->file('profile_pic'));
+        dd($request->hasFile('image'));
 
         $file = $request->file('profile_pic');
         $extension = $file->getClientOriginalExtension();

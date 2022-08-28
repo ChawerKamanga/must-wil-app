@@ -136,12 +136,19 @@
                 >
                 <input
                   type="file"
-                  id="profile-pic"
-                  placeholder="Enter your reg number"
-                  accept="image/png, image/jpeg"
-                  class="placeholder:text-gray-700 py-4"
-                  @input="form.profile_pic = $event.target.files[0]"
+                  ref="photo"
+                  accept="image/png, image/jpeg, image/jpg"
+                  class="
+                    w-full
+                    px-4
+                    py-2
+                    mt-2
+                    border
+                    rounded-md
+                    focus:outline-none focus:ring-1 focus:ring-blue-600
+                  "
                 />
+                <img v-if="url" :src="url" class="w-full mt-4 h-80" />
                 <progress
                   v-if="form.progress"
                   :value="form.progress.percentage"
@@ -404,6 +411,8 @@ const form = useForm({
 
 let formStep = ref(1);
 
+let url = null;
+
 const props = defineProps({
   programmes: Object,
   interests: Object,
@@ -427,6 +436,7 @@ function nextStep() {
   );
 }
 
+
 function prevStep() {
   formStep.value--;
 }
@@ -449,6 +459,10 @@ function lastStep() {
 }
 
 function submit() {
+  if (this.$refs.photo) {
+    form.profile_pic = this.$refs.photo.files[0];
+  }
+
   Inertia.post(
     route("student.register"),
     {
