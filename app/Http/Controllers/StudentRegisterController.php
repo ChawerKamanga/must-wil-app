@@ -42,7 +42,7 @@ class StudentRegisterController extends Controller
             'name' => ['required'],
             'email' => ['required', 'unique:users'],
             'phone_number' => ['required', 'unique:users'],
-            'next_of_kin' => ['required', 'unique:users'],
+            'next_of_kin' => ['required'],
         ]);
 
         return to_route('register.create');
@@ -68,8 +68,17 @@ class StudentRegisterController extends Controller
             'password' => ['required', 'confirmed']
         ]);
 
-
         $user = new User();
+
+        //dd($request->file('profile_pic'));
+
+        $file = $request->file('profile_pic');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $extension;
+        $file->move('uploads/profile/', $filename);
+        $user->profile_img_name = $filename;
+        $user->profile_img_url = '/uploads/profile/' . $filename;
+
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->phone_number = $request->input('phone_number');
