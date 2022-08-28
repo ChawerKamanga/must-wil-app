@@ -393,87 +393,111 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { ref, onMounted } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
 
-export default {
-  components: {
-    Link,
-    Head,
-    Inertia,
-    BreezeValidationErrors,
-  },
-  props: {
-    errors: Object,
-    programmes: Object,
-    interests: Object,
-    districts: Object,
-  },
-  data() {
-    return {
-      url: null,
-      formStep: 1,
-    };
-  },
-  setup() {
-    const form = useForm({
-      name: "",
-      email: "",
-      user_name: "",
-      phone_number: "",
-      next_of_kin: "",
-      program_of_study: "",
-      reg_number: "",
-      gender: null,
-      profile_pic: null,
-      password: "",
-      password_confirmation: "",
-      district: "",
-    });
-    return { form };
-  },
-  methods: {
-    submit() {
-      this.form.post(route("student.register"));
+const form = useForm({
+  name: "",
+  email: "",
+  user_name: "",
+  phone_number: "",
+  next_of_kin: "",
+  program_of_study: "",
+  reg_number: "",
+  gender: null,
+  profile_pic: null,
+  password: "",
+  password_confirmation: "",
+  district: "",
+});
+
+let formStep = ref(1);
+const photo = ref(null);
+
+let url = "";
+
+const props = defineProps({
+  programmes: Object,
+  interests: Object,
+  districts: Object,
+});
+
+function nextStep() {
+  Inertia.post(
+    route("student-register.step.first"),
+    {
+      name: form.name,
+      email: form.email,
+      phone_number: form.phone_number,
+      next_of_kin: form.next_of_kin,
     },
-    nextStep() {
-      Inertia.post(
-        route("student-register.step.first"),
-        {
-          name: this.form.name,
-          email: this.form.email,
-          phone_number: this.form.phone_number,
-          next_of_kin: this.form.next_of_kin,
-        },
-        {
-          onSuccess: () => {
-            formStep.value++;
-          },
-        }
-      );
+    {
+      onSuccess: () => {
+        formStep.value++;
+      },
+    }
+  );
+}
+
+function prevStep() {
+  formStep.value--;
+}
+
+function previewImage(e) {
+  const file = e.target.files[0];
+  url = URL.createObjectURL(file);
+}
+
+function lastStep() {
+  // if (photo) {
+  //   form.profile_pic = photo.files[0];
+  // }
+  Inertia.post(
+    route("student-register.step.second"),
+    {
+      reg_number: form.reg_number,
+      program_of_study: form.program_of_study,
+      profile_pic: form.profile_pic,
+      gender: form.gender,
     },
-    prevStep() {
-      formStep.value--;
-    },
-    lastStep() {
-      Inertia.post(
-        route("student-register.step.second"),
-        {
-          reg_number: form.reg_number,
-          program_of_study: form.program_of_study,
-          profile_pic: form.profile_pic,
-          gender: form.gender,
-        },
-        {
-          onSuccess: () => {
-            formStep.value++;
-          },
-        }
-      );
-    },
-  },
-};
+    {
+      onSuccess: () => {
+        formStep.value++;
+      },
+    }
+  );
+}
+
+// function submit() {
+//   if (photo) {
+//     form.profile_pic = photo.files[0];
+//   }
+
+//   Inertia.post(
+//     route("student.register"),
+//     {
+//       name: form.name,
+//       email: form.email,
+//       phone_number: form.phone_number,
+//       next_of_kin: form.next_of_kin,
+//       reg_number: form.reg_number,
+//       program_of_study: form.program_of_study,
+//       profile_pic: form.profile_pic,
+//       gender: form.gender,
+//       district: form.district,
+//       password: form.password,
+//       password_confirmation: form.password_confirmation,
+//     },
+//     {
+//       forceFormData: true,
+//     }
+//   );
+// }
+
+function submit() {
+  form.post(route("student.register"));
+}
 </script>

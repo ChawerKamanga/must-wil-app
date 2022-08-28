@@ -134,7 +134,7 @@
                 <label for="profile-pic" class="form-label"
                   >Profile Picture</label
                 >
-                <!-- <input
+                <input
                   type="file"
                   ref="photo"
                   accept="image/png, image/jpeg, image/jpg"
@@ -148,10 +148,6 @@
                     rounded-md
                     focus:outline-none focus:ring-1 focus:ring-blue-600
                   "
-                /> -->
-                <input
-                  type="file"
-                  @input="form.profile_pic = $event.target.files[0]"
                 />
                 <img v-if="url" :src="url" class="w-full mt-4 h-80" />
                 <progress
@@ -401,6 +397,7 @@ import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
 
 export default {
   components: {
+    BreezeAuthenticatedLayout,
     Link,
     Head,
     Inertia,
@@ -443,10 +440,10 @@ export default {
       Inertia.post(
         route("student-register.step.first"),
         {
-          name: this.form.name,
-          email: this.form.email,
-          phone_number: this.form.phone_number,
-          next_of_kin: this.form.next_of_kin,
+          name: form.name,
+          email: form.email,
+          phone_number: form.phone_number,
+          next_of_kin: form.next_of_kin,
         },
         {
           onSuccess: () => {
