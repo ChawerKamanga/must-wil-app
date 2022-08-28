@@ -134,7 +134,7 @@
                 <label for="profile-pic" class="form-label"
                   >Profile Picture</label
                 >
-                <!-- <input
+                <input
                   type="file"
                   ref="photo"
                   accept="image/png, image/jpeg, image/jpg"
@@ -148,10 +148,6 @@
                     rounded-md
                     focus:outline-none focus:ring-1 focus:ring-blue-600
                   "
-                /> -->
-                <input
-                  type="file"
-                  @input="form.profile_pic = $event.target.files[0]"
                 />
                 <img v-if="url" :src="url" class="w-full mt-4 h-80" />
                 <progress
@@ -415,8 +411,8 @@ export default {
   data() {
     return {
       url: null,
-      formStep: 1,
-    };
+      formStep: 1    
+  };
   },
   setup() {
     const form = useForm({
@@ -433,11 +429,16 @@ export default {
       password_confirmation: "",
       district: "",
     });
-    return { form };
+
+    return {form};
   },
+  
   methods: {
     submit() {
-      this.form.post(route("student.register"));
+      if (this.$refs.photo) {
+        this.form.image = this.$refs.photo.files[0];
+      }
+      form.post(route("student.register"));
     },
     nextStep() {
       Inertia.post(
@@ -450,29 +451,33 @@ export default {
         },
         {
           onSuccess: () => {
-            formStep.value++;
+            this.formStep++;
           },
         }
       );
     },
     prevStep() {
-      formStep.value--;
+      this.formStep--;
     },
     lastStep() {
       Inertia.post(
         route("student-register.step.second"),
         {
-          reg_number: form.reg_number,
-          program_of_study: form.program_of_study,
-          profile_pic: form.profile_pic,
-          gender: form.gender,
+          reg_number: this.form.reg_number,
+          program_of_study: this.form.program_of_study,
+          profile_pic: this.form.profile_pic,
+          gender: this.form.gender,
         },
         {
           onSuccess: () => {
-            formStep.value++;
+            this.formStep++;
           },
         }
       );
+    },
+    previewImage(e) {
+      const file = e.target.files[0];
+      this.url = URL.createObjectURL(file);
     },
   },
 };
