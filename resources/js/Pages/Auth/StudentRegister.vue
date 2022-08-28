@@ -35,7 +35,7 @@
           <div class="progress-round bg-veryDarkBlue">3</div>
         </div>
 
-        <form enctype="multipart/form-data">
+        <form @submit.prevent="submit" enctype="multipart/form-data">
           <div class="space-y-5 bg-white px-10 py-10 shadow-2xl rounded-lg">
             <div class="flex flex-col space-y-2">
               <BreezeValidationErrors class="mb-4" />
@@ -368,7 +368,7 @@
 
               <button
                 class="bg-veryDarkBlue text-white px-4 py-3 rounded"
-                type="button"
+                type="submit"
                 @click="submit"
               >
                 Submit
@@ -396,7 +396,7 @@ const form = useForm({
   program_of_study: "",
   reg_number: "",
   gender: null,
-  profile_pic: "",
+  profile_pic: null,
   password: "",
   password_confirmation: "",
   district: "",
