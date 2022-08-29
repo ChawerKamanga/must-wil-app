@@ -432,9 +432,6 @@ export default {
     });
 
     function submit() {
-      // if (this.$refs.photo) {
-      //   this.form.profile_pic = this.$refs.photo.files[0];
-      // }
       form.post(route("student.register"));
      
     }
