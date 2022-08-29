@@ -70,29 +70,32 @@ class StudentRegisterController extends Controller
 
         $user = new User();
 
-        dd($request->input('profile_pic'));
+        if($request->hasFile('profile_pic')){
+            // image upload
+            $file = $request->file('profile_pic');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/profile/', $filename);
+            $user->profile_img_name = $filename;
+            $user->profile_img_url = '/uploads/profile/' . $filename;
 
-        $file = $request->file('profile_pic');
-        $extension = $file->getClientOriginalExtension();
-        $filename = time() . '.' . $extension;
-        $file->move('uploads/profile/', $filename);
-        $user->profile_img_name = $filename;
-        $user->profile_img_url = '/uploads/profile/' . $filename;
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->phone_number = $request->input('phone_number');
+            $user->next_of_kin = $request->input('next_of_kin');
+            $user->reg_number = $request->input('reg_number');
+            $user->programme_id = $request->input('program_of_study');
+            $user->gender = $request->input('gender');
+            $user->district_id = $request->input('district');
+            $user->password = Hash::make($request->password);
+            $user->role_id = 4;
+            $user->save();
+    
+            auth()->attempt($request->only('email', 'password'));
+    
+            return redirect()->route('dashboard');
+        }
 
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->phone_number = $request->input('phone_number');
-        $user->next_of_kin = $request->input('next_of_kin');
-        $user->reg_number = $request->input('reg_number');
-        $user->programme_id = $request->input('program_of_study');
-        $user->gender = $request->input('gender');
-        $user->district_id = $request->input('district');
-        $user->password = Hash::make($request->password);
-        $user->role_id = 4;
-        $user->save();
 
-        auth()->attempt($request->only('email', 'password'));
-
-        return redirect()->route('dashboard');
     }
 }

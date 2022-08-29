@@ -436,9 +436,9 @@ export default {
   methods: {
     submit() {
       if (this.$refs.photo) {
-        this.form.image = this.$refs.photo.files[0];
+        this.form.profile_pic = this.$refs.photo.files[0];
       }
-      form.post(route("student.register"));
+      this.form.post(route("student.register"));
     },
     nextStep() {
       Inertia.post(
@@ -460,6 +460,9 @@ export default {
       this.formStep--;
     },
     lastStep() {
+      if (this.$refs.photo) {
+        this.form.profile_pic = this.$refs.photo.files[0];
+      }
       Inertia.post(
         route("student-register.step.second"),
         {
