@@ -134,21 +134,6 @@
                 <label for="profile-pic" class="form-label"
                   >Profile Picture</label
                 >
-                <!-- <input
-                  type="file"
-                  ref="photo"
-                  accept="image/png, image/jpeg, image/jpg"
-                  @change="previewImage"
-                  class="
-                    w-full
-                    px-4
-                    py-2
-                    mt-2
-                    border
-                    rounded-md
-                    focus:outline-none focus:ring-1 focus:ring-blue-600
-                  "
-                /> -->
                 <input type="file" @input="form.profile_pic = $event.target.files[0]" />
                 <img v-if="url" :src="url" class="w-full mt-4 h-80" />
                 <progress
@@ -196,7 +181,7 @@
                 :key="index"
               >
                 <div class="space-x-2">
-                  <input type="checkbox" :id="interest.id" />
+                  <input type="checkbox" :id="interest.id" :value="interest.id"  />
                   <label :for="interest.id">{{ interest.name }}</label>
                 </div>
               </div>
@@ -213,6 +198,7 @@
                   </option>
                 </select>
               </div>
+
               <div class="flex flex-col space-y-2">
                 <label for="password" class="form-label">Enter Password</label>
                 <input
@@ -412,7 +398,7 @@ export default {
   data() {
     return {
       url: null,
-      formStep: 1    
+      formStep: 3    
   };
   },
   setup() {
@@ -429,6 +415,7 @@ export default {
       password: "",
       password_confirmation: "",
       district: "",
+      interests: []
     });
 
     function submit() {
