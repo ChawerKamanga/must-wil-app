@@ -134,7 +134,7 @@
                 <label for="profile-pic" class="form-label"
                   >Profile Picture</label
                 >
-                <input
+                <!-- <input
                   type="file"
                   ref="photo"
                   accept="image/png, image/jpeg, image/jpg"
@@ -148,7 +148,8 @@
                     rounded-md
                     focus:outline-none focus:ring-1 focus:ring-blue-600
                   "
-                />
+                /> -->
+                <input type="file" @input="form.profile_pic = $event.target.files[0]" />
                 <img v-if="url" :src="url" class="w-full mt-4 h-80" />
                 <progress
                   v-if="form.progress"
@@ -430,16 +431,18 @@ export default {
       district: "",
     });
 
-    return {form};
+    function submit() {
+      // if (this.$refs.photo) {
+      //   this.form.profile_pic = this.$refs.photo.files[0];
+      // }
+      form.post(route("student.register"));
+     
+    }
+
+    return {form, submit};
   },
   
   methods: {
-    submit() {
-      if (this.$refs.photo) {
-        this.form.profile_pic = this.$refs.photo.files[0];
-      }
-      this.form.post(route("student.register"));
-    },
     nextStep() {
       Inertia.post(
         route("student-register.step.first"),
@@ -460,9 +463,6 @@ export default {
       this.formStep--;
     },
     lastStep() {
-      if (this.$refs.photo) {
-        this.form.profile_pic = this.$refs.photo.files[0];
-      }
       Inertia.post(
         route("student-register.step.second"),
         {
@@ -478,6 +478,7 @@ export default {
         }
       );
     },
+    
     previewImage(e) {
       const file = e.target.files[0];
       this.url = URL.createObjectURL(file);

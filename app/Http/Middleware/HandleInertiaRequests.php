@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
+use Throwable;
+use Inertia\Inertia;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -25,6 +27,25 @@ class HandleInertiaRequests extends Middleware
     public function version(Request $request)
     {
         return parent::version($request);
+    }
+
+    /**
+     * Prepare exception for rendering.
+     *
+     * @param  \Throwable  $e
+     * @return \Throwable
+     */
+    public function render($request, Throwable $e)
+    {
+        $response = parent::render($request, $e);
+
+        if ($response->status() === 419) {
+            return back()->with([
+                'message' => 'The page expired, please try again.',
+            ]);
+        }
+
+        return $response;
     }
 
     /**

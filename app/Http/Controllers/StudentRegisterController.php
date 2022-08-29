@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class StudentRegisterController extends Controller
 {
@@ -70,6 +71,8 @@ class StudentRegisterController extends Controller
 
         $user = new User();
 
+        // dd($request->hasFile('profile_pic'));
+
         if($request->hasFile('profile_pic')){
             // image upload
             $file = $request->file('profile_pic');
@@ -91,10 +94,12 @@ class StudentRegisterController extends Controller
             $user->role_id = 4;
             $user->save();
     
-            auth()->attempt($request->only('email', 'password'));
-    
-            return redirect()->route('dashboard');
+        }else {
+            return Redirect::back()->with('message', 'Something went wrong');
         }
+        auth()->attempt($request->only('email', 'password'));
+
+        return Redirect::route('dashboard');
 
 
     }
