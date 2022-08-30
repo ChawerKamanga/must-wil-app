@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\District;
 use App\Models\Organization;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -43,7 +44,14 @@ class OrganizationController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Organization/Create', [
+            'districts' => District::query()
+                ->paginate(100)
+                ->through(fn ($district) => [
+                    'id' => $district->id,
+                    'name' => $district->name,
+                ]),
+        ]);
     }
 
     /**

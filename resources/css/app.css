@@ -16,6 +16,7 @@
   @apply border text-2xl border-blue-500 w-10 border-none form-input;
 }
 
+
 .inactive-nav-item {
     @apply transition-all duration-200 hover:bg-gray-300;
   }
