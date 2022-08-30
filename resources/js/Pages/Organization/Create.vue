@@ -64,17 +64,18 @@
                 </div>
                 <div class="w-full">
                   <label for="industrial-supervisor"
-                    >Industrial Supervisor<sup class="text-red-500"
+                    >Commencement date<sup class="text-red-500"
                       >*</sup
                     ></label
                   >
                   <input
-                    type="text"
-                    id="industrial-supervisor"
-                    class="
-                    dashboard-textinput
-                    "
-                  />
+                  type="date"
+                  id="commencement"
+                  class="
+                   dashboard-textinput
+                  "
+                />
+                
                 </div>
               </div>
               <div
@@ -105,7 +106,7 @@
                   <label for="industrial-supervisor"
                     >Company Logo<sup class="text-red-500">*</sup></label
                   >
-                  <input accept="image/png, image/jpeg, image/jpg" class="dashboard-textinput" type="file" @input="form.profile_pic = $event.target.files[0]" />
+                  <input accept="image/png, image/jpeg, image/jpg" class="dashboard-textinput px-2" type="file" @input="form.profile_pic = $event.target.files[0]" />
 
                 </div>
               </div>
@@ -117,7 +118,6 @@
                   class="
                   dashboard-textinput
                   "
-                  name=""
                   id=""
                   cols="30"
                   rows="10"
@@ -148,33 +148,18 @@
                     />
                   </svg>
                 </div>
+               
                 <div>
-                  <p>
-                    When will the next internship programme will start at this
-                    organization.
-                  </p>
-                </div>
-                <div>
-                  <label for="commencement"
-                    >Commencement <sup class="text-red-500">*</sup></label
+                  <label for="industrial-supervisor"
+                    >Industrial Supervisor<sup class="text-red-500">*</sup></label
                   >
                   <input
-                    type="date"
-                    id="commencement"
-                    class="
-                      py-2
-                      px-4
-                      text-left
-                      w-full
-                      text-gray-700
-                      border
-                      placeholder:text-left
-                      border-gray-300
-                      rounded-md
-                      placeholder:text-base
-                      focus:border-gray-200 focus:outline-none
-                    "
-                  />
+                  type="text"
+                  id="industrial-supervisor"
+                  class="
+                  dashboard-textinput
+                  "
+                />
                 </div>
               </div>
 
@@ -278,7 +263,10 @@ defineProps({
 
 let form = useForm({
   name: "",
-  code: "",
+  supervisor: "",
+  district: "",
+  organization_pic: null,
+  description: ""
 });
 
 let submit = () => {

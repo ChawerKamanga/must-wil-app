@@ -17,6 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
+            $table->string('img_url')->nullable();
+            $table->string('img_name')->nullable();
+            $table->text('description')->nullable();
+            $table->string('supervisor_id')->constrained();
             $table->foreignId('district_id')->constrained();
             $table->timestamps();
         });
