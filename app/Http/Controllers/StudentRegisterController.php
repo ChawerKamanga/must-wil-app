@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentRegisterFirststepRequest;
+use App\Http\Requests\StudentRegisterLastStepRequest;
+use App\Http\Requests\StudentRegisterSecondStepRequest;
 use App\Models\District;
 use App\Models\Intrest;
 use App\Models\Programme;
@@ -43,29 +45,15 @@ class StudentRegisterController extends Controller
         return to_route('register.create');
     }
 
-    public function secondStep(Request $request)
+    public function secondStep(StudentRegisterSecondStepRequest $request)
     {
-        $request->validate([
-            'reg_number' => ['required', 'unique:users'],
-            'program_of_study' => 'required',
-            'profile_pic' => ['required'],
-            'gender' => 'required'
-        ]);
-
         return to_route('register.create');
     }
 
-    public function register(Request $request)
+    public function register(StudentRegisterLastStepRequest $request)
     {
-        $request->validate([
-            'district' => ['required'],
-            'password_confirmation' => ['required', 'min:6'],
-            'password' => ['required', 'confirmed']
-        ]);
-
+       
         $user = new User();
-
-        // dd($request->hasFile('profile_pic'));
 
         if($request->hasFile('profile_pic')){
             // image upload
