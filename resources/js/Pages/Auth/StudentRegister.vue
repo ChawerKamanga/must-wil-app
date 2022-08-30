@@ -211,17 +211,6 @@
                 />
               </div>
 
-              <div class="flex flex-col space-y-2">
-                <div class="flex space-x-4">
-                  <div class="flex space-x-2 items-center">
-                    <input type="checkbox" id="agree" name="agree" />
-                    <label for="agree" class="text-sm text-gray-600"
-                      >Are you okay being allocated to an area of your intrest
-                      even outside your district?</label
-                    >
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div v-if="formStep == 1" class="flex justify-end">
