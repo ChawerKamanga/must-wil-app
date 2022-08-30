@@ -174,18 +174,6 @@
 
             <!-- Third Step -->
             <div class="space-y-5" v-if="formStep == 3">
-              <span class="form-label">Select your fields of interest</span>
-              <div
-                class="flex flex-col"
-                v-for="(interest, index) in interests.data"
-                :key="index"
-              >
-                <div class="space-x-2">
-                  <input type="checkbox" :id="interest.id" :value="interest.id"  />
-                  <label :for="interest.id">{{ interest.name }}</label>
-                </div>
-              </div>
-
               <div class="flex flex-col space-y-2">
                 <label for="personal-number" class="form-label">Location</label>
                 <select id="program-select" v-model="form.district">
@@ -398,7 +386,7 @@ export default {
   data() {
     return {
       url: null,
-      formStep: 3    
+      formStep: 1   
   };
   },
   setup() {
@@ -410,7 +398,7 @@ export default {
       next_of_kin: "",
       program_of_study: "",
       reg_number: "",
-      gender: null,
+      gender: 'M',
       profile_pic: null,
       password: "",
       password_confirmation: "",
