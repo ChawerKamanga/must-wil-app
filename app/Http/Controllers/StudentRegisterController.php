@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentRegisterFirststepRequest;
 use App\Models\District;
 use App\Models\Intrest;
 use App\Models\Programme;
@@ -37,15 +38,8 @@ class StudentRegisterController extends Controller
         ]);
     }
 
-    public function firstStep(Request $request)
+    public function firstStep(StudentRegisterFirststepRequest $request)
     {
-        $request->validate([
-            'name' => ['required'],
-            'email' => ['required', 'unique:users', 'email', 'regex:/(.*)@must.ac\.mw/i', 'max:255'],
-            'phone_number' => ['required', 'unique:users'],
-            'next_of_kin' => ['required'],
-        ]);
-
         return to_route('register.create');
     }
 
