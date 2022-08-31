@@ -66,7 +66,7 @@
                     <img :src="organization.img_url" class="w-10 h-10" alt="logo">
                   </th>
                   <td class="text-td text-left">
-                    <Link :href="route('organizations.show', organization)">
+                    <Link :href="route('organizations.edit', organization)">
                       {{ organization.name }}
                     </Link>
                   </td>

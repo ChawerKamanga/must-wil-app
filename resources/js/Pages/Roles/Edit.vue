@@ -14,7 +14,7 @@
     <section class="w-full lg:w-10/12 lg:items-center m-4 mx-auto">
       <div class="container w-full mx-auto px-5 py-5 flex flex-col space-y-5">
         <div>
-          <h1 class="text-veryDarkBlue text-3xl font-bold">Create Role</h1>
+          <h1 class="text-veryDarkBlue text-3xl font-bold">Edit Role</h1>
         </div>
         <div
           class="flex lg:flex-row flex-col space-x-10 space-y-10 lg:space-y-0"

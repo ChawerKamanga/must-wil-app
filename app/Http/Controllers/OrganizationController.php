@@ -116,9 +116,23 @@ class OrganizationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Organization $organization)
     {
-        //
+        return Inertia::render('Organization/Edit', [
+            'districts' => District::query()
+                ->paginate(100)
+                ->through(fn ($district) => [
+                    'id' => $district->id,
+                    'name' => $district->name,
+                ]),
+            'organization' => [
+                'id' => $organization->id,
+                'name' => $organization->name,
+                'slug' => $organization->slug,
+                'starting_date' => $organization->starting_date,
+                'description' => $organization->description,
+            ]
+        ]);
     }
 
     /**
