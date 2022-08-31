@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreOrganizarionRequest;
 use App\Models\District;
 use App\Models\Organization;
 use Carbon\Carbon;
@@ -60,9 +61,9 @@ class OrganizationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreOrganizarionRequest $request)
     {
-        //
+        dd('I am here');
     }
 
     /**

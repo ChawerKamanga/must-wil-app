@@ -61,20 +61,24 @@
                     v-model="form.name"
                     class="dashboard-textinput"
                   />
+                  <small v-if="errors.name" class="text-red-500">{{ errors.name }}</small>
                 </div>
                 <div class="w-full">
-                  <label for="industrial-supervisor"
+                  <label for="commencement"
                     >Commencement date<sup class="text-red-500"
                       >*</sup
                     ></label
                   >
                   <input
+                  v-model="form.starting_date"
                   type="date"
                   id="commencement"
                   class="
                    dashboard-textinput
                   "
                 />
+                <small v-if="errors.starting_date" class="text-red-500">{{ errors.starting_date }}</small>
+
                 
                 </div>
               </div>
@@ -101,6 +105,8 @@
                       {{ district.name }}
                     </option>
                   </select>
+                <small v-if="errors.district" class="text-red-500">{{ errors.district }}</small>
+                  
                 </div>
                 <div class="w-full flex flex-col space-y-2">
                   <label for="industrial-supervisor"
@@ -112,7 +118,7 @@
               </div>
               <div>
                 <label for="name"
-                  >Description<sup class="text-red-500">*</sup></label
+                  >Description</label
                 >
                 <textarea
                   class="
@@ -122,6 +128,7 @@
                   cols="30"
                   rows="10"
                 ></textarea>
+                
               </div>
             </div>
 
@@ -193,17 +200,7 @@
                     type="text"
                     id="add-students"
                     class="
-                      py-2
-                      px-4
-                      text-left
-                      w-full
-                      text-gray-700
-                      border
-                      placeholder:text-left
-                      border-gray-300
-                      rounded-md
-                      placeholder:text-base
-                      focus:border-gray-200 focus:outline-none
+                     dashboard-textinput
                     "
                   />
                 </div>
@@ -212,7 +209,7 @@
           </form>
         </div>
         <div class="flex space-x-3">
-          <button class="bg-veryDarkBlue text-white py-2 px-4 rounded-md">
+          <button @click="submit" class="bg-veryDarkBlue text-white py-2 px-4 rounded-md">
             Create
           </button>
           <button
@@ -263,13 +260,13 @@ defineProps({
 
 let form = useForm({
   name: "",
-  supervisor: "",
+  starting_date: "",
   district: "",
   organization_pic: null,
   description: ""
 });
 
 let submit = () => {
-  form.post(route("programmes.store"));
+  form.post(route("organizations.store"));
 };
 </script>
