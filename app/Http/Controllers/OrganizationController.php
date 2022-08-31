@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreOrganizarionRequest;
+use App\Http\Requests\UpdateOrganizationRequest;
 use App\Models\District;
 use App\Models\Organization;
 use Carbon\Carbon;
@@ -142,9 +143,25 @@ class OrganizationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreOrganizarionRequest $request, Organization $organization)
     {
-        //
+        if ($request->hasFile('organization_pic')) {
+            $file = $request->file('organization_pic');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/org-logos/', $filename);
+            $organization->img_name = $filename;
+            $organization->img_url = '/uploads/org-logos/' . $filename;
+
+            $organization->name = $request->input('name');
+            $organization->starting_date = $request->input('starting_date');
+            $organization->district_id = $request->input('district');
+            $organization->description = $request->input('description');
+
+            $organization->update();
+        }
+
+        return Redirect::route('organizations.index');   
     }
 
     /**

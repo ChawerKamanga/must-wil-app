@@ -209,7 +209,7 @@
           </div>
           <div class="flex space-x-3">
             <button
-              @click="submit"
+              @click="submit(organization.id)"
               class="bg-veryDarkBlue text-white py-2 px-4 rounded-md"
             >
               Update
@@ -253,12 +253,11 @@
   let form = useForm({
     name: props.organization.name,
     starting_date: props.organization.starting_date,
-    district: "",
-    organization_pic: null,
+    district: props.organization.district_id,
     description: props.organization.description,
   });
   
-  let submit = () => {
-    form.post(route("organizations.update", id));
+  let submit = (id) => {
+    form.put(route("organizations.update", id));
   };
   </script>

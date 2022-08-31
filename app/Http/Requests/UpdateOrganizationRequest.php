@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StudentRegisterSecondStepRequest extends FormRequest
+class UpdateOrganizationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class StudentRegisterSecondStepRequest extends FormRequest
     public function rules()
     {
         return [
-            'reg_number' => ['required', 'unique:users', 'regex:/(.*)-(.*)-(.*)/i'],
-            'program_of_study' => 'required',
-            'profile_pic' => ['required', 'image', 'max:1024'],
+            'name' => ['required', 'max:100'],
+            'starting_date' => ['required', 'date'],
         ];
     }
 }
