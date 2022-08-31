@@ -45,10 +45,11 @@
               <thead>
                 <tr>
                   <th class="dashboard-th text-left">Index</th>
+                  <th class="dashboard-th text-left">Logo</th>
                   <th class="dashboard-th text-left">Organization Name</th>
                   <th class="dashboard-th text-left">Supervisor</th>
                   <th class="dashboard-th text-left">District of Origin</th>
-                  <th class="dashboard-th text-left">Created At</th>
+                  <th class="dashboard-th text-left">Internship Commencement</th>
                   <th class="dashboard-th">Actions</th>
                 </tr>
               </thead>
@@ -61,23 +62,30 @@
                   <th class="text-left">
                     <span class="font-normal">{{ index + 1 }}</span>
                   </th>
+                  <th class="text-left">
+                    <img :src="organization.img_url" class="w-10 h-10" alt="logo">
+                  </th>
                   <td class="text-td text-left">
                     <Link :href="route('organizations.show', organization)">
                       {{ organization.name }}
                     </Link>
                   </td>
                    <td class="text-td text-left">
-                    <span v-for="supervisor in organization.supervisor" :key="supervisor.id">
-                      <span v-if="supervisor.role_id == 3">
-                        {{ supervisor.name }}
+                    <span v-if="organization.supervisor.length > 0">
+                      <span v-for="supervisor in organization.supervisor" :key="supervisor.id">
+                        <span v-if="supervisor.role_id == 3">
+                          {{ supervisor.name }}
+                        </span>
                       </span>
                     </span>
+                    
+                    <span class="text-red-700" v-else>N/A</span>
                   </td>
                   <td class="text-td">
                     <span>{{ organization.district }}</span>
                   </td>
                   <td class="text-td">
-                    {{ organization.createdAt }}
+                    {{ organization.starting_date }}
                   </td>
                   <td class="text-td relative">
                     <div

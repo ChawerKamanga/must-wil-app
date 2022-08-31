@@ -31,9 +31,10 @@ class OrganizationController extends Controller
                     'id' => $organization->id,
                     'name' => $organization->name,
                     'slug' => $organization->slug,
+                    'img_url' => $organization->img_url,
                     'district' => $organization->district->name,
                     'supervisor' => $organization->users()->get()->map->only('id', 'name', 'role_id'),
-                    'createdAt' =>  Carbon::parse($organization->created_at)->format('l jS \of F Y h:i:s A')
+                    'starting_date' =>  Carbon::parse($organization->starting_date)->format('l jS \of F Y h:i:s A')
                 ]),
             'filters' => $request->only(['search']),
         ]);
@@ -72,7 +73,7 @@ class OrganizationController extends Controller
             $filename = time() . '.' . $extension;
             $file->move('uploads/org-logos/', $filename);
             $organization->img_name = $filename;
-            $organization->img_url = '/uploads/profile/' . $filename;
+            $organization->img_url = '/uploads/org-logos/' . $filename;
 
             $organization->name = $request->input('name');
             $organization->starting_date = $request->input('starting_date');
