@@ -61,25 +61,23 @@
                     v-model="form.name"
                     class="dashboard-textinput"
                   />
-                  <small v-if="errors.name" class="text-red-500">{{ errors.name }}</small>
+                  <small v-if="errors.name" class="text-red-500">{{
+                    errors.name
+                  }}</small>
                 </div>
                 <div class="w-full">
                   <label for="commencement"
-                    >Commencement date<sup class="text-red-500"
-                      >*</sup
-                    ></label
+                    >Commencement date<sup class="text-red-500">*</sup></label
                   >
                   <input
-                  v-model="form.starting_date"
-                  type="date"
-                  id="commencement"
-                  class="
-                   dashboard-textinput
-                  "
-                />
-                <small v-if="errors.starting_date" class="text-red-500">{{ errors.starting_date }}</small>
-
-                
+                    v-model="form.starting_date"
+                    type="date"
+                    id="commencement"
+                    class="dashboard-textinput"
+                  />
+                  <small v-if="errors.starting_date" class="text-red-500">{{
+                    errors.starting_date
+                  }}</small>
                 </div>
               </div>
               <div
@@ -105,30 +103,33 @@
                       {{ district.name }}
                     </option>
                   </select>
-                <small v-if="errors.district" class="text-red-500">{{ errors.district }}</small>
-                  
+                  <small v-if="errors.district" class="text-red-500">{{
+                    errors.district
+                  }}</small>
                 </div>
                 <div class="w-full flex flex-col space-y-2">
                   <label for="industrial-supervisor"
                     >Company Logo<sup class="text-red-500">*</sup></label
                   >
-                  <input accept="image/png, image/jpeg, image/jpg" class="dashboard-textinput px-2" type="file" @input="form.profile_pic = $event.target.files[0]" />
-
+                  <input
+                    accept="image/png, image/jpeg, image/jpg"
+                    class="dashboard-textinput px-2"
+                    type="file"
+                    @input="form.organization_pic = $event.target.files[0]"
+                  />
+                  <small v-if="errors.organization_pic" class="text-red-500">{{
+                    errors.organization_pic
+                  }}</small>
                 </div>
               </div>
               <div>
-                <label for="name"
-                  >Description</label
-                >
+                <label for="name">Description</label>
                 <textarea
-                  class="
-                  dashboard-textinput
-                  "
+                  class="dashboard-textinput"
                   id=""
                   cols="30"
                   rows="10"
                 ></textarea>
-                
               </div>
             </div>
 
@@ -155,18 +156,18 @@
                     />
                   </svg>
                 </div>
-               
+
                 <div>
                   <label for="industrial-supervisor"
-                    >Industrial Supervisor<sup class="text-red-500">*</sup></label
+                    >Industrial Supervisor<sup class="text-red-500"
+                      >*</sup
+                    ></label
                   >
                   <input
-                  type="text"
-                  id="industrial-supervisor"
-                  class="
-                  dashboard-textinput
-                  "
-                />
+                    type="text"
+                    id="industrial-supervisor"
+                    class="dashboard-textinput"
+                  />
                 </div>
               </div>
 
@@ -199,9 +200,7 @@
                   <input
                     type="text"
                     id="add-students"
-                    class="
-                     dashboard-textinput
-                    "
+                    class="dashboard-textinput"
                   />
                 </div>
               </div>
@@ -209,7 +208,10 @@
           </form>
         </div>
         <div class="flex space-x-3">
-          <button @click="submit" class="bg-veryDarkBlue text-white py-2 px-4 rounded-md">
+          <button
+            @click="submit"
+            class="bg-veryDarkBlue text-white py-2 px-4 rounded-md"
+          >
             Create
           </button>
           <button
@@ -263,7 +265,7 @@ let form = useForm({
   starting_date: "",
   district: "",
   organization_pic: null,
-  description: ""
+  description: "",
 });
 
 let submit = () => {

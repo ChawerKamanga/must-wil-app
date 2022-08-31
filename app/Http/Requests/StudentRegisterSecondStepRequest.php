@@ -26,7 +26,7 @@ class StudentRegisterSecondStepRequest extends FormRequest
         return [
             'reg_number' => ['required', 'unique:users', 'regex:/(.*)-(.*)-(.*)/i'],
             'program_of_study' => 'required',
-            'profile_pic' => ['required', 'image', 'size:1024'],
+            'profile_pic' => ['required', 'image', 'max:1024'],
             'description' => ['required', 'max:300']
         ];
     }

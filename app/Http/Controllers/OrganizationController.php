@@ -7,6 +7,7 @@ use App\Models\District;
 use App\Models\Organization;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class OrganizationController extends Controller
@@ -63,7 +64,25 @@ class OrganizationController extends Controller
      */
     public function store(StoreOrganizarionRequest $request)
     {
-        dd('I am here');
+        $organization = new Organization();
+
+        if ($request->hasFile('organization_pic')) {
+            $file = $request->file('organization_pic');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/org-logos/', $filename);
+            $organization->img_name = $filename;
+            $organization->img_url = '/uploads/profile/' . $filename;
+
+            $organization->name = $request->input('name');
+            $organization->starting_date = $request->input('starting_date');
+            $organization->district_id = $request->input('district');
+            $organization->description = $request->input('description');
+
+            $organization->save();
+        }
+
+        return Redirect::route('organizations.index');
     }
 
     /**

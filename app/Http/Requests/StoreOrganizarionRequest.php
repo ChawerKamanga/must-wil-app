@@ -27,8 +27,7 @@ class StoreOrganizarionRequest extends FormRequest
             'name' => ['required', 'max:100'],
             'starting_date' => ['required', 'date'],
             'district' => ['required', 'max:10'],
-            'organization_pic' => ['required', 'max:1'],
-            'role_id' => ['required', 'numeric', 'min:1', 'max:4'],
+            'organization_pic' => ['required', 'max:1024'],
         ];
     }
 }

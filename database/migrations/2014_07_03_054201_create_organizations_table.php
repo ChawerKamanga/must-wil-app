@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('img_name')->nullable();
             $table->text('description')->nullable();
             $table->date('starting_date')->nullable();
-            $table->string('supervisor_id')->constrained();
+            $table->string('supervisor_id')->nullable()->constrained();
             $table->foreignId('district_id')->constrained();
             $table->timestamps();
         });
