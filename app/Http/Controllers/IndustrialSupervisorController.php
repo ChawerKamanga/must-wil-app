@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Organization;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -46,7 +47,14 @@ class IndustrialSupervisorController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('IndustrialSupervisor/Create', [
+            'districts' => Organization::query()
+                ->paginate(100)
+                ->through(fn ($organization) => [
+                    'id' => $organization->id,
+                    'name' => $organization->name,
+                ]),
+        ]);   
     }
 
     /**

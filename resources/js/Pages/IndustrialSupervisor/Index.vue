@@ -6,7 +6,7 @@
      <section class="w-full lg:w-10/12 lg:items-center lg:mx-auto space-y-10">
       <div class="container w-full mx-auto px-5 py-5 flex flex-col space-y-10">
         <div>
-          <h1 class="text-veryDarkBlue text-3xl font-bold">industrial Supervisors</h1>
+          <h1 class="text-veryDarkBlue text-3xl font-bold">Industrial Supervisors</h1>
         </div>
 
         <div class="flex justify-between items-center my-4">
