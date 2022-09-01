@@ -7,6 +7,8 @@ use App\Models\Organization;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -47,15 +49,17 @@ class IndustrialSupervisorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(): Response
+    public function create()
     {
         return Inertia::render('IndustrialSupervisor/Create', [
-            'organizations' => Organization::where('id','>', '0')->when(request('term'), function ($query, $term) {
-                $query->where('name', 'like', "%$term%");
-            })->limit(15)->get(),
+            'organizations' => Organization::query()
+                ->paginate(20)
+                ->through(fn ($organization) => [
+                    'id' => $organization->id,
+                    'name' => $organization->name,
+                ])
         ]);
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -64,7 +68,16 @@ class IndustrialSupervisorController extends Controller
      */
     public function store(StoreIndustrialSuperVisorRequest $request)
     {
-        dd($request->input('organization'));
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'role_id' => 3,
+            'password' => Hash::make($request->password),
+            'organization_id' => $request->organization_idx
+        ]);
+
+        return Redirect::route('industrial-supervisors.index');
     }
 
     /**

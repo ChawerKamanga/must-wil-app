@@ -150,7 +150,15 @@
                   </div>
                   <div>
                     <p>Add the organization for this Industrial Supervisor</p>
-                    
+                    <select class="w-full" v-model="form.organization_id" id="organization-select">
+                      <option
+                        v-for="organization in organizations.data"
+                        :key="organization.id"
+                        :value="organization.id"
+                      >
+                        {{ organization.name }}
+                      </option>
+                    </select>
                   </div>
                   <div>
                   </div>
@@ -158,7 +166,7 @@
               </div>
             </div>
           </div>
-          <div class="flex space-x-3">
+          <div class="flex space-x-3 mt-5">
             <button
               type="submit"
               :disabled="form.processing"
@@ -202,7 +210,7 @@ import Authenticated from "@/Layouts/Authenticated.vue";
 import IndustrialSupervisorNav from "@/Components/IndustrialSupervisorNav.vue";
 import { ref } from "vue";
 import { Head, Link, usePage, useForm } from "@inertiajs/inertia-vue3";
-import vSelect from 'vue-select';
+import Multiselect from "vue-multiselect";
 
 export default {
   components: {
@@ -210,14 +218,11 @@ export default {
     Head,
     Link,
     Authenticated,
-    vSelect,
+    Multiselect
   },
   props: {
     errors: Object,
-    organizations: {
-      type: Array,
-      default: () => [],
-    },
+    organizations: Object
   },
 
   data() {
@@ -225,7 +230,6 @@ export default {
       selectedOrganization: undefined,
       authUser: usePage().props.value.auth.user,
       authUserRole: usePage().props.value.auth.user.role,
-      options: ['list', 'of', 'options'],
       form: this.$inertia.form({
         name: "",
         email: "",
@@ -235,21 +239,6 @@ export default {
       }),
     };
   },
-  methods: {
-    onSearchOrganizationChange(term) {
-      this.$inertia.get(
-        route("industrial-supervisors.create"),
-        { term },
-        {
-          preserveState: true,
-          preserveScroll: true,
-          replace: true,
-        }
-      );
-    },
-    onSelectedOrganization(organization) {
-      this.form.organization_id = organization.id;
-    },
-  },
+  
 };
 </script>
