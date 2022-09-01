@@ -64,9 +64,9 @@ class IndustrialSupervisorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreIndustrialSuperVisorRequest $request)
+    public function store(Request $request)
     {
-        dd('I am here');
+        dd($request);
     }
 
     /**

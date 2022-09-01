@@ -30,7 +30,7 @@
           "
         >
           <form
-            action="#"
+            @submit.prevent="form.post('/industrial-supervisors')"
             class="
               flex flex-col
               space-y-5
@@ -38,7 +38,6 @@
               space-x-0
               lg:space-x-10
             "
-            method="post"
           >
             <div class="flex flex-col w-full space-y-5 bg-white p-5 rounded-lg">
               <div
@@ -170,7 +169,8 @@
         </div>
         <div class="flex space-x-3">
           <button
-            @click="submit"
+            type="submit"
+            :disabled="form.processing"
             class="bg-veryDarkBlue text-white py-2 px-4 rounded-md"
           >
             Add User
@@ -209,25 +209,16 @@
 import Authenticated from "@/Layouts/Authenticated.vue";
 import IndustrialSupervisorNav from "@/Components/IndustrialSupervisorNav.vue";
 import { ref } from "vue";
-import { Head, Link, usePage } from "@inertiajs/inertia-vue3";
-import { useForm } from "@inertiajs/inertia-vue3";
+import { Head, Link, usePage, useForm } from "@inertiajs/inertia-vue3";
 
 export default {
-  props: {
-    errors: Object,
-    organizations: {
-      type: Array,
-      default: () => [],
-    },
-  },
-
   setup() {
     const form = useForm({
-      name: null,
-      email: null,
-      phone_number: null,
-      password: null,
-      organization: null,
+      name: "",
+      email: "",
+      phone_number: "",
+      password: "",
+      organization: "",
     });
 
     function submit() {
@@ -236,6 +227,14 @@ export default {
 
     return { form, submit };
   },
+  props: {
+    errors: Object,
+    organizations: {
+      type: Array,
+      default: () => [],
+    },
+  },
+
 
   data() {
     return {
