@@ -74,7 +74,8 @@ class IndustrialSupervisorController extends Controller
             'phone_number' => $request->phone_number,
             'role_id' => 3,
             'password' => Hash::make($request->password),
-            'organization_id' => $request->organization_idx
+            'organization_id' => $request->organization_id,
+            'gender' => $request->gender
         ]);
 
         return Redirect::route('industrial-supervisors.index');

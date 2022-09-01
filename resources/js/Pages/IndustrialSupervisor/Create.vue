@@ -124,6 +124,38 @@
                     }}</small>
                   </div>
                 </div>
+                <div
+                class="
+                  flex flex-col
+                  lg:flex-row
+                  space-x-0
+                  lg:space-x-5
+                  space-y-5
+                  lg:space-y-0
+                "
+              >
+                <div class="w-full flex flex-col space-y-2">
+                  <label for="phone-number"
+                    >Gender<sup class="text-red-500">*</sup></label
+                  >
+                  <div class="flex space-x-4">
+                    <div class="space-x-2">
+                      <input type="radio" id="male" v-model="form.gender" value="M"
+                             checked>
+                      <label for="male">Male</label>
+                    </div>
+                
+                    <div class="space-x-2">
+                      <input type="radio" id="female" v-model="form.gender" value="F">
+                      <label for="female">Female</label>
+                    </div>
+                  </div>
+                  <small v-if="errors.gender" class="text-red-500">{{
+                    errors.phone_number
+                  }}</small>
+                </div>
+                
+              </div>
               </div>
               <div class="space-y-5">
                 <div class="bg-white p-5 rounded-lg space-y-4">
@@ -236,6 +268,7 @@ export default {
         phone_number: "",
         password: "",
         organization_id: "",
+        gender: "M",
       }),
     };
   },

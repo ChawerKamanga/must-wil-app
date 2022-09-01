@@ -28,7 +28,10 @@ class StoreIndustrialSuperVisorRequest extends FormRequest
             'name' => ['required', 'max:100'],
             'email' => ['required', 'email', 'unique:users'],
             'phone_number' => ['required', 'max:15', 'unique:users'],
-            'password' => ['required', Rules\Password::defaults()]
+            'password' => ['required', Rules\Password::defaults()],
+            'gender' => ['required'],
+            'organization_id' => ['required'],
+
         ];
     }
 }
