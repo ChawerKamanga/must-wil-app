@@ -211,38 +211,37 @@ import { ref } from "vue";
 import { Head, Link, usePage } from "@inertiajs/inertia-vue3";
 import { useForm } from "@inertiajs/inertia-vue3";
 
-export default { 
+export default {
   props: {
     errors: Object,
     organizations: {
-        type: Array,
-        default: () => []
-      },
-     
+      type: Array,
+      default: () => [],
     },
+  },
 
-  data(){
+  data() {
     return {
       authUser: usePage().props.value.auth.user,
-      authUserRole : usePage().props.value.auth.user.role,
+      authUserRole: usePage().props.value.auth.user.role,
       form: this.$inertia.form({
         name: null,
         email: null,
         phone_number: null,
         password: null,
         organization: null,
-        }),
-    }
+      }),
+    };
   },
   components: {
     IndustrialSupervisorNav,
-    Head, 
-    Link
+    Head,
+    Link,
   },
   methods: {
     submit() {
-  form.post(route("industrial-supervisors.store"));
-},
-
-}
+      form.post(route("industrial-supervisors.store"));
+    },
+  },
+};
 </script>
