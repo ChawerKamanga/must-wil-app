@@ -1,6 +1,6 @@
 <template>
   <Authenticated>
-    <Head title="Edit Programmes" />
+    <Head title="Add Industrial Supervisor" />
     <IndustrialSupervisorNav>
       <template v-slot:username>
         {{ authUser.name }}
@@ -206,6 +206,7 @@
 </template>
     
 <script>
+import Authenticated from "@/Layouts/Authenticated.vue";
 import IndustrialSupervisorNav from "@/Components/IndustrialSupervisorNav.vue";
 import { ref } from "vue";
 import { Head, Link, usePage } from "@inertiajs/inertia-vue3";
@@ -220,28 +221,34 @@ export default {
     },
   },
 
+  setup() {
+    const form = useForm({
+      name: null,
+      email: null,
+      phone_number: null,
+      password: null,
+      organization: null,
+    });
+
+    function submit() {
+      form.post(route("industrial-supervisors.store"));
+    }
+
+    return { form, submit };
+  },
+
   data() {
     return {
       authUser: usePage().props.value.auth.user,
       authUserRole: usePage().props.value.auth.user.role,
-      form: this.$inertia.form({
-        name: null,
-        email: null,
-        phone_number: null,
-        password: null,
-        organization: null,
-      }),
+      form: useForm({}),
     };
   },
   components: {
     IndustrialSupervisorNav,
     Head,
     Link,
-  },
-  methods: {
-    submit() {
-      form.post(route("industrial-supervisors.store"));
-    },
+    Authenticated,
   },
 };
 </script>
