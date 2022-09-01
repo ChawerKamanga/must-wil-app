@@ -149,11 +149,15 @@
                     <p>Add the organization for this Industrial Supervisor</p>
                   </div>
                   <div>
-                    <input
-                      type="text"
-                      id="add-students"
-                      class="dashboard-textinput"
-                    />
+                    <select id="program-select" class="w-full" v-model="form.organization">
+                      <option
+                        v-for="(organization, index) in organizations.data"
+                        :key="index"
+                        :value="organization.id"
+                      >
+                        {{ organization.name }}
+                      </option>
+                    </select>
                   </div>
                 </div>
               </div>
