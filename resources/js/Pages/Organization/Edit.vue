@@ -163,11 +163,9 @@
                         >*</sup
                       ></label
                     >
-                    <input
-                      type="text"
-                      id="industrial-supervisor"
-                      class="dashboard-textinput"
-                    />
+                    <input v-if="supervisor.length > 0" type="text" class="dashboard-textinput" :value="supervisor[0].name" id="industrial-supervisor">
+                    <input v-else type="text" class="dashboard-textinput" id="industrial-supervisor">
+
                   </div>
                 </div>
   
@@ -197,11 +195,15 @@
                     <p>Add students to this organization</p>
                   </div>
                   <div>
-                    <input
-                      type="text"
-                      id="add-students"
-                      class="dashboard-textinput"
-                    />
+                    <select class="w-full" id="intern-select">
+                      <option
+                        v-for="(intern, index) in interns.data"
+                        :key="index"
+                        :value="intern.id"
+                      >
+                        {{ intern.name }}
+                      </option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -248,12 +250,16 @@
     errors: Object,
     districts: Object,
     organization: Object,
+    supervisor: Array,
+    interns: Object
   });
   
+  const name = 'Chawer'
+
   let form = useForm({
     name: props.organization.name,
     starting_date: props.organization.starting_date,
-    district: props.organization.district_id,
+    district: props.organization.district_id.id,
     description: props.organization.description,
   });
   

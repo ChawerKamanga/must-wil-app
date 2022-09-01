@@ -6,6 +6,7 @@ use App\Http\Requests\StoreOrganizarionRequest;
 use App\Http\Requests\UpdateOrganizationRequest;
 use App\Models\District;
 use App\Models\Organization;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -98,16 +99,16 @@ class OrganizationController extends Controller
         return Inertia::render('Organization/Show', [
             'organization' => $organization->only('name'),
             'interns' => $organization->users()
-            ->where('role_id', 4)
-            ->paginate(10)
-            ->withQueryString()
-            ->through(fn ($intern) => [
-                'id' => $intern->id,
-                'name' => $intern->name,
-                'gender' => $intern->gender,
-                'email' => $intern->email,
-                'phonenumber' => $intern->phone_number
-            ]),
+                ->where('role_id', 4)
+                ->paginate(10)
+                ->withQueryString()
+                ->through(fn ($intern) => [
+                    'id' => $intern->id,
+                    'name' => $intern->name,
+                    'gender' => $intern->gender,
+                    'email' => $intern->email,
+                    'phonenumber' => $intern->phone_number
+                ]),
         ]);
     }
 
@@ -131,8 +132,27 @@ class OrganizationController extends Controller
                 'name' => $organization->name,
                 'slug' => $organization->slug,
                 'starting_date' => $organization->starting_date,
+                'district_id' => $organization->district,
                 'description' => $organization->description,
-            ]
+            ],
+            'supervisor' => $organization->users()->get()->map->only('id', 'name'),
+            'districts' => District::query()
+                ->paginate(100)
+                ->through(fn ($district) => [
+                    'id' => $district->id,
+                    'name' => $district->name,
+                ]),
+            'interns' => User::query()
+                ->where([
+                    ['role_id', '=', 4],
+                    ['district_id', '=', $organization->district_id],
+                ])->orderBy('name')
+                ->paginate(10)
+                ->withQueryString()
+                ->through(fn ($intern) => [
+                    'id' => $intern->id,
+                    'name' => $intern->name,
+                ]),
         ]);
     }
 
@@ -159,9 +179,16 @@ class OrganizationController extends Controller
             $organization->description = $request->input('description');
 
             $organization->update();
+        }else {
+            $organization->update([
+                'name' => $request->name,
+                'starting_date' => $request->starting_date,
+                'district_id' => $request->district,
+                'description' => $request->description
+            ]);
         }
 
-        return Redirect::route('organizations.index');   
+        return Redirect::route('organizations.index');
     }
 
     /**

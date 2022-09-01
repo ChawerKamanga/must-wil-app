@@ -50,7 +50,7 @@
     <!-- Larger Screen -->
     <div class="hidden xl:block w-full">
       <div class="flex space-x-3 text-white px-4">
-        <img v-if="authProfileImage" :src="authProfileImage" class="w-12 rounded-full" alt="profile pic" />
+        <img v-if="authProfileImage" :src="authProfileImage" class="w-12 h-12 rounded-full" alt="profile pic" />
         <img v-else-if="gender == 'M'"  src="/images/male_avataar.png" class="w-12" alt="profile pic" />
         <img v-else  src="/images/female_avataar.png" class="w-12" alt="profile pic" />
         <div class="flex flex-col">
