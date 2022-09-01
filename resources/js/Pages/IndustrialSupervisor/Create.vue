@@ -66,17 +66,17 @@
                     }}</small>
                   </div>
                   <div class="w-full">
-                    <label for="commencement"
+                    <label for="email"
                       >Email<sup class="text-red-500">*</sup></label
                     >
                     <input
-                      v-model="form.starting_date"
+                      v-model="form.email"
                       type="email"
-                      id="commencement"
+                      id="email"
                       class="dashboard-textinput"
                     />
-                    <small v-if="errors.starting_date" class="text-red-500">{{
-                      errors.starting_date
+                    <small v-if="errors.email" class="text-red-500">{{
+                      errors.email
                     }}</small>
                   </div>
                 </div>
@@ -91,29 +91,31 @@
                   "
                 >
                   <div class="w-full flex flex-col space-y-2">
-                    <label for="name"
+                    <label for="phone-number"
                       >Phonenumber<sup class="text-red-500">*</sup></label
                     >
                     <input
                     type="text"
-                    id="name"
-                    v-model="form.name"
+                    id="phone-number"
+                    v-model="form.phone_number"
                     class="dashboard-textinput"
                   />
-                    <small v-if="errors.district" class="text-red-500">{{
-                      errors.district
+                    <small v-if="errors.phone_number" class="text-red-500">{{
+                      errors.phone_number
                     }}</small>
                   </div>
                   <div class="w-full flex flex-col space-y-2">
-                    <label for="industrial-supervisor"
+                    <label for="password"
                       >Password<sup class="text-red-500">*</sup></label
                     >
                     <input
                       class="dashboard-textinput px-2"
+                      id="password"
                       type="password"
+                      v-model="form.password"
                     />
-                    <small v-if="errors.organization_pic" class="text-red-500">{{
-                      errors.organization_pic
+                    <small v-if="errors.password" class="text-red-500">{{
+                      errors.password
                     }}</small>
                   </div>
                 </div>
@@ -162,7 +164,7 @@
               @click="submit"
               class="bg-veryDarkBlue text-white py-2 px-4 rounded-md"
             >
-              Add
+              Add User
             </button>
             <button
               class="
@@ -207,18 +209,18 @@
   
   defineProps({
     errors: Object,
-    districts: Object,
+    organizations: Object,
   });
   
   let form = useForm({
-    name: "",
-    starting_date: "",
-    district: "",
-    organization_pic: null,
-    description: "",
+    name: null,
+    email: null,
+    phone_number: null,
+    password: null,
+    organization: null,
   });
   
   let submit = () => {
-    form.post(route("organizations.store"));
+    form.post(route("industrial-supervisors.store"));
   };
   </script>
