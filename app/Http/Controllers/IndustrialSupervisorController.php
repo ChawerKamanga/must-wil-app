@@ -8,6 +8,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class IndustrialSupervisorController extends Controller
 {
@@ -46,16 +47,13 @@ class IndustrialSupervisorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('IndustrialSupervisor/Create', [
-            'organizations' => Organization::query()
-                ->paginate(100)
-                ->through(fn ($organization) => [
-                    'id' => $organization->id,
-                    'name' => $organization->name,
-                ]),
-        ]);   
+            'organizations' => Organization::where('id','>', '0')->when(request('term'), function ($query, $term) {
+                $query->where('name', 'like', "%$term%");
+            })->limit(15)->get(),
+        ]);
     }
 
     /**
@@ -64,9 +62,9 @@ class IndustrialSupervisorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreIndustrialSuperVisorRequest $request)
     {
-        dd($request);
+        dd($request->input('organization'));
     }
 
     /**
