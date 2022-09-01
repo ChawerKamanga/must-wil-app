@@ -186,6 +186,15 @@ class OrganizationController extends Controller
                 'district_id' => $request->district,
                 'description' => $request->description
             ]);
+
+            // $supervisor = User::find($request->supervisor_id);
+            // $supervisor->name = $request->supervisor_name;
+            // $supervisor->update();
+
+            $intern = User::find($request->intern_id);
+            $intern->organization_id = $organization->id;
+            $intern->is_allocated = 1;
+            $intern->update();
         }
 
         return Redirect::route('organizations.index');

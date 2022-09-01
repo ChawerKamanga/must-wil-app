@@ -63,10 +63,12 @@
                     <span class="font-normal">{{ index + 1 }}</span>
                   </th>
                   <th class="text-left">
-                    <img :src="organization.img_url" class="w-10 h-10" alt="logo">
+                    <Link :href="route('organizations.show', organization)">
+                      <img :src="organization.img_url" class="w-10 h-10" alt="logo">
+                    </Link>
                   </th>
                   <td class="text-td text-left">
-                    <Link :href="route('organizations.show', organization)">
+                    <Link :href="route('organizations.edit', organization)">
                       {{ organization.name }}
                     </Link>
                   </td>

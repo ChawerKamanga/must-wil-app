@@ -163,7 +163,7 @@
                         >*</sup
                       ></label
                     >
-                    <input v-if="supervisor.length > 0" type="text" class="dashboard-textinput" :value="supervisor[0].name" id="industrial-supervisor">
+                    <input v-if="supervisor.length > 0" type="text" class="dashboard-textinput" v-model="form.supervisor_name" id="industrial-supervisor">
                     <input v-else type="text" class="dashboard-textinput" id="industrial-supervisor">
 
                   </div>
@@ -195,7 +195,7 @@
                     <p>Add students to this organization</p>
                   </div>
                   <div>
-                    <select class="w-full" id="intern-select">
+                    <select class="w-full" id="intern-select" v-model="form.intern_id">
                       <option
                         v-for="(intern, index) in interns.data"
                         :key="index"
@@ -245,7 +245,7 @@
   
   const authUser = usePage().props.value.auth.user;
   const authUserRole = usePage().props.value.auth.user.role;
-  
+
   const props = defineProps({
     errors: Object,
     districts: Object,
@@ -254,13 +254,14 @@
     interns: Object
   });
   
-  const name = 'Chawer'
-
   let form = useForm({
     name: props.organization.name,
     starting_date: props.organization.starting_date,
     district: props.organization.district_id.id,
     description: props.organization.description,
+    supervisor_name: (props.supervisor[0]) ? props.supervisor[0].name : null,
+    supervisor_id: (props.supervisor[0]) ? props.supervisor[0].id : null,
+    intern_id: ""
   });
   
   let submit = (id) => {

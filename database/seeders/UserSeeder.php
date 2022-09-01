@@ -29,7 +29,6 @@ class UserSeeder extends Seeder
                 'gender' => 'M',
                 'role_id' => 1,
                 'programme_id' => null,
-                'year_of_study' => null,
                 'reg_number' => null,
                 'organization_id' => null,
                 'password' => Hash::make('abcd1234.'),

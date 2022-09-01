@@ -46,6 +46,7 @@
                 <tr>
                   <th class="dashboard-th text-left">Index</th>
                   <th class="dashboard-th text-left">Name</th>
+                  <th class="dashboard-th text-left">Home Location</th>
                   <th class="dashboard-th text-left">Email</th>
                   <th class="dashboard-th text-left">Organization</th>
                   <th class="dashboard-th text-left">Gender</th>
@@ -65,6 +66,11 @@
                   </th>
                   <td class="text-td">
                     <Link :href="route('interns.show', intern)">{{ intern.name }}</Link>
+                  </td>
+                  <td class="text-td">
+                    <span>
+                      {{ intern.district }}
+                    </span>
                   </td>
                   <td class="text-td">
                     <span>
@@ -89,7 +95,7 @@
                     </span>
                   </td>
                   <td class="text-td">
-                    {{ intern.programme }}
+                    {{ intern.programme.toUpperCase() }}
                   </td>
                   <td class="text-td relative">
                     <div

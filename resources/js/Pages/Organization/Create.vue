@@ -226,8 +226,8 @@
           >
             Create & create another
           </button>
-          <a
-            href="organization.html"
+          <Link
+            :href="route('organizations.index')"
             class="
               bg-none
               border border-gray-300
@@ -236,7 +236,7 @@
               px-4
               rounded-md
             "
-            >Cancel</a
+            >Cancel</Link
           >
         </div>
       </div>

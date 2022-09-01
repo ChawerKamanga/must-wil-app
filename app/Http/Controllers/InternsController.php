@@ -41,7 +41,9 @@ class InternsController extends Controller
                     'gender' => $intern->gender,
                     'organization' => $this->checkOrg($intern->organization),
                     'phoneNumber' => $intern->phone_number,
-                    'programme' => $intern->programme->name,
+                    'programme' => $intern->programme->code,
+                    'district' => $intern->district->name,
+
                 ]),
             'filters' => $request->only(['search']),
         ]);
