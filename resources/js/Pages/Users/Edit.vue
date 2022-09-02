@@ -9,7 +9,7 @@
           <h1 class="text-veryDarkBlue text-3xl font-bold">Update Profile</h1>
         </div>
 
-        <form @submit.prevent="form.post(route('users.update'))">
+        <form @submit.prevent="submit(user.id)"> 
           <div
             class="
               flex
@@ -100,12 +100,14 @@
                       >Profile Pic<sup class="text-red-500">*</sup></label
                     >
                     <input
+                      accept="image/png, image/jpeg, image/jpg"
                       class="dashboard-textinput px-2"
                       id="profile-pic"
                       type="file"
+                      @input="form.profile_pic = $event.target.files[0]"
                     />
-                    <small v-if="errors.password" class="text-red-500">{{
-                      errors.password
+                    <small v-if="errors.profile_pic" class="text-red-500">{{
+                      errors.profile_pic
                     }}</small>
                   </div>
                 </div>
@@ -176,7 +178,7 @@
                       </div>
                     </div>
                     <small v-if="errors.gender" class="text-red-500">{{
-                      errors.phone_number
+                      errors.gender
                     }}</small>
                   </div>
                 </div>
@@ -185,7 +187,7 @@
                 <div class="bg-white p-5 rounded-lg space-y-4">
                   <div>
                     <h6 class="font-semibold text-sm text-veryDarkBlue">
-                      Organization
+                      Profile
                     </h6>
                   </div>
                   <div>
@@ -205,7 +207,7 @@
                     </svg>
                   </div>
                   <div>
-                    <p>Add the organization for this Industrial Supervisor</p>
+                    <p>Update your profile details here. Take note that all changes are in sync</p>
                   </div>
                   <div></div>
                 </div>
@@ -218,7 +220,7 @@
               :disabled="form.processing"
               class="bg-veryDarkBlue text-white py-2 px-4 rounded-md"
             >
-              Add User
+              Update Profile
             </button>
             <Link
               :href="route('dashboard')"
@@ -254,9 +256,10 @@ let form = useForm({
   email: props.user.email,
   phone_number: props.user.phone_number,
   gender: props.user.gender,
+  profile_pic: null
 });
 
 let submit = (id) => {
-  form.put(route("roles.update", id));
+  form.put(route("users.update", id));
 };
 </script>

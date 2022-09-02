@@ -53,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('roles', RolesController::class)->except(['edit', 'show']);
     Route::get('roles/edit/{role:slug}', [RolesController::class, 'edit'])->name('roles.edit');
     Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
 });
 
 Route::middleware(['guest'])->group(function () {
