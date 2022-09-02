@@ -1,7 +1,7 @@
 <template>
   <Authenticated>
     <Head title="Add Industrial Supervisor" />
-    <RolesNav />
+    <UserNav />
 
     <section class="w-full lg:w-10/12 lg:items-center m-4 mx-auto">
       <div class="container w-full mx-auto px-5 py-5 flex flex-col space-y-5">
@@ -12,7 +12,7 @@
         </div>
 
         <form
-          @submit.prevent="form.post(route('industrial-supervisors.store'))"
+          @submit.prevent="form.post(route('users.update'))"
         >
           <div
             class="
@@ -230,7 +230,7 @@
       
   <script setup>
 import Authenticated from "@/Layouts/Authenticated.vue";
-import RolesNav from "@/Components/RolesNav.vue";
+import UserNav from "@/Components/UserNav.vue";
 import { Head, Link, useForm, usePage } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
