@@ -1,19 +1,15 @@
 <template>
   <Authenticated>
-    <Head title="Add Industrial Supervisor" />
+    <Head title="Update Profile" />
     <UserNav />
 
     <section class="w-full lg:w-10/12 lg:items-center m-4 mx-auto">
       <div class="container w-full mx-auto px-5 py-5 flex flex-col space-y-5">
         <div>
-          <h1 class="text-veryDarkBlue text-3xl font-bold">
-            Add Industrial Supervisor
-          </h1>
+          <h1 class="text-veryDarkBlue text-3xl font-bold">Update Profile</h1>
         </div>
 
-        <form
-          @submit.prevent="form.post(route('users.update'))"
-        >
+        <form @submit.prevent="form.post(route('users.update'))">
           <div
             class="
               flex
@@ -48,9 +44,7 @@
                 >
                   <div class="w-full">
                     <label for="name"
-                      >Industrial Supervisor Name<sup class="text-red-500"
-                        >*</sup
-                      ></label
+                      >Your Name<sup class="text-red-500">*</sup></label
                     >
                     <input
                       type="text"
@@ -102,14 +96,13 @@
                     }}</small>
                   </div>
                   <div class="w-full flex flex-col space-y-2">
-                    <label for="password"
-                      >Password<sup class="text-red-500">*</sup></label
+                    <label for="profile-pic"
+                      >Profile Pic<sup class="text-red-500">*</sup></label
                     >
                     <input
                       class="dashboard-textinput px-2"
-                      id="password"
-                      type="password"
-                      v-model="form.password"
+                      id="profile-pic"
+                      type="file"
                     />
                     <small v-if="errors.password" class="text-red-500">{{
                       errors.password
@@ -127,22 +120,52 @@
                   "
                 >
                   <div class="w-full flex flex-col space-y-2">
+                    <label for="password"
+                      >Password<sup class="text-red-500">*</sup></label
+                    >
+                    <input
+                      class="dashboard-textinput px-2"
+                      id="password"
+                      type="password"
+                      v-model="form.password"
+                    />
+                    <small v-if="errors.password" class="text-red-500">{{
+                      errors.password
+                    }}</small>
+                  </div>
+                  <div class="w-full flex flex-col space-y-2">
                     <label for="phone-number"
                       >Gender<sup class="text-red-500">*</sup></label
                     >
                     <div class="flex space-x-4">
                       <div class="space-x-2">
                         <input
+                          v-if="user.gender == 'M'"
                           type="radio"
                           id="male"
                           v-model="form.gender"
                           value="M"
                           checked
                         />
+                        <input
+                          v-else
+                          type="radio"
+                          id="male"
+                          v-model="form.gender"
+                          value="M"
+                        />
                         <label for="male">Male</label>
                       </div>
 
                       <div class="space-x-2">
+                        <input
+                          v-if="user.gender == 'F'"
+                          type="radio"
+                          id="male"
+                          v-model="form.gender"
+                          value="M"
+                          checked
+                        />
                         <input
                           type="radio"
                           id="female"
@@ -197,20 +220,8 @@
             >
               Add User
             </button>
-            <button
-              class="
-                bg-none
-                border border-gray-300
-                text-veryDarkBlue
-                py-2
-                px-4
-                rounded-md
-              "
-            >
-              Add & add another
-            </button>
             <Link
-              :href="route('industrial-supervisors.index')"
+              :href="route('dashboard')"
               class="
                 bg-none
                 border border-gray-300
@@ -240,7 +251,9 @@ const props = defineProps({
 
 let form = useForm({
   name: props.user.name,
-  description: props.user.description,
+  email: props.user.email,
+  phone_number: props.user.phone_number,
+  gender: props.user.gender,
 });
 
 let submit = (id) => {
