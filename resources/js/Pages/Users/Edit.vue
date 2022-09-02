@@ -1,141 +1,249 @@
 <template>
-    <Authenticated>
-      <Head title="Update User" />
-      <RolesNav>
-        <template v-slot:username>
-          {{ authUser.name }}
-        </template>
-  
-         <template v-slot:userrole>
-          {{ authUserRole.name }}
-        </template>
-      </RolesNav>
-  
-      <section class="w-full lg:w-10/12 lg:items-center m-4 mx-auto">
-        <div class="container w-full mx-auto px-5 py-5 flex flex-col space-y-5">
-          <div>
-            <h1 class="text-veryDarkBlue text-3xl font-bold">Edit user</h1>
-          </div>
+  <Authenticated>
+    <Head title="Add Industrial Supervisor" />
+    <RolesNav />
+
+    <section class="w-full lg:w-10/12 lg:items-center m-4 mx-auto">
+      <div class="container w-full mx-auto px-5 py-5 flex flex-col space-y-5">
+        <div>
+          <h1 class="text-veryDarkBlue text-3xl font-bold">
+            Add Industrial Supervisor
+          </h1>
+        </div>
+
+        <form
+          @submit.prevent="form.post(route('industrial-supervisors.store'))"
+        >
           <div
-            class="flex lg:flex-row flex-col space-x-10 space-y-10 lg:space-y-0"
+            class="
+              flex
+              lg:flex-row
+              flex-col
+              lg:space-x-10
+              space-y-10
+              lg:space-y-0
+            "
           >
-            <form
-              @submit.prevent="submit(user.id)"
-              method="post"
-              class="space-y-7"
+            <div
+              class="
+                flex flex-col
+                space-y-5
+                lg:flex-row lg:space-y-0
+                space-x-0
+                lg:space-x-10
+              "
             >
-              <div class="flex space-x-7">
+              <div
+                class="flex flex-col w-full space-y-5 bg-white p-5 rounded-lg"
+              >
                 <div
                   class="
                     flex flex-col
-                    w-[800px]
+                    lg:flex-row
+                    space-x-0
+                    lg:space-x-5
                     space-y-5
-                    border-gray-200
-                    bg-white
-                    p-5
-                    rounded-lg
+                    lg:space-y-0
                   "
                 >
-                  <div
-                    class="
-                      flex flex-col
-                      lg:flex-row
-                      space-x-0
-                      lg:space-x-5
-                      space-y-5
-                      lg:space-y-0
-                    "
-                  >
-                    <div class="w-full">
-                      <label for="name"
-                        >user Name<sup class="text-red-500">*</sup></label
-                      >
-                      <input
-                        v-model="form.name"
-                        type="text"
-                        required
-                        id="name"
-                        class="dashboard-textinput"
-                      />
-  
-                      <div v-if="errors.name" class="text-sm text-red-500">
-                        {{ errors.name }}
-                      </div>
-                    </div>
-                  </div>
-  
-                  <div>
-                    <label for="description"
-                      >Description<sup class="text-red-500">*</sup></label
+                  <div class="w-full">
+                    <label for="name"
+                      >Industrial Supervisor Name<sup class="text-red-500"
+                        >*</sup
+                      ></label
                     >
-                    <textarea
-                      id="description"
-                      required
-                      class="dashboard-textarea"
-                      cols="30"
-                      rows="10"
-                      v-model="form.description"
-                    ></textarea>
-  
-                    <div v-if="errors.description" class="text-sm text-red-500">
-                      {{ errors.description }}
-                    </div>
+                    <input
+                      type="text"
+                      id="name"
+                      v-model="form.name"
+                      class="dashboard-textinput"
+                    />
+                    <small v-if="errors.name" class="text-red-500">{{
+                      errors.name
+                    }}</small>
+                  </div>
+                  <div class="w-full">
+                    <label for="email"
+                      >Email<sup class="text-red-500">*</sup></label
+                    >
+                    <input
+                      v-model="form.email"
+                      type="email"
+                      id="email"
+                      class="dashboard-textinput"
+                    />
+                    <small v-if="errors.email" class="text-red-500">{{
+                      errors.email
+                    }}</small>
                   </div>
                 </div>
-  
-                <div class="space-y-5">
-                  <div class="white-card">
-                    <div class="px-7 py-5">
-                      <div class="space-y-5">
-                        <div class="space-y-1">
-                          <p>Created At</p>
-                          <p class="text-xs text-veryDarkBlue">
-                            
-                          </p>
-                        </div>
-  
-                        <div class="space-y-1">
-                          <p>Last modified At</p>
-                          <p class="text-xs text-veryDarkBlue">
-                          </p>
-                        </div>
+                <div
+                  class="
+                    flex flex-col
+                    lg:flex-row
+                    space-x-0
+                    lg:space-x-5
+                    space-y-5
+                    lg:space-y-0
+                  "
+                >
+                  <div class="w-full flex flex-col space-y-2">
+                    <label for="phone-number"
+                      >Phonenumber<sup class="text-red-500">*</sup></label
+                    >
+                    <input
+                      type="text"
+                      id="phone-number"
+                      v-model="form.phone_number"
+                      class="dashboard-textinput"
+                    />
+                    <small v-if="errors.phone_number" class="text-red-500">{{
+                      errors.phone_number
+                    }}</small>
+                  </div>
+                  <div class="w-full flex flex-col space-y-2">
+                    <label for="password"
+                      >Password<sup class="text-red-500">*</sup></label
+                    >
+                    <input
+                      class="dashboard-textinput px-2"
+                      id="password"
+                      type="password"
+                      v-model="form.password"
+                    />
+                    <small v-if="errors.password" class="text-red-500">{{
+                      errors.password
+                    }}</small>
+                  </div>
+                </div>
+                <div
+                  class="
+                    flex flex-col
+                    lg:flex-row
+                    space-x-0
+                    lg:space-x-5
+                    space-y-5
+                    lg:space-y-0
+                  "
+                >
+                  <div class="w-full flex flex-col space-y-2">
+                    <label for="phone-number"
+                      >Gender<sup class="text-red-500">*</sup></label
+                    >
+                    <div class="flex space-x-4">
+                      <div class="space-x-2">
+                        <input
+                          type="radio"
+                          id="male"
+                          v-model="form.gender"
+                          value="M"
+                          checked
+                        />
+                        <label for="male">Male</label>
+                      </div>
+
+                      <div class="space-x-2">
+                        <input
+                          type="radio"
+                          id="female"
+                          v-model="form.gender"
+                          value="F"
+                        />
+                        <label for="female">Female</label>
                       </div>
                     </div>
+                    <small v-if="errors.gender" class="text-red-500">{{
+                      errors.phone_number
+                    }}</small>
                   </div>
                 </div>
               </div>
-              <div class="flex space-x-3">
-                <button class="create-btn" type="submit">Update</button>
-                <Link :href="route('roles.index')" class="create-secondaryBtn"
-                  >Cancel</Link
-                >
+              <div class="space-y-5">
+                <div class="bg-white p-5 rounded-lg space-y-4">
+                  <div>
+                    <h6 class="font-semibold text-sm text-veryDarkBlue">
+                      Organization
+                    </h6>
+                  </div>
+                  <div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-7 w-7 text-veryDarkBlue"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <p>Add the organization for this Industrial Supervisor</p>
+                  </div>
+                  <div></div>
+                </div>
               </div>
-            </form>
+            </div>
           </div>
-        </div>
-      </section>
-    </Authenticated>
-  </template>
-  
+          <div class="flex space-x-3 mt-5">
+            <button
+              type="submit"
+              :disabled="form.processing"
+              class="bg-veryDarkBlue text-white py-2 px-4 rounded-md"
+            >
+              Add User
+            </button>
+            <button
+              class="
+                bg-none
+                border border-gray-300
+                text-veryDarkBlue
+                py-2
+                px-4
+                rounded-md
+              "
+            >
+              Add & add another
+            </button>
+            <Link
+              :href="route('industrial-supervisors.index')"
+              class="
+                bg-none
+                border border-gray-300
+                text-veryDarkBlue
+                py-2
+                px-4
+                rounded-md
+              "
+              >Cancel</Link
+            >
+          </div>
+        </form>
+      </div>
+    </section>
+  </Authenticated>
+</template>
+      
   <script setup>
-  import Authenticated from "@/Layouts/Authenticated.vue";
-  import RolesNav from "@/Components/RolesNav.vue";
-  import { Head, Link, useForm, usePage } from "@inertiajs/inertia-vue3";
-  
-  const authUser = usePage().props.value.auth.user;
-  const authUserRole = usePage().props.value.auth.user.user;
-  
-  const props = defineProps({
-    errors: Object,
-    user: Object,
-  });
-  
-  let form = useForm({
-    name: props.user.name,
-    description: props.user.description,
-  });
-  
-  let submit = (id) => {
-    form.put(route("roles.update", id));
-  };
-  </script>
+import Authenticated from "@/Layouts/Authenticated.vue";
+import RolesNav from "@/Components/RolesNav.vue";
+import { Head, Link, useForm, usePage } from "@inertiajs/inertia-vue3";
+
+const props = defineProps({
+  errors: Object,
+  user: Object,
+});
+
+let form = useForm({
+  name: props.user.name,
+  description: props.user.description,
+});
+
+let submit = (id) => {
+  form.put(route("roles.update", id));
+};
+</script>
