@@ -12,6 +12,7 @@ use App\Http\Controllers\ProgrammesController;
 use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\StudentRegisterController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('assessments/{evaluation}/interns/{user}', [AssessmentsController::class, 'showQuestions'])->name('assessment.student.show');
     Route::resource('academic-supervisors', AcademicSupervisorsController::class)->except(['edit', 'show']);
     Route::get('academic-supervisors/edit/{academic_supervisors:slug}', [AcademicSupervisorsController::class, 'edit'])->name('academic-supervisors.edit');
+    Route::get('assessments/{assessments:slug}/{user:slug}', [AssessmentsController::class, 'showQuestions'])->name('assessments.questions');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('evaluations', EvaluationsController::class)->except(['edit', 'show']);
     Route::get('evaluations/{evaluation:slug}', [EvaluationsController::class, 'show'])->name('evaluations.show');
@@ -50,7 +52,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('programmes/edit/{programme:code}', [ProgrammesController::class, 'edit'])->name('programmes.edit');
     Route::resource('roles', RolesController::class)->except(['edit', 'show']);
     Route::get('roles/edit/{role:slug}', [RolesController::class, 'edit'])->name('roles.edit');
-    Route::get('assessments/{assessments:slug}/{user:slug}', [AssessmentsController::class, 'showQuestions'])->name('assessments.questions');
+    Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
 });
 
 Route::middleware(['guest'])->group(function () {

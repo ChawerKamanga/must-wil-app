@@ -242,7 +242,6 @@ import Authenticated from "@/Layouts/Authenticated.vue";
 import IndustrialSupervisorNav from "@/Components/IndustrialSupervisorNav.vue";
 import { ref } from "vue";
 import { Head, Link, usePage, useForm } from "@inertiajs/inertia-vue3";
-import Multiselect from "vue-multiselect";
 
 export default {
   components: {
@@ -250,7 +249,6 @@ export default {
     Head,
     Link,
     Authenticated,
-    Multiselect
   },
   props: {
     errors: Object,

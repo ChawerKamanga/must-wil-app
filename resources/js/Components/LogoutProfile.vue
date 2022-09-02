@@ -54,7 +54,7 @@
         <img v-else-if="gender == 'M'"  src="/images/male_avataar.png" class="w-12" alt="profile pic" />
         <img v-else  src="/images/female_avataar.png" class="w-12" alt="profile pic" />
         <div class="flex flex-col">
-          <h6 class="text-lg">{{ authUser.name }}</h6>
+          <Link class="text-lg" :href="route('users.edit', authUser)">{{ authUser.name }}</Link>
           <span class="text-sm">{{ authUserRole.name }}</span>
         </div>
       </div>

@@ -61,7 +61,7 @@ class HandleInertiaRequests extends Middleware
                 'message' => fn () => $request->session()->get('message')
             ],
             'auth.user' => fn () => $request->user()
-                ? $request->user()->only('id', 'name', 'email','profile_img_url', 'gender')
+                ? $request->user()->only('id', 'name', 'email','profile_img_url', 'gender', 'slug')
                 : null,
             'auth.user.role' => fn () => $request->user()
                 ? Auth::user()->role
