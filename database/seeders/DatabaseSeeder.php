@@ -24,9 +24,9 @@ class DatabaseSeeder extends Seeder
             ProgrammeSeeder::class,
             UserSeeder::class,
             AssesmentTypeSeeder::class,
-            // AssessmentSeeder::class,
-            // EvaluationSeeder::class,
-            // QuestionSeeder::class,
+            AssessmentSeeder::class,
+            EvaluationSeeder::class,
+            QuestionSeeder::class,
             IntrestSeeder::class
         ]);
     }

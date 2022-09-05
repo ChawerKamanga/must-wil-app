@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Assessment;
 use App\Models\Assessments;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -47,6 +48,6 @@ class AssessmentSeeder extends Seeder
             ],
         ];
 
-        Assessments::insert($assessments);
+        Assessment::insert($assessments);
     }
 }
