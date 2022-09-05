@@ -25,9 +25,10 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:100'],
+            'gender' => 'required',
             'email' => ['required', 'email'],
             'phone_number' => ['required', 'max:13'],
-            'profile_pic' => ['image', 'max:1024'],
+            'profile_pic' => 'max:1024',
         ];
     }
 }

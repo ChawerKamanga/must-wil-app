@@ -241,25 +241,38 @@
   </Authenticated>
 </template>
       
-  <script setup>
+<script>
 import Authenticated from "@/Layouts/Authenticated.vue";
 import UserNav from "@/Components/UserNav.vue";
 import { Head, Link, useForm, usePage } from "@inertiajs/inertia-vue3";
 
-const props = defineProps({
-  errors: Object,
-  user: Object,
-});
+export default {
+  components: {
+    Authenticated,
+    UserNav,
+    Head, 
+    Link
+  },
+  props: {
+    errors: Object,
+    user: Object
+  },
+  setup (props) {
+    const form = useForm({
+      name: props.user.name,
+      email: props.user.email,
+      phone_number: props.user.phone_number,
+      gender: props.user.gender,
+      profile_pic: null
+    })
 
-let form = useForm({
-  name: props.user.name,
-  email: props.user.email,
-  phone_number: props.user.phone_number,
-  gender: props.user.gender,
-  profile_pic: null
-});
+    function submit(id) {
+      form.put(route("users.update", id));
+    }
 
-let submit = (id) => {
-  form.put(route("users.update", id));
-};
+    return { form, submit }
+  },
+ 
+}
+
 </script>
