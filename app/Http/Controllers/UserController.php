@@ -24,11 +24,9 @@ class UserController extends Controller
         ]);
     }
 
-    public function update($id, Request $request)
+    public function update($id, UpdateUserRequest $request)
     {
         $user = User::findOrFail($id);
-
-        dd($request->hasFile('profile_pic'));
 
         if($request->hasFile('profile_pic')){
             // image upload
@@ -45,9 +43,13 @@ class UserController extends Controller
             $user->gender = $request->gender;
             $user->password = Hash::make($request->password);
             $user->update();
-    
         }else {
-            return Redirect::back()->with('message', 'Something went wrong');
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->phone_number = $request->phone_number;
+            $user->gender = $request->gender;
+            $user->password = Hash::make($request->password);
+            $user->update();
         }
 
         return Redirect::route('dashboard');

@@ -392,7 +392,6 @@ export default {
       password: "",
       password_confirmation: "",
       district: "",
-      interests: []
     });
 
     function submit() {

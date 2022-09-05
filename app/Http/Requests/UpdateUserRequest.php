@@ -27,7 +27,7 @@ class UpdateUserRequest extends FormRequest
             'name' => ['required', 'max:100'],
             'gender' => 'required',
             'email' => ['required', 'email'],
-            'phone_number' => ['required', 'max:13'],
+            'phone_number' => ['required', 'max:20'],
             'profile_pic' => 'max:1024',
         ];
     }

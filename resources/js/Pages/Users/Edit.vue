@@ -9,7 +9,7 @@
           <h1 class="text-veryDarkBlue text-3xl font-bold">Update Profile</h1>
         </div>
 
-        <form @submit.prevent="submit(user.id)"> 
+        <form @submit.prevent="submit(user.id)" enctype='multipart/form-data'> 
           <div
             class="
               flex
@@ -245,6 +245,7 @@
 import Authenticated from "@/Layouts/Authenticated.vue";
 import UserNav from "@/Components/UserNav.vue";
 import { Head, Link, useForm, usePage } from "@inertiajs/inertia-vue3";
+import { Inertia } from "@inertiajs/inertia";
 
 export default {
   components: {
@@ -258,16 +259,26 @@ export default {
     user: Object
   },
   setup (props) {
-    const form = useForm({
+    let form = useForm({
       name: props.user.name,
       email: props.user.email,
       phone_number: props.user.phone_number,
       gender: props.user.gender,
+      password: "",
       profile_pic: null
     })
 
     function submit(id) {
-      form.put(route("users.update", id));
+      // form.put(route("users.update", id));
+      Inertia.post(route("users.update", id), {
+        _method: 'put',
+        name: form.name, 
+        email: form.email, 
+        phone_number: form.phone_number, 
+        password: form.password, 
+        gender: form.gender, 
+        profile_pic: form.profile_pic,
+      })
     }
 
     return { form, submit }
