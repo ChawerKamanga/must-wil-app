@@ -68,15 +68,15 @@
                   <th class="text-td text-left">
                     <div class="flex items-center space-x-2">
                       <div class="rounded-full bg-gray-800"></div>
-                      <Link :href="route('evaluations.show', evaluation)" class="font-normal"
+                      <Link
+                        :href="route('evaluations.show', evaluation)"
+                        class="font-normal"
                         >{{ evaluation.name }}</Link
                       >
                     </div>
                   </th>
-                   <td class="text-td text-center">
-                    <div>
-                      {{ evaluation.weight }}%
-                    </div>
+                  <td class="text-td text-center">
+                    <div>{{ evaluation.weight }}%</div>
                   </td>
                   <td class="text-td">
                     <div>{{ evaluation.type }}</div>
@@ -84,14 +84,26 @@
                   <td class="text-td">{{ evaluation.createdAt }}</td>
                   <td class="text-td">
                     <div
-                      class="
-                        flex
-                        space-x-5
-                        justify-center
-                        hover:cursor-pointer
-                      "
+                      class="flex space-x-5 justify-center hover:cursor-pointer"
                     >
-                      <EditTableRow :href="route('evaluations.edit', evaluation.slug)" />
+                      <a :href="evaluation.file_url" class="space-x-2 flex" v-if="evaluation.file_url">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          class="w-4 h-4 text-veryDarkBlue"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M12 2.25a.75.75 0 01.75.75v11.69l3.22-3.22a.75.75 0 111.06 1.06l-4.5 4.5a.75.75 0 01-1.06 0l-4.5-4.5a.75.75 0 111.06-1.06l3.22 3.22V3a.75.75 0 01.75-.75zm-9 13.5a.75.75 0 01.75.75v2.25a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5V16.5a.75.75 0 011.5 0v2.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V16.5a.75.75 0 01.75-.75z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                       <span class="text-veryDarkBlue"> Download</span>
+                      </a>
+                      <EditTableRow
+                        :href="route('evaluations.edit', evaluation.slug)"
+                      />
                       <DeleteTableRow @click="destroy(evaluation)" />
                     </div>
                   </td>

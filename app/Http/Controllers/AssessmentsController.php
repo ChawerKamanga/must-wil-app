@@ -31,6 +31,7 @@ class AssessmentsController extends Controller
                 ->paginate(10)
                 ->through(fn ($evaluation) => [
                     'name' => $evaluation->name,
+                    'file_url' => $evaluation->file_url,
                     'slug' => $evaluation->slug,
                     'description' => $evaluation->description,
                     'type' => $evaluation->assessment->assessmentType->name,
