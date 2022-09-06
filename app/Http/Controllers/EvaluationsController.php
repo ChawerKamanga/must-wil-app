@@ -26,7 +26,7 @@ class EvaluationsController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Evaluations/Create');
     }
 
     /**

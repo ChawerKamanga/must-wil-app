@@ -1,15 +1,7 @@
 <template>
   <Authenticated>
     <Head title="Edit Programmes" />
-    <OrganizationNav>
-      <template v-slot:username>
-        {{ authUser.name }}
-      </template>
-
-      <template v-slot:userrole>
-        {{ authUserRole.name }}
-      </template>
-    </OrganizationNav>
+    <OrganizationNav/>
 
     <section class="w-full lg:w-10/12 lg:items-center m-4 mx-auto">
       <div class="container w-full mx-auto px-5 py-5 flex flex-col space-y-5">

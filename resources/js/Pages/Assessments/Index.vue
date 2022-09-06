@@ -13,7 +13,7 @@
           <!-- Create button -->
           <div>
             <Link
-              :href="route('assessments.create')"
+              :href="route('evaluations.create')"
               class="create-btn hidden lg:block"
               >Add Assessment</Link
             >
