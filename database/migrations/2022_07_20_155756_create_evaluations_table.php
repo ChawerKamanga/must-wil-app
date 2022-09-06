@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->unsignedSmallInteger('total_weight_percentage');
-            $table->string('file_img_url')->nullable();
-            $table->string('file_img_name')->nullable();
+            $table->string('file_url')->nullable();
+            $table->string('file_name')->nullable();
             $table->foreignId('assessment_id')->constrained();
             $table->timestamps();
         });

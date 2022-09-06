@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAssementRequest;
 use App\Models\Assessment;
 use App\Models\Evaluation;
-use App\Models\Questions;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
-use PhpParser\Node\Expr\Eval_;
 
 class EvaluationsController extends Controller
 {
@@ -55,8 +52,8 @@ class EvaluationsController extends Controller
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
             $file->move('uploads/documents/', $filename);
-            $evaluation->img_name = $filename;
-            $evaluation->img_url = '/uploads/documents/' . $filename;
+            $evaluation->file_name = $filename;
+            $evaluation->file_url = '/uploads/documents/' . $filename;
 
             $evaluation->name = $request->name;
             $evaluation->total_weight_percentage = $request->weight_percentage;
@@ -64,9 +61,15 @@ class EvaluationsController extends Controller
             $evaluation->description = $request->description;
 
             $evaluation->save();
+        }else {
+            $evaluation->name = $request->name;
+            $evaluation->total_weight_percentage = $request->weight_percentage;
+            $evaluation->assessment_id = $request->assesment;
+
+            $evaluation->save();
         }
 
-        return redirect(route('roles.create'));
+        return redirect(route('assessments.index'));
     }
     /**
      * Display the specified resource.
@@ -79,13 +82,13 @@ class EvaluationsController extends Controller
         return Inertia::render('Evaluations/Show', [
             'evaluation' => $evaluation->only('name'),
             'questions' => $evaluation->questions()
-            ->paginate(10)
-            ->withQueryString()
-            ->through(fn ($question) => [
-                'id' => $question->id,
-                'question' => $question->question,
-                'marks' => $question->total_marks,
-            ]),
+                ->paginate(10)
+                ->withQueryString()
+                ->through(fn ($question) => [
+                    'id' => $question->id,
+                    'question' => $question->question,
+                    'marks' => $question->total_marks,
+                ]),
         ]);
     }
 
