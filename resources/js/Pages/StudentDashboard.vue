@@ -181,7 +181,7 @@
   
   <script setup>
 import Authenticated from "@/Layouts/Authenticated.vue";
-import DashboardNav from "@/Components/DashboardNav.vue";
+import DashboardNav from "@/Components/Students/DashboardNav.vue";
 import { Head, Link, usePage } from "@inertiajs/inertia-vue3";
 
 const authUser = usePage().props.value.auth.user;
