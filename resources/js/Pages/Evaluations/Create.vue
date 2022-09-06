@@ -101,7 +101,7 @@
                   </div>
                   <div class="w-full flex flex-col space-y-2">
                     <label for="industrial-supervisor"
-                      >Upload a file<sup class="text-red-500">*</sup></label
+                      >Upload a file</label
                     >
                     <input
                       accept=".doc, .docx, .pdf"
@@ -254,10 +254,10 @@
   
   let form = useForm({
     name: "",
-    description: "",
     assesment: "",
     weight_percentage: null,
     document: "",
+    description: "",
   });
   
   let submit = () => {

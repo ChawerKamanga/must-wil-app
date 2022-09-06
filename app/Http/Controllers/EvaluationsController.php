@@ -7,7 +7,9 @@ use App\Models\Assessment;
 use App\Models\Evaluation;
 use App\Models\Questions;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use PhpParser\Node\Expr\Eval_;
 
 class EvaluationsController extends Controller
 {
@@ -46,9 +48,26 @@ class EvaluationsController extends Controller
      */
     public function store(StoreAssementRequest $request)
     {
-        dd($request);
-    }
+        $evaluation = new Evaluation();
 
+        if ($request->hasFile('document')) {
+            $file = $request->file('document');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/documents/', $filename);
+            $evaluation->img_name = $filename;
+            $evaluation->img_url = '/uploads/documents/' . $filename;
+
+            $evaluation->name = $request->name;
+            $evaluation->total_weight_percentage = $request->weight_percentage;
+            $evaluation->assessment_id = $request->assesment;
+            $evaluation->description = $request->description;
+
+            $evaluation->save();
+        }
+
+        return redirect(route('roles.create'));
+    }
     /**
      * Display the specified resource.
      *
