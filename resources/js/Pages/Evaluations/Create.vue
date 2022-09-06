@@ -83,14 +83,20 @@
                   "
                 >
                   <div class="w-full flex flex-col space-y-2">
-                    <label for="name"
+                    <label for="assement-type"
                       >Assessment Type<sup class="text-red-500">*</sup></label
                     >
-                    <select id="program-select" v-model="form.district">
-                      
-                    </select>
-                    <small v-if="errors.district" class="text-red-500">{{
-                      errors.district
+                    <select id="assement-type" v-model="form.assesment">
+                        <option
+                          v-for="(assesment, index) in assesments.data"
+                          :key="index"
+                          :value="assesment.id"
+                        >
+                          {{ assesment.name }}
+                        </option>
+                      </select>
+                    <small v-if="errors.assesment" class="text-red-500">{{
+                      errors.assesment
                     }}</small>
                   </div>
                   <div class="w-full flex flex-col space-y-2">
@@ -243,12 +249,13 @@
   
   defineProps({
     errors: Object,
+    assesments: Object
   });
   
   let form = useForm({
     name: "",
     starting_date: "",
-    district: "",
+    assesment: "",
     organization_pic: null,
     description: "",
   });

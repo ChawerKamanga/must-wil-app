@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assessment;
 use App\Models\Evaluation;
 use App\Models\Questions;
 use Illuminate\Http\Request;
@@ -26,7 +27,14 @@ class EvaluationsController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Evaluations/Create');
+        return Inertia::render('Evaluations/Create', [
+            'assesments' => Assessment::query()
+                ->paginate(100)
+                ->through(fn ($assessment) => [
+                    'id' => $assessment->id,
+                    'name' => $assessment->name,
+                ]),
+        ]);
     }
 
     /**
