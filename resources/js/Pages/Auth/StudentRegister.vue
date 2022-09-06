@@ -134,7 +134,7 @@
                 <label for="profile-pic" class="form-label"
                   >Profile Picture</label
                 >
-                <input type="file" @input="form.profile_pic = $event.target.files[0]" />
+                <input type="file" @input="form.profile_pic = $event.target.files[0]" accept=".jpg, .png, .jpeg" />
                 <img v-if="url" :src="url" class="w-full mt-4 h-80" />
                 <progress
                   v-if="form.progress"
