@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAssementRequest;
 use App\Models\Assessment;
 use App\Models\Evaluation;
 use App\Models\Questions;
@@ -43,9 +44,9 @@ class EvaluationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAssementRequest $request)
     {
-        //
+        dd($request);
     }
 
     /**

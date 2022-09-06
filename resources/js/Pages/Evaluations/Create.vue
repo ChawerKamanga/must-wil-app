@@ -62,13 +62,13 @@
                       >Weight Percentage<sup class="text-red-500">*</sup></label
                     >
                     <input
-                      v-model="form.starting_date"
+                      v-model="form.weight_percentage"
                       type="number"
                       id="commencement"
                       class="dashboard-textinput"
                     />
-                    <small v-if="errors.starting_date" class="text-red-500">{{
-                      errors.starting_date
+                    <small v-if="errors.weight_percentage" class="text-red-500">{{
+                      errors.weight_percentage
                     }}</small>
                   </div>
                 </div>
@@ -101,16 +101,16 @@
                   </div>
                   <div class="w-full flex flex-col space-y-2">
                     <label for="industrial-supervisor"
-                      >Company Logo<sup class="text-red-500">*</sup></label
+                      >Upload a file<sup class="text-red-500">*</sup></label
                     >
                     <input
                       accept=".doc, .docx, .pdf"
                       class="dashboard-textinput px-2"
                       type="file"
-                      @input="form.organization_pic = $event.target.files[0]"
+                      @input="form.document = $event.target.files[0]"
                     />
-                    <small v-if="errors.organization_pic" class="text-red-500">{{
-                      errors.organization_pic
+                    <small v-if="errors.document" class="text-red-500">{{
+                      errors.document
                     }}</small>
                   </div>
                 </div>
@@ -118,7 +118,7 @@
                   <label for="name">Description</label>
                   <textarea
                     class="dashboard-textinput"
-                    id=""
+                    v-model="form.description"
                     cols="30"
                     rows="10"
                   ></textarea>
@@ -254,13 +254,13 @@
   
   let form = useForm({
     name: "",
-    starting_date: "",
-    assesment: "",
-    organization_pic: null,
     description: "",
+    assesment: "",
+    weight_percentage: null,
+    document: "",
   });
   
   let submit = () => {
-    form.post(route("organizations.store"));
+    form.post(route("evaluations.store"));
   };
   </script>
