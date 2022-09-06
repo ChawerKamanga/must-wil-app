@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('slug');
             $table->string('description');
             $table->unsignedSmallInteger('total_weight_percentage');
+            $table->string('file_img_url')->nullable();
+            $table->string('file_img_name')->nullable();
             $table->foreignId('assessment_id')->constrained();
             $table->timestamps();
         });
