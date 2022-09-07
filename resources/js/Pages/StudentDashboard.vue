@@ -16,14 +16,14 @@
                 <div class="flex flex-col h-[300px] justify-center ml-10">
                   <div>
                     <h1 class="text-4xl font-bold text-white">
-                      Welcome back, Chawer Kamanga 👋
+                      Welcome back, {{ authUser.name }} 👋
                     </h1>
                   </div>
                   <div class="mt-3">
-                    <h1 class="text-sm text-gray-200">
-                      You are allocated to do your internship at FDH Bank in
-                      Blantyre
-                    </h1>
+                    <p v-if="authUser.is_allocated == 1" class="text-sm text-gray-200">
+                      You are allocated to do your internship at {{ authUserOrg.name }} in
+                      {{ authUserOrgDistrict.name }}
+                    </p>
                   </div>
                   <div class="mt-10 flex space-x-10">
                     <div class="flex">
@@ -185,5 +185,8 @@ import DashboardNav from "@/Components/Students/DashboardNav.vue";
 import { Head, Link, usePage } from "@inertiajs/inertia-vue3";
 
 const authUser = usePage().props.value.auth.user;
-const authUserRole = usePage().props.value.auth.user.role;
+const authUserOrg = usePage().props.value.auth.user.org;
+const authUserOrgDistrict = usePage().props.value.auth.user.org.district;
+
+
 </script>

@@ -9,8 +9,6 @@
       xl:px-0 xl:space-y-2
     "
   >
-   
-
     <!-- Smaller Screen -->
     <div class="xl:hidden hidden lg:block">
       <img
@@ -28,6 +26,7 @@
         <img v-else  src="/images/female_avataar.png" class="w-12" alt="profile pic" />
         <div class="flex flex-col">
           <Link class="text-lg" :href="route('users.edit', authUser)">{{ authUser.name }}</Link>
+          <span class="text-sm">{{ authUserRole.name }}</span>
         </div>
       </div>
     </div>
@@ -40,5 +39,6 @@ import { Link } from "@inertiajs/inertia-vue3";
 const authUser = usePage().props.value.auth.user;
 const authProfileImage = usePage().props.value.auth.user.profile_img_url;
 const gender = usePage().props.value.auth.user.gender
+const authUserRole = usePage().props.value.auth.user.role;
 
 </script>

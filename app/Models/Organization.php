@@ -30,4 +30,5 @@ class Organization extends Model
     {
         return $this->belongsTo(District::class);
     }
+
 }
