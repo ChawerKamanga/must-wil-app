@@ -127,7 +127,7 @@
               <div class="bg-white p-5 rounded-lg space-y-2">
                 <div>
                   <h6 class="font-semibold text-sm text-veryDarkBlue">
-                    Status
+                    Optional
                   </h6>
                 </div>
                 <div>
@@ -148,14 +148,12 @@
                 </div>
 
                 <div>
-                  <label for="industrial-supervisor"
-                    >Industrial Supervisor<sup class="text-red-500"
-                      >*</sup
-                    ></label
+                  <label for="due-date"
+                    >Activity Due Date</label
                   >
                   <input
-                    type="text"
-                    id="industrial-supervisor"
+                    type="date"
+                    id="due-date"
                     class="dashboard-textinput"
                   />
                 </div>
