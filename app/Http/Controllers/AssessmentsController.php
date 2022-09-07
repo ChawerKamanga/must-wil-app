@@ -36,7 +36,7 @@ class AssessmentsController extends Controller
                     'description' => $evaluation->description,
                     'type' => $evaluation->assessment->assessmentType->name,
                     'weight' => $evaluation->total_weight_percentage,
-                    'createdAt' =>  Carbon::parse($evaluation->created_at)->format('l jS \of F Y h:i:s A')
+                    'dueDate' =>  Carbon::parse($evaluation->due_date)->format('l jS \of F Y h:i:s A')
                 ]),
         ]);
     }

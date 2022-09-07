@@ -47,8 +47,6 @@ class EvaluationsController extends Controller
     {
         $evaluation = new Evaluation();
 
-        
-
         if ($request->hasFile('document')) {
             $file = $request->file('document');
             $extension = $file->getClientOriginalExtension();

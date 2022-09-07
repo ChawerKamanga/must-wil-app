@@ -55,7 +55,7 @@
                   <th class="dashboard-th text-left">Title</th>
                   <th class="dashboard-th">Weight Percentage</th>
                   <th class="dashboard-th text-left">Assement Type</th>
-                  <th class="dashboard-th text-left">Created On</th>
+                  <th class="dashboard-th text-left">Due On</th>
                   <th class="dashboard-th">Actions</th>
                 </tr>
               </thead>
@@ -81,7 +81,7 @@
                   <td class="text-td">
                     <div>{{ evaluation.type }}</div>
                   </td>
-                  <td class="text-td">{{ evaluation.createdAt }}</td>
+                  <td class="text-td">{{ evaluation.dueDate }}</td>
                   <td class="text-td">
                     <div
                       class="flex space-x-5 justify-center hover:cursor-pointer"
