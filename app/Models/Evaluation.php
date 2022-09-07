@@ -10,6 +10,8 @@ class Evaluation extends Model
 {
     use HasFactory, Sluggable;
 
+    protected $fillable = [];
+
     public function sluggable(): array
     {
         return [

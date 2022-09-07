@@ -47,6 +47,8 @@ class EvaluationsController extends Controller
     {
         $evaluation = new Evaluation();
 
+        
+
         if ($request->hasFile('document')) {
             $file = $request->file('document');
             $extension = $file->getClientOriginalExtension();
@@ -59,6 +61,7 @@ class EvaluationsController extends Controller
             $evaluation->total_weight_percentage = $request->weight_percentage;
             $evaluation->assessment_id = $request->assesment;
             $evaluation->description = $request->description;
+            $evaluation->due_date = $request->due_date;
 
             $evaluation->save();
         }else {

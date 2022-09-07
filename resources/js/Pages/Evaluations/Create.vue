@@ -155,6 +155,7 @@
                     type="date"
                     id="due-date"
                     class="dashboard-textinput"
+                    v-model="form.due_date"
                   />
                 </div>
               </div>
@@ -253,6 +254,7 @@ let form = useForm({
   assesment: "",
   weight_percentage: null,
   document: "",
+  due_date: "",
   description: "",
 });
 
