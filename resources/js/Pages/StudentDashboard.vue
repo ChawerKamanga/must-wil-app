@@ -24,6 +24,9 @@
                       You are allocated to do your internship at {{ authUserOrg.name }} in
                       {{ authUserOrgDistrict.name }}
                     </p>
+                    <p v-else class="text-sm text-gray-200">
+                      You are not yet allocated where you are supposed to do your internship
+                    </p>
                   </div>
                   <div class="mt-10 flex space-x-10">
                     <div class="flex">
@@ -83,7 +86,8 @@
 
                       <div class="flex flex-col text-white">
                         <h5 class="font-bold text-lg">Industrial Supervisor</h5>
-                        <span class="-mt-1 text-sm">{{ industrialSupervisor.name }}</span>
+                        <span v-if="industrialSupervisor" class="-mt-1 text-sm">{{ industrialSupervisor.name }}</span>
+                        <span v-else class="-mt-1 text-sm">N/A</span>
                       </div>
                     </div>
                   </div>
@@ -117,25 +121,25 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="border-b border-gray-200">
+                    <tr v-for="(intern, index) in interns" :key="index" class="border-b border-gray-200">
                       <th
                         class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
                       >
                         <div class="flex items-center space-x-2">
                           <div class="rounded-full bg-gray-800">
                             <img
-                              src="images/fdh_logo-removebg-preview.png"
+                              :src="authUserOrg.img_url"
                               class="w-10"
                               alt="logo"
                             />
                           </div>
-                          <span class="font-normal">FDH Bank</span>
+                          <span class="font-normal">{{ authUserOrg.name }}</span>
                         </div>
                       </th>
                       <td
                         class="border-t-0 px-6 border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                       >
-                      Joseph Phiri
+                      {{ intern.name }}
                       </td>
                       <td
                         class="border-t-0 px-6 border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
@@ -145,14 +149,14 @@
                       <td
                         class="border-t-0 px-6 text-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                       >
-                       bit-20-19@must.ac.mw
+                      {{ intern.email }}
                       </td>
                       <td
                         class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                       >
                       <div class="flex justify-center">
                         <img
-                          src="images/pic_4.jpg"
+                          :src="intern.profile_img_url"
                           class="w-10 rounded-full"
                           alt="amina"
                         />
@@ -161,12 +165,12 @@
                       <td
                         class="border-t-0 px-6 text-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                       >
-                        +265 993 667 123
+                        {{ intern.phone_number }}
                       </td>
                       <td
                         class="border-t-0 px-6 text-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                       >
-                       BIT
+                       {{ intern.email.substring(0,3).toUpperCase() }}
                       </td>
                     </tr>
                     
@@ -189,7 +193,8 @@ const props = defineProps({
   authUserOrg: Object,
   authUserOrgDistrict: Object,
   noOfStudents: String,
-  industrialSupervisor: Object
+  industrialSupervisor: Object,
+  interns: Array
 });
 
 const authUser = usePage().props.value.auth.user;

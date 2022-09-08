@@ -12,21 +12,28 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // select all users whose organization id is same as authenticated user 
-        // and role id is equal to 3 
         if (Auth::user()->role_id == 4) {
-            return Inertia::render('StudentDashboard', [
-                'authUserOrg' => Auth::user()->organization,
-                'authUserOrgDistrict' =>  Auth::user()->organization->district,
-                'noOfStudents' => Auth::user()->organization->users()->where('role_id', 4)->count(),
-                'industrialSupervisor' => User::where([
-                    ['organization_id', Auth::user()->organization_id],
-                    ['role_id', 3],
-                ])->first(),
-
-            ]);
+            if (Auth::user()->is_allocated == 1) {
+                return Inertia::render('StudentDashboard', [
+                    'authUserOrg' => Auth::user()->organization,
+                    'authUserOrgDistrict' =>  Auth::user()->organization->district,
+                    'noOfStudents' => Auth::user()->organization->users()->where('role_id', 4)->count(),
+                    'industrialSupervisor' => User::where([
+                        ['organization_id', Auth::user()->organization_id],
+                        ['role_id', 3],
+                    ])->first(),
+                    'interns' => User::where([
+                        ['organization_id', Auth::user()->organization_id],
+                        ['role_id', 4],
+                    ])->take(10)->get(),
+                ]);
+            }else {
+                return Inertia::render('StudentDashboard');
+            }
         } else {
             return Inertia::render('Dashboard');
         }
     }
+
+    
 }
