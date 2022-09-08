@@ -83,7 +83,7 @@
 
                       <div class="flex flex-col text-white">
                         <h5 class="font-bold text-lg">Industrial Supervisor</h5>
-                        <span class="-mt-1 text-sm">{{ industrialSupervisor }}</span>
+                        <span class="-mt-1 text-sm">{{ industrialSupervisor.name }}</span>
                       </div>
                     </div>
                   </div>
@@ -189,7 +189,7 @@ const props = defineProps({
   authUserOrg: Object,
   authUserOrgDistrict: Object,
   noOfStudents: String,
-  industrialSupervisor: Array
+  industrialSupervisor: Object
 });
 
 const authUser = usePage().props.value.auth.user;
