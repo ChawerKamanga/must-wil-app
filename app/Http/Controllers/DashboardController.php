@@ -42,6 +42,6 @@ class DashboardController extends Controller
     
     public function showInternReport()
     {
-        
+        return Inertia::render('Students/Report');    
     }
 }
