@@ -269,7 +269,6 @@ export default {
     })
 
     function submit(id) {
-      // form.put(route("users.update", id));
       Inertia.post(route("users.update", id), {
         _method: 'put',
         name: form.name, 

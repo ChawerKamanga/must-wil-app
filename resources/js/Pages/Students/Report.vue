@@ -76,7 +76,7 @@
           <div class="w-full mt-10">
             <div class="w-full mt-6 flex flex-col space-y-6">
               <div class="px-10 py-7 space-y-2">
-                <form>
+                <form @submit.prevent="submit">
                   <div class="flex justify-center items-center">
                     <div
                       class="
@@ -99,13 +99,17 @@
                         />
                       </div>
                       <input
+                        ref="hiddenFileInput"
                         type="file"
                         id="upload-file"
                         accept=".pdf, .docx"
+                        @input="form.file = $event.target.files[0]"
                         hidden
                       />
                       <button
+                        type="button"
                         id="upload-btn"
+                        @click="showInput"
                         class="
                           bg-darkBlue
                           text-white
@@ -137,14 +141,41 @@
   </Authenticated>
 </template>
       
-      <script setup>
+<script>
+import { computed, ref } from "vue";
 import Authenticated from "@/Layouts/Authenticated.vue";
 import ReportNav from "@/Components/Students/ReportNav.vue";
-import { Head, Link, usePage } from "@inertiajs/inertia-vue3";
+import { Head, Link, usePage, useForm } from "@inertiajs/inertia-vue3";
+import { Inertia } from "@inertiajs/inertia";
 
-const authUser = usePage().props.value.auth.user;
+export default {
+  components: {
+    ReportNav,
+    Authenticated,
+  },
+  props: {
+    report: Object,
+  },
+  setup() {
+    const authUser = computed(() => usePage().props.value.auth.user);
 
-defineProps({
-  report: Object,
-});
+    
+    return { authUser};
+  },
+  data(){
+    form: useForm({
+      file: null,
+    })
+  },
+  methods: {
+    showInput(){
+      this.$refs["hiddenFileInput"].click(),
+
+      Inertia.post(route("users.update"), {
+        file: form.file, 
+      })
+    }
+  },
+ 
+};
 </script>
