@@ -35,5 +35,13 @@ class DashboardController extends Controller
         }
     }
 
+    public function activityLog()
+    {
+        return Inertia::render('Students/ActivityLog'); 
+    }   
     
+    public function showInternReport()
+    {
+        
+    }
 }

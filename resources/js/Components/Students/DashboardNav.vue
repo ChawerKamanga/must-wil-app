@@ -16,7 +16,7 @@
         </ActiveNavItem>
 
         <!-- Menu Item 6 -->
-        <InactiveNavItem routeName="programmes.index" itemName="Activity Log">
+        <InactiveNavItem routeName="interns.activity.log" itemName="Activity Log">
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -25,7 +25,7 @@
         </InactiveNavItem>
 
         <!-- Menu Item 7 -->
-        <InactiveNavItem routeName="programmes.index" itemName="Report">
+        <InactiveNavItem routeName="interns.report" itemName="Report">
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
