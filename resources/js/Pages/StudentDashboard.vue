@@ -52,7 +52,8 @@
 
                       <div class="flex flex-col text-white">
                         <h5 class="font-bold text-lg">Students</h5>
-                        <span class="-mt-1 text-sm">5</span>
+                        <span class="-mt-1 text-sm" v-if="noOfStudents">{{ noOfStudents }}</span>
+                        <span class="-mt-1 text-sm" v-else>0</span>
                       </div>
                     </div>
 
@@ -82,7 +83,7 @@
 
                       <div class="flex flex-col text-white">
                         <h5 class="font-bold text-lg">Industrial Supervisor</h5>
-                        <span class="-mt-1 text-sm">John Mwale</span>
+                        <span class="-mt-1 text-sm">{{ industrialSupervisor }}</span>
                       </div>
                     </div>
                   </div>
@@ -184,9 +185,15 @@ import Authenticated from "@/Layouts/Authenticated.vue";
 import DashboardNav from "@/Components/Students/DashboardNav.vue";
 import { Head, Link, usePage } from "@inertiajs/inertia-vue3";
 
+const props = defineProps({
+  authUserOrg: Object,
+  authUserOrgDistrict: Object,
+  noOfStudents: String,
+  industrialSupervisor: Array
+});
+
 const authUser = usePage().props.value.auth.user;
-const authUserOrg = usePage().props.value.auth.user.org;
-const authUserOrgDistrict = usePage().props.value.auth.user.org.district;
+
 
 
 </script>

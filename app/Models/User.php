@@ -28,6 +28,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'role_id',
+        'is_allocated'
     ];
 
     /**
@@ -38,6 +40,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 
     public function role()
     {
