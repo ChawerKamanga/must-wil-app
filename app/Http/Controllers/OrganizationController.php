@@ -144,8 +144,9 @@ class OrganizationController extends Controller
                 ]),
             'interns' => User::query()
                 ->where([
-                    ['role_id', '=', 4],
-                    ['district_id', '=', $organization->district_id],
+                    ['role_id', 4],
+                    ['is_allocated', 0],
+                    ['district_id', $organization->district_id],
                 ])->orderBy('name')
                 ->paginate(10)
                 ->withQueryString()

@@ -74,6 +74,7 @@ class StudentRegisterController extends Controller
             $user->district_id = $request->input('district');
             $user->password = Hash::make($request->password);
             $user->role_id = 4;
+            $user->is_allocated = 0;
             $user->save();
     
         }else {
