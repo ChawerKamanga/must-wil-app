@@ -39,80 +39,19 @@
                   <div class="flex">
                     <div
                       class="
-                        bg-[#fbc345]
-                        border border-gray-300
+                        text-white
+                        border-gray-300 border
                         rounded-full
-                        w-12
-                        h-12
+                        px-6
+                        py-3
                         flex
+                        space-x-2
                         justify-center
                         items-center
-                        mr-3
                       "
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="menu-icon text-white group-hover:text-darkBlue"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                        <path
-                          d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-                        />
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                        />
-                      </svg>
-                    </div>
-
-                    <div class="flex flex-col text-white">
-                      <h5 class="font-bold text-lg">Activities</h5>
-                      <span class="-mt-1 text-sm">5</span>
-                    </div>
-                  </div>
-
-                  <div class="flex">
-                    <div
-                      class="
-                        bg-[#ef6f59]
-                        border border-gray-300
-                        rounded-full
-                        w-12
-                        h-12
-                        flex
-                        justify-center
-                        items-center
-                        mr-3
-                      "
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="menu-icon text-white group-hover:text-darkBlue"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                        <path
-                          d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-                        />
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                        />
-                      </svg>
-                    </div>
-
-                    <div class="flex flex-col text-white">
-                      <h5 class="font-bold text-lg">Industrial Supervisor</h5>
-                      <span class="-mt-1 text-sm">John Mwale</span>
+                    <img src="/images/download-solid.png" class="w-5 h-5" alt="icon" />
+                    <span>Download Report Template</span>
                     </div>
                   </div>
                 </div>
@@ -135,27 +74,57 @@
             <div class="w-full mt-6 flex flex-col space-y-6">
               <div class="px-10 py-7 space-y-2">
                 <form>
-                    <div class="flex justify-center items-center">
-                      <div
-                        class="w-[500px] h-[300px] bg-white shadow-2xl rounded-3xl flex flex-col justify-center items-center space-y-5"
-                      >
-                        <div>
-                            <img src="/images/transfer-files.png" alt="icon" class="w-[150px]">
-                        </div>
-                        <input type="file" id="upload-file" accept=".pdf, .docx" hidden>
-                        <button
-                        id="upload-btn"
-                          class="bg-darkBlue text-white px-6 py-4 rounded-full text-lg font-bold flex space-x-2"
-                        >
-                            <img src="/images/upload-solid_white.png" class="w-6 h-6" alt="icon">
-                           <span>
-                               Upload Your Report
-                           </span> 
-                        </button>
+                  <div class="flex justify-center items-center">
+                    <div
+                      class="
+                        w-[500px]
+                        h-[300px]
+                        bg-white
+                        shadow-2xl
+                        rounded-3xl
+                        flex flex-col
+                        justify-center
+                        items-center
+                        space-y-5
+                      "
+                    >
+                      <div>
+                        <img
+                          src="/images/transfer-files.png"
+                          alt="icon"
+                          class="w-[150px]"
+                        />
                       </div>
+                      <input
+                        type="file"
+                        id="upload-file"
+                        accept=".pdf, .docx"
+                        hidden
+                      />
+                      <button
+                        id="upload-btn"
+                        class="
+                          bg-darkBlue
+                          text-white
+                          px-6
+                          py-4
+                          rounded-full
+                          text-lg
+                          font-bold
+                          flex
+                          space-x-2
+                        "
+                      >
+                        <img
+                          src="/images/upload-solid_white.png"
+                          class="w-6 h-6"
+                          alt="icon"
+                        />
+                        <span> Upload Your Report </span>
+                      </button>
                     </div>
+                  </div>
                 </form>
-
               </div>
             </div>
           </div>
