@@ -36,24 +36,27 @@
                   </h1>
                 </div>
                 <div class="mt-10 flex space-x-10">
-                  <div class="flex">
-                    <div
-                      class="
-                        text-white
-                        border-gray-300 border
-                        rounded-full
-                        px-6
-                        py-3
-                        flex
-                        space-x-2
-                        justify-center
-                        items-center
-                      "
-                    >
-                    <img src="/images/download-solid.png" class="w-5 h-5" alt="icon" />
+                  <a
+                    :href="report[0].file_url"
+                    class="
+                      text-white
+                      border-gray-300 border
+                      rounded-full
+                      px-6
+                      py-3
+                      flex
+                      space-x-2
+                      justify-center
+                      items-center
+                    "
+                  >
+                    <img
+                      src="/images/download-solid.png"
+                      class="w-5 h-5"
+                      alt="icon"
+                    />
                     <span>Download Report Template</span>
-                    </div>
-                  </div>
+                  </a>
                 </div>
               </div>
               <!-- Doc img -->
@@ -140,4 +143,8 @@ import ReportNav from "@/Components/Students/ReportNav.vue";
 import { Head, Link, usePage } from "@inertiajs/inertia-vue3";
 
 const authUser = usePage().props.value.auth.user;
+
+defineProps({
+  report: Object,
+});
 </script>

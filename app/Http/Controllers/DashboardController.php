@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Evaluation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +28,7 @@ class DashboardController extends Controller
                         ['role_id', 4],
                     ])->take(10)->get(),
                 ]);
-            }else {
+            } else {
                 return Inertia::render('StudentDashboard');
             }
         } else {
@@ -37,11 +38,13 @@ class DashboardController extends Controller
 
     public function activityLog()
     {
-        return Inertia::render('Students/ActivityLog'); 
-    }   
-    
+        return Inertia::render('Students/ActivityLog');
+    }
+
     public function showInternReport()
     {
-        return Inertia::render('Students/Report');    
+        return Inertia::render('Students/Report', [
+            'report' => Evaluation::where('assessment_id',3)->get(),
+        ]);
     }
 }
