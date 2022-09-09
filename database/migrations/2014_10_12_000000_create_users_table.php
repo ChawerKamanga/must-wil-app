@@ -29,6 +29,8 @@ return new class extends Migration
             $table->unsignedTinyInteger('is_allocated')->nullable();
             $table->string('profile_img_url')->nullable();
             $table->string('profile_img_name')->nullable();
+            $table->string('report_url')->nullable();
+            $table->string('report_name')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
