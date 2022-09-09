@@ -107,9 +107,9 @@
                         hidden
                       />
                       <button
-                        type="button"
+                        type="submit"
                         id="upload-btn"
-                        @click="showInput"
+                        
                         class="
                           bg-darkBlue
                           text-white
@@ -129,6 +129,7 @@
                         />
                         <span> Upload Your Report </span>
                       </button>
+                      <small v-if="errors.file" class="text-sm text-red-500">{{ errors.file }}</small>
                     </div>
                   </div>
                 </form>
@@ -142,7 +143,7 @@
 </template>
       
 <script>
-import { computed, ref } from "vue";
+import { computed, ref, reactive } from "vue";
 import Authenticated from "@/Layouts/Authenticated.vue";
 import ReportNav from "@/Components/Students/ReportNav.vue";
 import { Head, Link, usePage, useForm } from "@inertiajs/inertia-vue3";
@@ -155,27 +156,24 @@ export default {
   },
   props: {
     report: Object,
+    errors: Object,
   },
   setup() {
     const authUser = computed(() => usePage().props.value.auth.user);
 
-    
-    return { authUser};
-  },
-  data(){
-    form: useForm({
+    const form = useForm({
       file: null,
     })
-  },
-  methods: {
-    showInput(){
-      this.$refs["hiddenFileInput"].click(),
 
-      Inertia.post(route("users.update"), {
-        file: form.file, 
-      })
+    function submit() {
+      document.querySelector('#upload-file').click()
+
+      setTimeout(() => {
+        form.post(route("interns.report.store"))
+      }, 9000);
     }
+
+    return { authUser, submit, form};
   },
- 
 };
 </script>

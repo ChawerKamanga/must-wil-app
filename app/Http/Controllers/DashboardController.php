@@ -47,4 +47,11 @@ class DashboardController extends Controller
             'report' => Evaluation::where('assessment_id',3)->get(),
         ]);
     }
+
+    public function storeInternReport(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|image|max:1024',
+        ]);
+    }
 }
