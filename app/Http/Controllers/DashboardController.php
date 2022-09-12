@@ -69,9 +69,11 @@ class DashboardController extends Controller
             $user->report_url = '/uploads/student-reports/' . $filename;
             $user->update();
 
-            $evaUser->user_id = $user->id;
-            $evaUser->evaluation_id = $evaluation->id;
-            $evaUser->save();
+            $user->evaluations()->attach($user);
+
+            // $evaUser->user_id = $user->id;
+            // $evaUser->evaluation_id = $evaluation->id;
+            // $evaUser->save();
             return redirect()->back()->with('message',  'Report uploaded successfully');
         }else {
             return back()->with('message', 'Report upload unsucessfull');
