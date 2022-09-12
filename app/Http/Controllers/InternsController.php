@@ -85,6 +85,7 @@ class InternsController extends Controller
                     'name' => $evaluation->name,
                     'slug' => $evaluation->slug,
                     'type' => $evaluation->assessment->assessmentType->name,
+                    'user_evaluation' => $evaluation->users,
                     'createdAt' =>  Carbon::parse($evaluation->created_at)->format('l jS \of F Y h:i:s A')
                 ]),
         ]);

@@ -64,7 +64,9 @@ class User extends Authenticatable
 
     public function evaluations()
     {
-        return $this->belongsToMany(Evaluation::class, 'evaluation_users', 'user_id', 'evaluation_id')->withTimestamps();
+        return $this->belongsToMany(Evaluation::class, 'evaluation_users', 'user_id', 'evaluation_id')
+                    ->withPivot('score')
+                    ->withTimestamps();
     }
 
     public function getRouteKeyName()

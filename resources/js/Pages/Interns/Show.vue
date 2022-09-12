@@ -46,7 +46,14 @@
                 >{{ evaluation.name }}</Link
               >
             </p>
-            <p class="text-veryDarkBlue text-3xl">%</p>
+            <p class="text-veryDarkBlue text-3xl">
+              <span
+                v-for="(score, index) in evaluation.user_evaluation"
+                :key="index"
+                >{{ score.pivot.score }}</span
+              >
+              %
+            </p>
           </div>
         </div>
 
@@ -72,10 +79,12 @@
                     <div>70%</div>
                   </td>
                   <td class="text-td">
-                    <div
-                      class="flex space-x-5 hover:cursor-pointer"
-                    >
-                      <a :href="intern.report_url" class="space-x-2 flex" v-if="intern.report_url">
+                    <div class="flex space-x-5 hover:cursor-pointer">
+                      <a
+                        :href="intern.report_url"
+                        class="space-x-2 flex"
+                        v-if="intern.report_url"
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
@@ -88,7 +97,7 @@
                             clip-rule="evenodd"
                           />
                         </svg>
-                       <span class="text-veryDarkBlue"> Download</span>
+                        <span class="text-veryDarkBlue"> Download</span>
                       </a>
                     </div>
                   </td>

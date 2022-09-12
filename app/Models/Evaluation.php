@@ -38,6 +38,8 @@ class Evaluation extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'evaluation_users', 'evaluation_id', 'user_id')->withTimestamps();
+        return $this->belongsToMany(User::class, 'evaluation_users', 'evaluation_id', 'user_id')
+                    ->withPivot('score')
+                    ->withTimestamps();
     }
 }
