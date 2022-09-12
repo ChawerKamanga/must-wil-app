@@ -57,7 +57,8 @@ class DashboardController extends Controller
 
 
         $user = Auth::user();
-        $evaluationUser = new EvaluationUser();
+        $evaluation = Evaluation::find($request->report_id);
+        $evaUser = new EvaluationUser();
 
         if ($request->hasFile('intern_file')) {
             $file = $request->file('intern_file');
@@ -66,8 +67,11 @@ class DashboardController extends Controller
             $file->move('uploads/student-reports/', $filename);
             $user->report_name = $filename;
             $user->report_url = '/uploads/student-reports/' . $filename;
-
             $user->update();
+
+            $evaUser->user_id = $user->id;
+            $evaUser->evaluation_id = $evaluation->id;
+            $evaUser->save();
             return redirect()->back()->with('message',  'Report uploaded successfully');
         }else {
             return back()->with('message', 'Report upload unsucessfull');

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('evaluation_id');
-            $table->unsignedSmallInteger('score');
+            $table->unsignedSmallInteger('score')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('evaluation_id')->references('id')->on('evaluations');
             $table->timestamps();

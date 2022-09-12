@@ -62,7 +62,7 @@ class User extends Authenticatable
         return $this->belongsTo(District::class);
     }
 
-    public function evaluation()
+    public function evaluations()
     {
         return $this->belongsToMany(Evaluation::class);
     }

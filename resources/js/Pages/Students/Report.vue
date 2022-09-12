@@ -178,11 +178,12 @@ export default {
     report: Object,
     errors: Object,
   },
-  setup() {
+  setup(props) {
     const authUser = computed(() => usePage().props.value.auth.user);
 
     const form = useForm({
       intern_file: null,
+      report_id: props.report[0].id
     });
 
     function submit() {
