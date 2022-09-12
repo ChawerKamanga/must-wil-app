@@ -62,6 +62,11 @@ class User extends Authenticatable
         return $this->belongsTo(District::class);
     }
 
+    public function evaluation()
+    {
+        return $this->belongsToMany(Evaluation::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

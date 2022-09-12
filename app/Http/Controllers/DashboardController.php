@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evaluation;
+use App\Models\EvaluationUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,6 +57,7 @@ class DashboardController extends Controller
 
 
         $user = Auth::user();
+        $evaluationUser = new EvaluationUser();
 
         if ($request->hasFile('intern_file')) {
             $file = $request->file('intern_file');

@@ -58,18 +58,21 @@
                     />
                     <span>Download Report Template</span>
                   </a>
-                  <span class="
-                  text-white
-                  border-gray-300 border
-                  rounded-full
-                  px-6
-                  py-3
-                  flex
-                  space-x-2
-                  justify-center
-                  items-center
-                ">
-                <span>Report Template Not Available</span>
+                  <span
+                    v-else
+                    class="
+                      text-white
+                      border-gray-300 border
+                      rounded-full
+                      px-6
+                      py-3
+                      flex
+                      space-x-2
+                      justify-center
+                      items-center
+                    "
+                  >
+                    <span>Report Template Not Available</span>
                   </span>
                 </div>
               </div>
@@ -123,7 +126,6 @@
                       <button
                         type="submit"
                         id="upload-btn"
-                        
                         class="
                           bg-darkBlue
                           text-white
@@ -143,7 +145,11 @@
                         />
                         <span> Upload Your Report </span>
                       </button>
-                      <small v-if="errors.intern_file" class="text-sm text-red-500">{{ errors.file }}</small>
+                      <small
+                        v-if="errors.intern_file"
+                        class="text-sm text-red-500"
+                        >{{ errors.file }}</small
+                      >
                     </div>
                   </div>
                 </form>
@@ -177,17 +183,17 @@ export default {
 
     const form = useForm({
       intern_file: null,
-    })
+    });
 
     function submit() {
-      document.querySelector('#upload-file').click()
+      document.querySelector("#upload-file").click();
 
       setTimeout(() => {
-        form.post(route("interns.report.store"))
+        form.post(route("interns.report.store"));
       }, 3000);
     }
 
-    return { authUser, submit, form};
+    return { authUser, submit, form };
   },
 };
 </script>
