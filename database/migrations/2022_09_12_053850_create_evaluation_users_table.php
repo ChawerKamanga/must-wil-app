@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('evaluation_user', function (Blueprint $table) {
+        Schema::create('evaluation_users', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
-            $table->integer('evaluation_id')->unsigned();
+            $table->unsignedBigInteger('user_id')->unsigned();
+            $table->unsignedBigInteger('evaluation_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('evaluation_id')->references('id')->on('evaluations');
             $table->timestamps();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evaluation_user');
+        Schema::dropIfExists('evaluation_users');
     }
 };

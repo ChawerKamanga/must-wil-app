@@ -51,20 +51,21 @@ class DashboardController extends Controller
     public function storeInternReport(Request $request)
     {
         $request->validate([
-            'file' => 'required|file|max:1024',
+            'intern_file' => 'required|file|max:1024',
         ]);
 
-        $user = new User();
 
-        if ($request->hasFile('file')) {
-            $file = $request->file('organization_pic');
+        $user = Auth::user();
+
+        if ($request->hasFile('intern_file')) {
+            $file = $request->file('intern_file');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
             $file->move('uploads/student-reports/', $filename);
             $user->report_name = $filename;
             $user->report_url = '/uploads/student-reports/' . $filename;
 
-            $user->save();
+            $user->update();
             return redirect()->back()->with('message',  'Report uploaded successfully');
         }else {
             return back()->with('message', 'Report upload unsucessfull');

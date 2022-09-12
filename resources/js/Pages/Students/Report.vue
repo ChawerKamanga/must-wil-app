@@ -37,6 +37,7 @@
                 </div>
                 <div class="mt-10 flex space-x-10">
                   <a
+                    v-if="report[0]"
                     :href="report[0].file_url"
                     class="
                       text-white
@@ -57,6 +58,19 @@
                     />
                     <span>Download Report Template</span>
                   </a>
+                  <span class="
+                  text-white
+                  border-gray-300 border
+                  rounded-full
+                  px-6
+                  py-3
+                  flex
+                  space-x-2
+                  justify-center
+                  items-center
+                ">
+                <span>Report Template Not Available</span>
+                  </span>
                 </div>
               </div>
               <!-- Doc img -->
@@ -103,7 +117,7 @@
                         type="file"
                         id="upload-file"
                         accept=".pdf, .docx"
-                        @input="form.file = $event.target.files[0]"
+                        @input="form.intern_file = $event.target.files[0]"
                         hidden
                       />
                       <button
@@ -129,7 +143,7 @@
                         />
                         <span> Upload Your Report </span>
                       </button>
-                      <small v-if="errors.file" class="text-sm text-red-500">{{ errors.file }}</small>
+                      <small v-if="errors.intern_file" class="text-sm text-red-500">{{ errors.file }}</small>
                     </div>
                   </div>
                 </form>
@@ -162,7 +176,7 @@ export default {
     const authUser = computed(() => usePage().props.value.auth.user);
 
     const form = useForm({
-      file: null,
+      intern_file: null,
     })
 
     function submit() {
@@ -170,7 +184,7 @@ export default {
 
       setTimeout(() => {
         form.post(route("interns.report.store"))
-      }, 9000);
+      }, 3000);
     }
 
     return { authUser, submit, form};
