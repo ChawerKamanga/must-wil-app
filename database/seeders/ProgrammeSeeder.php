@@ -29,24 +29,6 @@ class ProgrammeSeeder extends Seeder
                 'updated_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
             ],
-            [
-                'name' => 'BEng in Biomedical Engineering ',
-                'code' => 'bme',
-                'updated_at' => Carbon::now(),
-                'created_at' => Carbon::now(),
-            ],
-            [
-                'name' => 'BEng in Chemical Engineering',
-                'code' => 'che',
-                'updated_at' => Carbon::now(),
-                'created_at' => Carbon::now(),
-            ],
-            [
-                'name' => 'BEng in Metallurgy and Materials Engineering ',
-                'code' => 'mme',
-                'updated_at' => Carbon::now(),
-                'created_at' => Carbon::now(),
-            ],
         ];
 
         Programme::insert($programmes);

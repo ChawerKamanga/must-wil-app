@@ -205,6 +205,10 @@ class OrganizationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $organization = Organization::findOrFail($id);
+
+        $organization->delete();
+
+        return redirect()->back();
     }
 }

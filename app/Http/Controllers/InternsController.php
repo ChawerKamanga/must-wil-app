@@ -79,13 +79,13 @@ class InternsController extends Controller
     {
         return Inertia::render('Interns/Show', [
             'intern' => $user->only('name', 'slug', 'id', 'report_url'),
+            'user_evaluation' => $user->evaluations,
             'evaluations' => Evaluation::query()
                 ->paginate(10)
                 ->through(fn ($evaluation) => [
                     'name' => $evaluation->name,
                     'slug' => $evaluation->slug,
                     'type' => $evaluation->assessment->assessmentType->name,
-                    'user_evaluation' => $evaluation->users,
                     'createdAt' =>  Carbon::parse($evaluation->created_at)->format('l jS \of F Y h:i:s A')
                 ]),
         ]);

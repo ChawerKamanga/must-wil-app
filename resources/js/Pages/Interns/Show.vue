@@ -48,7 +48,7 @@
             </p>
             <p class="text-veryDarkBlue text-3xl">
               <span
-                v-for="(score, index) in evaluation.user_evaluation"
+                v-for="(score, index) in user_evaluation"
                 :key="index"
                 >{{ score.pivot.score }}</span
               >
@@ -122,5 +122,6 @@ import { Link, Head } from "@inertiajs/inertia-vue3";
 const props = defineProps({
   evaluations: Object,
   intern: Object,
+  user_evaluation: Object,
 });
 </script>
