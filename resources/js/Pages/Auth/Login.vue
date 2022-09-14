@@ -88,6 +88,7 @@ const submit = () => {
         >
           Login
         </BreezeButton>
+        <Link :href="route('register.create')" class="text-center text-sm text-blue-600">Register as a Student</Link>
       </div>
     </form>
   </BreezeGuestLayout>

@@ -83,10 +83,11 @@ class InternsController extends Controller
             'evaluations' => Evaluation::query()
                 ->paginate(10)
                 ->through(fn ($evaluation) => [
+                    'id' => $evaluation->id,
                     'name' => $evaluation->name,
                     'slug' => $evaluation->slug,
+                    'total_weight' => $evaluation->total_weight_percentage,
                     'type' => $evaluation->assessment->assessmentType->name,
-                    'createdAt' =>  Carbon::parse($evaluation->created_at)->format('l jS \of F Y h:i:s A')
                 ]),
         ]);
     }

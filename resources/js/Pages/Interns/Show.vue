@@ -46,13 +46,9 @@
                 >{{ evaluation.name }}</Link
               >
             </p>
-            <p class="text-veryDarkBlue text-3xl">
-              <span
-                v-for="(score, index) in user_evaluation"
-                :key="index"
-                >{{ score.pivot.score }}</span
-              >
-              %
+            <p class="text-veryDarkBlue text-2xl">
+              <input type="text" v-if="evaluation.id == user_evaluation[len].pivot.evaluation_id" class="w-12 focus:ring-0 border-t-0 border-l-0  border-r-0 border-b-2 border-darkBlue" v-model="form.score" />
+              / {{ evaluation.total_weight }}
             </p>
           </div>
         </div>
@@ -97,7 +93,7 @@
                             clip-rule="evenodd"
                           />
                         </svg>
-                        <span class="text-veryDarkBlue"> Download</span>
+                        <span class="text-veryDarkBlue">Download</span>
                       </a>
                     </div>
                   </td>
@@ -117,11 +113,18 @@ import Authenticated from "@/Layouts/Authenticated.vue";
 import InternsNav from "@/Components/InternsNav.vue";
 import EditTableRow from "@/Components/EditTableRow.vue";
 import DeleteTableRow from "@/Components/DeleteTableRow.vue";
-import { Link, Head } from "@inertiajs/inertia-vue3";
+import { Link, Head, useForm } from "@inertiajs/inertia-vue3";
+
+let len = props.user_evaluation.length - 1;
 
 const props = defineProps({
   evaluations: Object,
   intern: Object,
-  user_evaluation: Object,
+  user_evaluation: Array,
 });
+
+const form = useForm({
+  score: props.user_evaluation[len].pivot.score
+});
+
 </script>
