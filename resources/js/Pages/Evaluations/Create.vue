@@ -103,7 +103,7 @@
                   <label for="industrial-supervisor">Upload a file</label>
                   <input
                     accept=".doc, .docx, .pdf"
-                    class="dashboard-textinput px-2"
+                    class="file-style"
                     type="file"
                     @input="form.document = $event.target.files[0]"
                   />

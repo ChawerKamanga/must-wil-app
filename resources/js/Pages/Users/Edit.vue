@@ -101,7 +101,7 @@
                     >
                     <input
                       accept="image/png, image/jpeg, image/jpg"
-                      class="dashboard-textinput px-2"
+                      class="file-style"
                       id="profile-pic"
                       type="file"
                       @input="form.profile_pic = $event.target.files[0]"

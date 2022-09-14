@@ -136,12 +136,7 @@
                 >
                 <input
                   type="file"
-                  class="file:py-2 file:px-6
-                  file:rounded-full file:border-0
-                  file:text-sm file:font-medium
-                  file:bg-veryDarkBlue file:text-white
-                  hover:file:cursor-pointer hover:file:bg-blue-700
-                  "
+                  class="file-style"
                   @input="form.profile_pic = $event.target.files[0]"
                   accept=".jpg, .png, .jpeg"
                 />
@@ -377,7 +372,7 @@ export default {
   data() {
     return {
       url: null,
-      formStep: 2,
+      formStep: 1
     };
   },
   setup() {
