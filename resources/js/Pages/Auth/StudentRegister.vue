@@ -134,15 +134,18 @@
                 <label for="profile-pic" class="form-label"
                   >Profile Picture</label
                 >
-                <input type="file" @input="form.profile_pic = $event.target.files[0]" accept=".jpg, .png, .jpeg" />
+                <input
+                  type="file"
+                  class="file:py-2 file:px-6
+                  file:rounded-full file:border-0
+                  file:text-sm file:font-medium
+                  file:bg-veryDarkBlue file:text-white
+                  hover:file:cursor-pointer hover:file:bg-blue-700
+                  "
+                  @input="form.profile_pic = $event.target.files[0]"
+                  accept=".jpg, .png, .jpeg"
+                />
                 <img v-if="url" :src="url" class="w-full mt-4 h-80" />
-                <progress
-                  v-if="form.progress"
-                  :value="form.progress.percentage"
-                  max="100"
-                >
-                  {{ form.progress.percentage }}%
-                </progress>
               </div>
 
               <div class="flex flex-col space-y-2">
@@ -210,7 +213,6 @@
                   v-model="form.password_confirmation"
                 />
               </div>
-
             </div>
 
             <div v-if="formStep == 1" class="flex justify-end">
@@ -375,8 +377,8 @@ export default {
   data() {
     return {
       url: null,
-      formStep: 1   
-  };
+      formStep: 2,
+    };
   },
   setup() {
     const form = useForm({
@@ -387,7 +389,7 @@ export default {
       next_of_kin: "",
       program_of_study: "",
       reg_number: "",
-      gender: 'M',
+      gender: "M",
       profile_pic: null,
       password: "",
       password_confirmation: "",
@@ -396,12 +398,11 @@ export default {
 
     function submit() {
       form.post(route("student.register"));
-     
     }
 
-    return {form, submit};
+    return { form, submit };
   },
-  
+
   methods: {
     nextStep() {
       Inertia.post(
