@@ -89,7 +89,7 @@
             <div></div>
           </div>
 
-          <!-- Table Section -->
+          <!-- Main Section -->
           <div class="w-full mt-10">
             <div class="w-full mt-6 flex flex-col space-y-6">
               <div class="px-10 py-7 space-y-2">

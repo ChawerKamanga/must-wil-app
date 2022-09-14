@@ -131,8 +131,8 @@
             <div></div>
           </div>
 
-          <!-- Table Section -->
-          <div class=" w-full mt-10">
+          <!-- Main Section -->
+          <!-- <div class=" w-full mt-10">
             <div class="w-full mt-6 flex flex-col space-y-6">
                 <div class="bg-white rounded-xl px-10 py-7 space-y-2">
                     <h6 class="text-3xl font-bold">Installed MS Server</h6>
@@ -149,6 +149,61 @@
                         </div>
                     </div>
                 </div>
+            </div>
+          </div> -->
+
+          <div class="w-full mt-10">
+            <div class="w-full mt-6 flex flex-col space-y-6">
+              <div class="px-10 py-7 space-y-2">
+                <form>
+                  <div class="flex justify-center items-center">
+                    <div
+                      class="
+                        w-[500px]
+                        h-[300px]
+                        bg-white
+                        shadow-2xl
+                        rounded-3xl
+                        flex flex-col
+                        justify-center
+                        items-center
+                        space-y-5
+                      "
+                    >
+                      <div>
+                        <img
+                          src="/images/6909-removebg-preview.png"
+                          alt="icon"
+                          class="w-[200px]"
+                        />
+                      </div>
+                      <button
+                        type="submit"
+                        id="upload-btn"
+                        class="
+                          bg-darkBlue
+                          text-white
+                          px-6
+                          py-4
+                          rounded-full
+                          text-lg
+                          font-bold
+                          flex
+                          space-x-2
+                        "
+                      >
+                        <img
+                          src="/images/circle-plus-fill.png"
+                          class="w-6 h-6"
+                          alt="icon"
+                        />
+                        <span> Add new activities</span>
+                      </button>
+                     
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
