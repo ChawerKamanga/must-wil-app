@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\APIAuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,11 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
+    Route::get('user', [UserController::class, 'index']);
 });
+
 
 Route::prefix('v1')->group(function ()
 {
     Route::post('login', [APIAuthController::class, 'login']);
 });
+
+// 

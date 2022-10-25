@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class APIAuthController extends Controller
 {
@@ -12,7 +13,8 @@ class APIAuthController extends Controller
     public function login(Request $request) {
         $fields = $request->validate([
             'email' => 'required|string',
-            'password' => 'required|string'
+            'password' => 'required|string',
+            'device_name' => 'required',
         ]);
 
         // Check email
@@ -20,18 +22,11 @@ class APIAuthController extends Controller
 
         // Check password
         if(!$user || !Hash::check($fields['password'], $user->password)) {
-            return response([
-                'message' => 'Invalid Credentials'
-            ], 401);
+            throw ValidationException::withMessages([
+                'message' => ['The provided credentials are incorrect.'],
+            ]);
         }
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
-
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
-
-        return response($response, 201);
+        return $user->createToken($request->device_name)->plainTextToken;
     }
 }
