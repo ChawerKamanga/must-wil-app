@@ -13,12 +13,14 @@ class InternsAPIController extends Controller
         if ($name) {
             $interns = User::where([
                 ['role_id', 4], 
+                ['is_allocated', 1], 
                 ['programme_id', $pgId],
                 ['name', 'like', '%' . $name. '%']
             ])->get();
         }else {
             $interns = User::where([
                 ['role_id', 4], 
+                ['is_allocated', 1],
                 ['programme_id', $pgId],
             ])->get();
         }
