@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 
 class InternsAPIController extends Controller
 {
-    public function index()
+    public function index($pgId)
     {
-        $interns = User::where('role_id', 4)->get();
+        $interns = User::where([['role_id', 4], ['programme_id', $pgId]])->get();
+
         return InternResource::collection($interns);
     }
 }

@@ -21,7 +21,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::get('user', [UserController::class, 'index']);
     Route::get('organizations', [OrganizationApiController::class, 'index']);
-    Route::get('interns', [InternsAPIController::class, 'index']);
+    // Route::get("interns?pg", [InternsAPIController::class, 'index']);
+    Route::get("interns/{pgId}", [InternsAPIController::class, 'index']);
+
 });
 
 
