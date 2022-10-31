@@ -6,6 +6,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class InternResource extends JsonResource
 {
+    private function checkOrg($value)
+    {
+        return ($value == null) ? 'Not yet Allocated' : $value->name;
+    }
+
     /**
      * Transform the resource into an array.
      *
@@ -17,9 +22,11 @@ class InternResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'img_url' => $this->img_url,
-            'location' => $this->district->name,
-            'number_of_interns' =>  $this->users()->where('role_id', 4)->count()
+            'email' => $this->email,
+            'phone_number' => $this->phone_number,
+            'img_url' => $this->profile_img_url,
+            'organization' => $this->checkOrg($this->organization),
+            'programme' => $this->programme->name,
         ];
     }
 }
