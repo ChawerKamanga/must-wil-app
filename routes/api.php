@@ -3,6 +3,7 @@
 use App\Http\Controllers\APIAuthController;
 use App\Http\Controllers\InternsAPIController;
 use App\Http\Controllers\OrganizationApiController;
+use App\Http\Controllers\ProgrammesAPIController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::get('user', [UserController::class, 'index']);
     Route::get('organizations', [OrganizationApiController::class, 'index']);
+    Route::get('programmes', [ProgrammesAPIController::class, 'index']);
     Route::get("interns/{pgId?}/search/{name?}", [InternsAPIController::class, 'index']);
 
 });
