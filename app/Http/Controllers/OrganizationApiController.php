@@ -12,4 +12,10 @@ class OrganizationApiController extends Controller
     {
         return OrganizationResource::collection(Organization::all());
     }
+
+
+    public function show(Organization $organization)
+    {
+        return $organization;
+    }
 }

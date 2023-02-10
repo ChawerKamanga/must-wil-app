@@ -22,14 +22,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::get('user', [UserController::class, 'index']);
     Route::get('organizations', [OrganizationApiController::class, 'index']);
+    Route::get('organization/{organization}', [OrganizationApiController::class, 'show']);
     Route::get('programmes', [ProgrammesAPIController::class, 'index']);
     Route::get("interns/{pgId?}/search/{name?}", [InternsAPIController::class, 'index']);
 
 });
 
 
-Route::prefix('v1')->group(function ()
-{
+Route::prefix('v1')->group(function () {
     Route::post('login', [APIAuthController::class, 'login']);
 });
 

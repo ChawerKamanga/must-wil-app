@@ -26,19 +26,12 @@ class APIAuthController extends Controller
 
         // Check password
         if (!$user || !Hash::check($fields['password'], $user->password)) {
-            return response([
-                'message' => 'Invalid Credentials'
-            ], 401);
+            throw ValidationException::withMessages([
+                'message' => ['The provided credentials are incorrect.'],
+            ]);
         }
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
-
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
-
-        return response($response, 201);
+        return $user->createToken($request->device_name)->plainTextToken;
     }
 
 }
