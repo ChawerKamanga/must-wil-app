@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\OrganizationResource;
 use App\Http\Resources\SingleOrganizationResource;
 use App\Models\Organization;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 
 class OrganizationApiController extends Controller

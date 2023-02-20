@@ -20,7 +20,7 @@ class SingleOrganizationResource extends JsonResource
             'district' => $this->district->name,
             'no_of_interns' => $this->users()->where('role_id', 4)->count(),
             'industrial_supervisor' => $this->users()->where('role_id', 3)->first()->name,
-            'interns' => $this->users()->where('role_id', 4),
+            'interns' => UserResource::collection($this->users()->where('role_id', 4)->get()),
             'img_url' => $this->img_url,
         ];
     }
