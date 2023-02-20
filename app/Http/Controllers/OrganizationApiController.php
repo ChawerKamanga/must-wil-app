@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\OrganizationResource;
+use App\Http\Resources\SingleOrganizationResource;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,6 @@ class OrganizationApiController extends Controller
 
     public function show(Organization $organization)
     {
-        return $organization;
+        return new SingleOrganizationResource($organization);
     }
 }

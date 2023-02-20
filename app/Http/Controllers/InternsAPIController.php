@@ -8,18 +8,18 @@ use Illuminate\Http\Request;
 
 class InternsAPIController extends Controller
 {
-    public function index($pgId=1, $name=null)
+    public function index($pgId = 1, $name = null)
     {
         if ($name) {
             $interns = User::where([
-                ['role_id', 4], 
-                ['is_allocated', 1], 
+                ['role_id', 4],
+                ['is_allocated', 1],
                 ['programme_id', $pgId],
-                ['name', 'like', '%' . $name. '%']
+                ['name', 'like', '%' . $name . '%']
             ])->get();
-        }else {
+        } else {
             $interns = User::where([
-                ['role_id', 4], 
+                ['role_id', 4],
                 ['is_allocated', 1],
                 ['programme_id', $pgId],
             ])->get();
