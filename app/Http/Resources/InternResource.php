@@ -27,6 +27,7 @@ class InternResource extends JsonResource
             'img_url' => $this->profile_img_url,
             'organization' => $this->checkOrg($this->organization),
             'programme' => $this->programme->name,
+            'organization_location' => $this->organization->district->name,
         ];
     }
 }
