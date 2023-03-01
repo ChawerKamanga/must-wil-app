@@ -24,8 +24,8 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::get('organizations', [OrganizationApiController::class, 'index']);
     Route::get('organization/{organization}', [OrganizationApiController::class, 'show']);
     Route::get('programmes', [ProgrammesAPIController::class, 'index']);
-    Route::get("interns/{pgId?}/search/{name?}", [InternsAPIController::class, 'index']);
-
+    Route::get("interns/{pgId?}/search/{name?}", [InternsAPIController::class, 'search']);
+    Route::get("interns/{pgId?}", [InternsAPIController::class, 'index']);
 });
 
 

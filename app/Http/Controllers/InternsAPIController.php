@@ -8,7 +8,18 @@ use Illuminate\Http\Request;
 
 class InternsAPIController extends Controller
 {
-    public function index($pgId = 1, $name = null)
+    public function index($pgId)
+    {
+        $interns = User::where([
+            ['role_id', 4],
+            ['is_allocated', 1],
+            ['programme_id', $pgId],
+        ])->get();
+
+        return InternResource::collection($interns);
+    }
+
+    public function search($pgId, $name = null)
     {
         if ($name) {
             $interns = User::where([
@@ -27,4 +38,6 @@ class InternsAPIController extends Controller
 
         return InternResource::collection($interns);
     }
+
+
 }
