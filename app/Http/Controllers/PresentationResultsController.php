@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PresentationResults;
 use App\Models\PresentationScores;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class PresentationResultsController extends Controller
         ]);
 
         // create a new PresentationScores instance with the validated data
-        $scores = new PresentationScores([
+        $scores = new PresentationResults([
             'scores' => $validatedData['scores'],
             'student_id' => $validatedData['student_id'],
             'assesor_id' => $validatedData['assesor_id'],

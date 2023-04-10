@@ -4,6 +4,7 @@ use App\Http\Controllers\APIAuthController;
 use App\Http\Controllers\EvaluationsAPIController;
 use App\Http\Controllers\InternsAPIController;
 use App\Http\Controllers\OrganizationApiController;
+use App\Http\Controllers\PresentationResultsController;
 use App\Http\Controllers\ProgrammesAPIController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::get("interns/{pgId?}/search/{name?}", [InternsAPIController::class, 'search']);
     Route::get("interns/{pgId?}", [InternsAPIController::class, 'index']);
     Route::get('presentation-evaluations', [EvaluationsAPIController::class, 'index'])->name('presentation.evaluation.index');
-    Route::post('/presentation-scores', [PresentationScoresController::class, 'store']);
+    Route::post('/presentation-scores', [PresentationResultsController::class, 'store']);
 });
 
 
