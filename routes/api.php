@@ -29,6 +29,7 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::get("interns/{pgId?}/search/{name?}", [InternsAPIController::class, 'search']);
     Route::get("interns/{pgId?}", [InternsAPIController::class, 'index']);
     Route::get('presentation-evaluations', [EvaluationsAPIController::class, 'index'])->name('presentation.evaluation.index');
+    Route::post('/presentation-scores', [PresentationScoresController::class, 'store']);
 });
 
 
