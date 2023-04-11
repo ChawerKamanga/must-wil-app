@@ -39,5 +39,20 @@ class InternsAPIController extends Controller
         return InternResource::collection($interns);
     }
 
+    public function getUsersInOrganization($selectedUserId)
+    {
+        // Retrieve the user object for the selected user, or throw a 404 exception if not found
+        $selectedUser = User::findOrFail($selectedUserId);
+
+        // Retrieve the organization object for the selected user
+        $organization = $selectedUser->organization;
+
+
+        // Retrieve all the users in the organization with role_id = 4
+        $usersInOrganization = $organization->users()->where('role_id', 4)->get();
+
+        return InternResource::collection($usersInOrganization);
+    }
+
 
 }
