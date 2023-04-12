@@ -4,8 +4,10 @@ use App\Http\Controllers\APIAuthController;
 use App\Http\Controllers\EvaluationsAPIController;
 use App\Http\Controllers\InternsAPIController;
 use App\Http\Controllers\OrganizationApiController;
+use App\Http\Controllers\OverallSupervisorResultsController;
 use App\Http\Controllers\PresentationResultsController;
 use App\Http\Controllers\ProgrammesAPIController;
+use App\Http\Controllers\SliderScoreController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +34,7 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::get('presentation-evaluations', [EvaluationsAPIController::class, 'index']);
     Route::get('overall-industrial-supervisor-evaluations', [EvaluationsAPIController::class, 'getOverallIndustrialSupervisorEvaluation']);
     Route::get('interns-org/{selectedUserId}', [InternsAPIController::class, 'getUsersInOrganization']);
-    Route::post('/presentation-scores', [PresentationResultsController::class, 'store']);
+    Route::post('/slider-scores', [SliderScoreController::class, 'store']);
 });
 
 
