@@ -10,16 +10,17 @@
         <div class="rounded-xl w-full mt-5 space-y-6">
           <div class="w-full mt-2 flex flex-col space-y-6 bg-white pb-5 rounded-xl">
             <!-- Dark Blue Banner -->
-            <div class="
-                                                                                                relative
-                                                                                                flex
-                                                                                                justify-between
-                                                                                                w-11/12
-                                                                                                mx-auto
-                                                                                                mt-5
-                                                                                                bg-darkBlue
-                                                                                                rounded-lg
-                                                                                              ">
+            <div
+              class="
+                                                                                                                          relative
+                                                                                                                          flex
+                                                                                                                          justify-between
+                                                                                                                          w-11/12
+                                                                                                                          mx-auto
+                                                                                                                          mt-5
+                                                                                                                          bg-darkBlue
+                                                                                                                          rounded-lg
+                                                                                                                        ">
               <!-- Assessment Progress Text -->
               <div class="flex flex-col h-[300px] justify-center ml-10">
                 <div>
@@ -35,17 +36,18 @@
                 </div>
                 <div class="mt-10 flex space-x-10">
                   <div class="flex">
-                    <div class="
-                                                                                                        bg-[#fbc345]
-                                                                                                        border border-gray-300
-                                                                                                        rounded-full
-                                                                                                        w-12
-                                                                                                        h-12
-                                                                                                        flex
-                                                                                                        justify-center
-                                                                                                        items-center
-                                                                                                        mr-3
-                                                                                                      ">
+                    <div
+                      class="
+                                                                                                                                  bg-[#fbc345]
+                                                                                                                                  border border-gray-300
+                                                                                                                                  rounded-full
+                                                                                                                                  w-12
+                                                                                                                                  h-12
+                                                                                                                                  flex
+                                                                                                                                  justify-center
+                                                                                                                                  items-center
+                                                                                                                                  mr-3
+                                                                                                                                ">
                       <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon text-white group-hover:text-darkBlue"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -63,17 +65,18 @@
                   </div>
 
                   <div class="flex">
-                    <div class="
-                                                                                                        bg-[#ef6f59]
-                                                                                                        border border-gray-300
-                                                                                                        rounded-full
-                                                                                                        w-12
-                                                                                                        h-12
-                                                                                                        flex
-                                                                                                        justify-center
-                                                                                                        items-center
-                                                                                                        mr-3
-                                                                                                      ">
+                    <div
+                      class="
+                                                                                                                                  bg-[#ef6f59]
+                                                                                                                                  border border-gray-300
+                                                                                                                                  rounded-full
+                                                                                                                                  w-12
+                                                                                                                                  h-12
+                                                                                                                                  flex
+                                                                                                                                  justify-center
+                                                                                                                                  items-center
+                                                                                                                                  mr-3
+                                                                                                                                ">
                       <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon text-white group-hover:text-darkBlue"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -183,10 +186,12 @@
 
                   </div>
 
+                  <!-- <div v-else
+                    class="w-[500px] h-[300px] bg-white shadow-2xl rounded-3xl flex flex-col justify-center items-center space-y-5"> -->
                   <div v-else
-                    class="w-[500px] h-[300px] bg-white shadow-2xl rounded-3xl flex flex-col justify-center items-center space-y-5">
+                    class="w-full bg-white shadow-2xl rounded-3xl flex flex-col justify-center items-center space-y-5">
                     <div>
-                      <div v-if="!activities.data">
+                      <div v-if="!activities">
                         <div
                           class="w-[500px] h-[300px] bg-white shadow-2xl rounded-3xl flex flex-col justify-center items-center space-y-5">
                           <div>
@@ -201,19 +206,27 @@
                         </div>
                       </div>
                       <div v-else>
-                        <table>
+                        <table class="w-full">
                           <thead>
                             <tr>
-                              <th>Activity Name</th>
-                              <th>Description</th>
-                              <th>Date</th>
+                              <th>Activity summary</th>
+                              <th>From</th>
+                              <th>To</th>
+                              <th>Days Absent</th>
+                              <th>Days Present</th>
+                              <th>Is Approved</th>
+                              <th>Added On</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr v-for="activity in activities.data" :key="activity.id">
-                              <td>{{ activity.name }}</td>
-                              <td>{{ activity.description }}</td>
-                              <td>{{ activity.date }}</td>
+                            <tr v-for="activity in activities" :key="activity.id">
+                              <td>{{ activity.summary }}</td>
+                              <td>{{ activity.from_date }}</td>
+                              <td>{{ activity.to_date }}</td>
+                              <td>{{ activity.days_absent }}</td>
+                              <td>{{ activity.days_present }}</td>
+                              <td>{{ activity.is_approved }}</td>
+                              <td>{{ activity.created_at }}</td>
                             </tr>
                           </tbody>
                         </table>
@@ -242,7 +255,7 @@ const authUser = usePage().props.value.auth.user;
 
 defineProps({
   errors: Object,
-  activities: Object,
+  activities: Array,
 });
 
 const showForm = ref(false)
@@ -258,9 +271,12 @@ let form = useForm({
 
 
 let submit = () => {
-  if (form.post(route("activity_log.store"))) {
+  if (!form.post(route("activity_log.store"))) {
+    showForm.value = true;
+  } else {
     showForm.value = false;
-  };
+
+  }
 };
 
 </script>
