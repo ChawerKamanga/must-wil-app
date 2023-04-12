@@ -13,4 +13,9 @@ class EvaluationsAPIController extends Controller
     {
         return QuestionResource::collection(Question::where('evaluation_id', 1)->get());
     }
+
+    public function getOverallIndustrialSupervisorEvaluation()
+    {
+        return QuestionResource::collection(Question::where('evaluation_id', 2)->get());
+    }
 }

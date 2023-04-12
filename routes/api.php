@@ -29,7 +29,8 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::get('programmes', [ProgrammesAPIController::class, 'index']);
     Route::get("interns/{pgId?}/search/{name?}", [InternsAPIController::class, 'search']);
     Route::get("interns/{pgId?}", [InternsAPIController::class, 'index']);
-    Route::get('presentation-evaluations', [EvaluationsAPIController::class, 'index'])->name('presentation.evaluation.index');
+    Route::get('presentation-evaluations', [EvaluationsAPIController::class, 'index']);
+    Route::get('overall-industrial-supervisor-evaluations', [EvaluationsAPIController::class, 'getOverallIndustrialSupervisorEvaluation']);
     Route::get('interns-org/{selectedUserId}', [InternsAPIController::class, 'getUsersInOrganization']);
     Route::post('/presentation-scores', [PresentationResultsController::class, 'store']);
 });
