@@ -11,15 +11,15 @@
           <div class="w-full mt-2 flex flex-col space-y-6 bg-white pb-5 rounded-xl">
             <!-- Dark Blue Banner -->
             <div class="
-                                                                                        relative
-                                                                                        flex
-                                                                                        justify-between
-                                                                                        w-11/12
-                                                                                        mx-auto
-                                                                                        mt-5
-                                                                                        bg-darkBlue
-                                                                                        rounded-lg
-                                                                                      ">
+                                                                                          relative
+                                                                                          flex
+                                                                                          justify-between
+                                                                                          w-11/12
+                                                                                          mx-auto
+                                                                                          mt-5
+                                                                                          bg-darkBlue
+                                                                                          rounded-lg
+                                                                                        ">
               <!-- Assessment Progress Text -->
               <div class="flex flex-col h-[300px] justify-center ml-10">
                 <div>
@@ -36,16 +36,16 @@
                 <div class="mt-10 flex space-x-10">
                   <div class="flex">
                     <div class="
-                                                                                                bg-[#fbc345]
-                                                                                                border border-gray-300
-                                                                                                rounded-full
-                                                                                                w-12
-                                                                                                h-12
-                                                                                                flex
-                                                                                                justify-center
-                                                                                                items-center
-                                                                                                mr-3
-                                                                                              ">
+                                                                                                  bg-[#fbc345]
+                                                                                                  border border-gray-300
+                                                                                                  rounded-full
+                                                                                                  w-12
+                                                                                                  h-12
+                                                                                                  flex
+                                                                                                  justify-center
+                                                                                                  items-center
+                                                                                                  mr-3
+                                                                                                ">
                       <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon text-white group-hover:text-darkBlue"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -64,16 +64,16 @@
 
                   <div class="flex">
                     <div class="
-                                                                                                bg-[#ef6f59]
-                                                                                                border border-gray-300
-                                                                                                rounded-full
-                                                                                                w-12
-                                                                                                h-12
-                                                                                                flex
-                                                                                                justify-center
-                                                                                                items-center
-                                                                                                mr-3
-                                                                                              ">
+                                                                                                  bg-[#ef6f59]
+                                                                                                  border border-gray-300
+                                                                                                  rounded-full
+                                                                                                  w-12
+                                                                                                  h-12
+                                                                                                  flex
+                                                                                                  justify-center
+                                                                                                  items-center
+                                                                                                  mr-3
+                                                                                                ">
                       <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon text-white group-hover:text-darkBlue"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -233,7 +233,7 @@ let form = useForm({
 
 let submit = () => {
   form.post(route("activity_log.store"));
-  showForm = !showForm;
+  showForm.value = false;
 };
 
 </script>
