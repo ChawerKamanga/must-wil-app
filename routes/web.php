@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AcademicSupervisorsController;
+use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\AnswersController;
 use App\Http\Controllers\AssessmentsController;
 use App\Http\Controllers\DashboardController;
@@ -57,6 +58,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('roles/edit/{role:slug}', [RolesController::class, 'edit'])->name('roles.edit');
     Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::post('/activity-log', [ActivityLogController::class, 'store'])->name('activity_log.store');
 });
 
 Route::middleware(['guest'])->group(function () {
@@ -76,4 +78,4 @@ Route::get('/', function () {
     ]);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
