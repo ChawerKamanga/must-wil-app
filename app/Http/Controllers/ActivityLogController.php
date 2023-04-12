@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ActivityLog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ActivityLogController extends Controller
 {
@@ -26,6 +27,7 @@ class ActivityLogController extends Controller
             'days_present' => $validatedData['days_present'],
             'days_absent' => $validatedData['days_absent'],
             'summary' => $validatedData['summary'],
+            'user_id' => Auth::user()->id,
         ]);
 
         return redirect()->back()->with('success', 'Activity log was successfully created.');

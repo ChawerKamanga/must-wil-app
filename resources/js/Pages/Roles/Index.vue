@@ -1,5 +1,6 @@
 <template>
   <Authenticated>
+
     <Head title="Roles" />
     <RolesNav />
 
@@ -12,26 +13,14 @@
         <div class="flex justify-between items-center my-4">
           <!-- Search bar -->
           <div class="flex items-center">
-            <input
-              type="text"
-              placeholder="Search..."
-              v-model="search"
-              class="search-input"
-            />
+            <input type="text" placeholder="Search..." v-model="search" class="search-input" />
             <button @click="erase()" class="px-3 text-gray-500 text-base">
               Reset
             </button>
           </div>
-          <!-- Create button -->
           <div>
-            <Link
-              :href="route('roles.create')"
-              class="create-btn hidden lg:block"
-              >Create Role</Link
-            >
-            <a href="organization-create.html" class="create-btn lg:hidden"
-              >Create</a
-            >
+            <Link :href="route('roles.create')" class="create-btn hidden lg:block">Create Role</Link>
+            <a href="organization-create.html" class="create-btn lg:hidden">Create</a>
           </div>
         </div>
 
@@ -52,11 +41,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  v-for="(role, index) in roles.data"
-                  :key="role.id"
-                  class="border-b border-gray-200"
-                >
+                <tr v-for="(role, index) in roles.data" :key="role.id" class="border-b border-gray-200">
                   <th class="text-left">
                     <span class="font-normal">{{ index + 1 }}</span>
                   </th>
@@ -72,14 +57,12 @@
                     {{ role.createdAt }}
                   </td>
                   <td class="text-td relative">
-                    <div
-                      class="
-                        flex
-                        space-x-5
-                        justify-center
-                        hover:cursor-pointer
-                      "
-                    >
+                    <div class="
+                          flex
+                          space-x-5
+                          justify-center
+                          hover:cursor-pointer
+                        ">
                       <EditTableRow :href="route('roles.edit', role.slug)" />
                       <DeleteTableRow @click="destroy(role)" />
                     </div>

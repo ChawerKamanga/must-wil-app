@@ -15,10 +15,12 @@ return new class extends Migration {
         Schema::create('activity_logs', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('week_number');
+            $table->smallInteger('is_approved')->default(0);
             $table->date('from_date');
             $table->date('to_date');
             $table->unsignedInteger('days_present');
             $table->unsignedInteger('days_absent');
+            $table->unsignedInteger('user_id');
             $table->text('summary');
             $table->timestamps();
         });

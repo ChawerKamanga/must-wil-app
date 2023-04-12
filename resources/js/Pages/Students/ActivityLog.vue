@@ -11,15 +11,15 @@
           <div class="w-full mt-2 flex flex-col space-y-6 bg-white pb-5 rounded-xl">
             <!-- Dark Blue Banner -->
             <div class="
-                                                                                          relative
-                                                                                          flex
-                                                                                          justify-between
-                                                                                          w-11/12
-                                                                                          mx-auto
-                                                                                          mt-5
-                                                                                          bg-darkBlue
-                                                                                          rounded-lg
-                                                                                        ">
+                                                                                                relative
+                                                                                                flex
+                                                                                                justify-between
+                                                                                                w-11/12
+                                                                                                mx-auto
+                                                                                                mt-5
+                                                                                                bg-darkBlue
+                                                                                                rounded-lg
+                                                                                              ">
               <!-- Assessment Progress Text -->
               <div class="flex flex-col h-[300px] justify-center ml-10">
                 <div>
@@ -36,16 +36,16 @@
                 <div class="mt-10 flex space-x-10">
                   <div class="flex">
                     <div class="
-                                                                                                  bg-[#fbc345]
-                                                                                                  border border-gray-300
-                                                                                                  rounded-full
-                                                                                                  w-12
-                                                                                                  h-12
-                                                                                                  flex
-                                                                                                  justify-center
-                                                                                                  items-center
-                                                                                                  mr-3
-                                                                                                ">
+                                                                                                        bg-[#fbc345]
+                                                                                                        border border-gray-300
+                                                                                                        rounded-full
+                                                                                                        w-12
+                                                                                                        h-12
+                                                                                                        flex
+                                                                                                        justify-center
+                                                                                                        items-center
+                                                                                                        mr-3
+                                                                                                      ">
                       <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon text-white group-hover:text-darkBlue"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -64,16 +64,16 @@
 
                   <div class="flex">
                     <div class="
-                                                                                                  bg-[#ef6f59]
-                                                                                                  border border-gray-300
-                                                                                                  rounded-full
-                                                                                                  w-12
-                                                                                                  h-12
-                                                                                                  flex
-                                                                                                  justify-center
-                                                                                                  items-center
-                                                                                                  mr-3
-                                                                                                ">
+                                                                                                        bg-[#ef6f59]
+                                                                                                        border border-gray-300
+                                                                                                        rounded-full
+                                                                                                        w-12
+                                                                                                        h-12
+                                                                                                        flex
+                                                                                                        justify-center
+                                                                                                        items-center
+                                                                                                        mr-3
+                                                                                                      ">
                       <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon text-white group-hover:text-darkBlue"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -186,14 +186,39 @@
                   <div v-else
                     class="w-[500px] h-[300px] bg-white shadow-2xl rounded-3xl flex flex-col justify-center items-center space-y-5">
                     <div>
-                      <img src="/images/6909-removebg-preview.png" alt="icon" class="w-[200px]" />
+                      <div v-if="!activities.data">
+                        <div
+                          class="w-[500px] h-[300px] bg-white shadow-2xl rounded-3xl flex flex-col justify-center items-center space-y-5">
+                          <div>
+                            <img src="/images/6909-removebg-preview.png" alt="icon" class="w-[200px]" />
+                          </div>
+                          <button type="button" id="upload-btn"
+                            class="bg-darkBlue text-white px-6 py-4 rounded-full text-lg font-bold flex space-x-2"
+                            @click="showForm = true">
+                            <img src="/images/circle-plus-fill.png" class="w-6 h-6" alt="icon" />
+                            <span>Add new activities</span>
+                          </button>
+                        </div>
+                      </div>
+                      <div v-else>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Activity Name</th>
+                              <th>Description</th>
+                              <th>Date</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr v-for="activity in activities.data" :key="activity.id">
+                              <td>{{ activity.name }}</td>
+                              <td>{{ activity.description }}</td>
+                              <td>{{ activity.date }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
-                    <button type="button" id="upload-btn"
-                      class="bg-darkBlue text-white px-6 py-4 rounded-full text-lg font-bold flex space-x-2"
-                      @click="showForm = true">
-                      <img src="/images/circle-plus-fill.png" class="w-6 h-6" alt="icon" />
-                      <span>Add new activities</span>
-                    </button>
                   </div>
                 </div>
               </div>
@@ -217,6 +242,7 @@ const authUser = usePage().props.value.auth.user;
 
 defineProps({
   errors: Object,
+  activities: Object,
 });
 
 const showForm = ref(false)
@@ -232,8 +258,9 @@ let form = useForm({
 
 
 let submit = () => {
-  form.post(route("activity_log.store"));
-  showForm.value = false;
+  if (form.post(route("activity_log.store"))) {
+    showForm.value = false;
+  };
 };
 
 </script>

@@ -15,5 +15,7 @@ class ActivityLog extends Model
         'days_present',
         'days_absent',
         'summary',
+        'user_id',
+        'is_approved'
     ];
 }

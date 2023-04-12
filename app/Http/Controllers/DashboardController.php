@@ -18,7 +18,7 @@ class DashboardController extends Controller
             if (Auth::user()->is_allocated == 1) {
                 return Inertia::render('StudentDashboard', [
                     'authUserOrg' => Auth::user()->organization,
-                    'authUserOrgDistrict' =>  Auth::user()->organization->district,
+                    'authUserOrgDistrict' => Auth::user()->organization->district,
                     'noOfStudents' => Auth::user()->organization->users()->where('role_id', 4)->count(),
                     'industrialSupervisor' => User::where([
                         ['organization_id', Auth::user()->organization_id],
@@ -39,13 +39,16 @@ class DashboardController extends Controller
 
     public function activityLog()
     {
-        return Inertia::render('Students/ActivityLog');
+        $user = Auth::user();
+        return Inertia::render('Students/ActivityLog', [
+            'activities' => $user->activities()->get()
+        ]);
     }
 
     public function showInternReport()
     {
         return Inertia::render('Students/Report', [
-            'report' => Evaluation::where('assessment_id',3)->get(),
+            'report' => Evaluation::where('assessment_id', 3)->get(),
         ]);
     }
 
@@ -70,8 +73,8 @@ class DashboardController extends Controller
             $user->update();
 
             $user->evaluations()->attach($evaluation);
-            return redirect()->back()->with('message',  'Report uploaded successfully');
-        }else {
+            return redirect()->back()->with('message', 'Report uploaded successfully');
+        } else {
             return back()->with('message', 'Report upload unsucessfull');
         }
     }
