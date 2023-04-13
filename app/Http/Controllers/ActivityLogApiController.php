@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ActivityLogResource;
 use App\Models\ActivityLog;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,6 +20,8 @@ class ActivityLogApiController extends Controller
         // Use the user IDs to retrieve all the activity logs that belong to those users
         $activityLogs = ActivityLog::whereIn('user_id', $userIds)->where('is_approved', 0)->get();
 
-        return $activityLogs;
+        // return $activityLogs;
+
+        return ActivityLogResource::collection($activityLogs);
     }
 }
