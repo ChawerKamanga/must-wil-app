@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -9,15 +10,15 @@ class ActivityLogApiController extends Controller
 {
     public function getActivities($authUserId)
     {
-        $user = User::findOrFail($authUserId); // Get the authenticated user
-        $organization = $user->organization; // Get the organization for the user
+        // Retrieve the authenticated user's organization ID
+        $organizationId = User::findOrFail($authUserId)->organization_id;
 
+        // Use the organization ID to retrieve all the users that belong to that organization
+        $userIds = User::where('organization_id', $organizationId)->pluck('id');
 
-        // Get all activity logs for the organization
-        $activity_logs = $organization->activity_logs()->get();
+        // Use the user IDs to retrieve all the activity logs that belong to those users
+        $activityLogs = ActivityLog::whereIn('user_id', $userIds)->where('is_approved', 0)->get();
 
-        return response()->json([
-            'activity_logs' => $activity_logs
-        ]);
+        return $activityLogs;
     }
 }
