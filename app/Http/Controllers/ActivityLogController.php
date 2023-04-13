@@ -20,7 +20,7 @@ class ActivityLogController extends Controller
             'summary' => 'required|string',
         ]);
 
-        ActivityLog::create([
+        $activityLog = ActivityLog::create([
             'week_number' => $validatedData['week_number'],
             'from_date' => $validatedData['from_date'],
             'to_date' => $validatedData['to_date'],
@@ -29,6 +29,8 @@ class ActivityLogController extends Controller
             'summary' => $validatedData['summary'],
             'user_id' => Auth::user()->id,
         ]);
+
+        Auth::user()->activityLogs()->attach($activityLog->id, ['organization_id' => Auth::user()->organization_id]);
 
         return redirect()->back()->with('success', 'Activity log was successfully created.');
     }

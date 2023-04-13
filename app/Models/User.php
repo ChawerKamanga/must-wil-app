@@ -88,4 +88,9 @@ class User extends Authenticatable
         return $this->hasMany(ActivityLog::class);
     }
 
+    public function activityLogs()
+    {
+        return $this->belongsToMany(ActivityLog::class, 'activity_log_users')->withTimestamps()->withPivot('organization_id');
+    }
+
 }
