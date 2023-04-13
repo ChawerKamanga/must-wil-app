@@ -24,4 +24,13 @@ class ActivityLogApiController extends Controller
 
         return ActivityLogResource::collection($activityLogs);
     }
+
+    public function updateActivityLog($activityId)
+    {
+        $activityLog = ActivityLog::findOrFail($activityId);
+        $activityLog->is_approved = 1;
+        $activityLog->save();
+        return response()->json(['message' => 'Activity log updated successfully']);
+    }
+
 }

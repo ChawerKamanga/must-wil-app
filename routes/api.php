@@ -35,7 +35,9 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::get('overall-industrial-supervisor-evaluations', [EvaluationsAPIController::class, 'getOverallIndustrialSupervisorEvaluation']);
     Route::get('interns-org/{selectedUserId}', [InternsAPIController::class, 'getUsersInOrganization']);
     Route::get('activities-log/{selectedUserId}', [ActivityLogApiController::class, 'getActivities']);
+    Route::put('/activity-logs/{id}/approve', [ActivityLogApiController::class, 'updateActivityLog']);
     Route::post('/slider-scores', [SliderScoreController::class, 'store']);
+
 });
 
 
