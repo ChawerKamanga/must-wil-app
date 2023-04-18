@@ -76,31 +76,21 @@ class InternsController extends Controller
      */
     public function show(User $user)
     {
-        $scores = DB::table('slider_scores')
-            ->where('student_id', $user->id)
-            ->where('evaluation_id', 1)
-            ->pluck('scores');
-        // ->map(function ($scoreString) {
-        //     return SliderScore::calculatePercentage($scoreString);
-        // });
-
-        dd($scores);
-
-        // return Inertia::render('Interns/Show', [
-        //     'intern' => $user->only('name', 'slug', 'id', 'report_url'),
-        //     'presentation_score' => SliderScore::getAveragePercentage($user->id, 1),
-        //     'industrial_supervisor_score' => SliderScore::getAveragePercentage($user->id, 2),
-        //     'user_evaluation' => $user->evaluations,
-        //     'evaluations' => Evaluation::query()
-        //         ->paginate(10)
-        //         ->through(fn($evaluation) => [
-        //             'id' => $evaluation->id,
-        //             'name' => $evaluation->name,
-        //             'slug' => $evaluation->slug,
-        //             'total_weight' => $evaluation->total_weight_percentage,
-        //             'type' => $evaluation->assessment->assessmentType->name,
-        //         ]),
-        // ]);
+        return Inertia::render('Interns/Show', [
+            'intern' => $user->only('name', 'slug', 'id', 'report_url'),
+            'presentation_score' => SliderScore::getAveragePercentage($user->id, 1),
+            'industrial_supervisor_score' => SliderScore::getAveragePercentage($user->id, 2),
+            'user_evaluation' => $user->evaluations,
+            'evaluations' => Evaluation::query()
+                ->paginate(10)
+                ->through(fn($evaluation) => [
+                    'id' => $evaluation->id,
+                    'name' => $evaluation->name,
+                    'slug' => $evaluation->slug,
+                    'total_weight' => $evaluation->total_weight_percentage,
+                    'type' => $evaluation->assessment->assessmentType->name,
+                ]),
+        ]);
     }
 
     /**
