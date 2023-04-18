@@ -120,19 +120,22 @@ import EditTableRow from "@/Components/EditTableRow.vue";
 import DeleteTableRow from "@/Components/DeleteTableRow.vue";
 import { Link, Head, useForm } from "@inertiajs/inertia-vue3";
 
-let len = props.user_evaluation.length - 1;
-
 const props = defineProps({
   evaluations: Object,
   intern: Object,
   user_evaluation: Array,
   presentation_score: Number,
-  industrial_supervisor_score: Number
+  industrial_supervisor_score: Number,
+  report_score: Number,
+  activity_score: Number
 });
 
+let report_score = props.report_score;
+let activity_score = props.activity_score;
+
 let form = useForm({
-  report_score: 0,
-  activity_log_score: 0,
+  report_score: report_score,
+  activity_log_score: activity_score,
 });
 
 let submit = (id) => {

@@ -80,6 +80,8 @@ class InternsController extends Controller
             'intern' => $user->only('name', 'slug', 'id', 'report_url'),
             'presentation_score' => SliderScore::getAveragePercentage($user->id, 1),
             'industrial_supervisor_score' => SliderScore::getAveragePercentage($user->id, 2),
+            'report_score' => '80',
+            'activity_score' => '90',
             'user_evaluation' => $user->evaluations,
             'evaluations' => Evaluation::query()
                 ->paginate(10)
