@@ -15,7 +15,7 @@
           </div>
           <!-- Create button -->
           <div>
-            <Link :href="route('assessments.create')" class="create-btn hidden lg:block">Add Assessment</Link>
+            <button @click="submit(intern.id)" class="create-btn hidden lg:block">Submit Results</button>
           </div>
         </div>
 
@@ -27,9 +27,6 @@
               <Link :href="google">Intern Presantation Assed by Academic Supervisors</Link>
             </p>
             <p class="text-veryDarkBlue text-2xl">
-              <!-- <input type="text" v-if="evaluation.id == user_evaluation[len].pivot.evaluation_id"
-                  class="w-12 focus:ring-0 border-t-0 border-l-0  border-r-0 border-b-2 border-darkBlue"
-                  v-model="form.score" /> -->
               {{ presentation_score }}%
             </p>
           </div>
@@ -40,9 +37,6 @@
               <Link :href="google">Evaluation by Industrial Supervisor</Link>
             </p>
             <p class="text-veryDarkBlue text-2xl">
-              <!-- <input type="text" v-if="evaluation.id == user_evaluation[len].pivot.evaluation_id"
-                  class="w-12 focus:ring-0 border-t-0 border-l-0  border-r-0 border-b-2 border-darkBlue"
-                  v-model="form.score" /> -->
               {{ industrial_supervisor_score }}%
             </p>
           </div>
@@ -54,7 +48,7 @@
             </p>
             <p class="text-veryDarkBlue text-2xl">
               <input type="text" class="w-12 focus:ring-0 border-t-0 border-l-0  border-r-0 border-b-2 border-darkBlue"
-                v-model="form.score" />
+                v-model="form.report_score" />
               / 100
             </p>
           </div>
@@ -65,15 +59,14 @@
               <Link :href="route('interns.activities', intern)">Activity Log</Link>
             </p>
             <p class="text-veryDarkBlue text-2xl">
-              0%
+              <input type="text" class="w-12 focus:ring-0 border-t-0 border-l-0  border-r-0 border-b-2 border-darkBlue"
+                v-model="form.activity_log_score" />
+              /100
             </p>
           </div>
 
 
         </div>
-
-
-
 
         <div class="bg-white rounded-xl w-full">
           <div class="w-full mt-6 flex flex-col space-y-6">
@@ -137,8 +130,25 @@ const props = defineProps({
   industrial_supervisor_score: Number
 });
 
-const form = useForm({
-  score: props.user_evaluation[len].pivot.score
+let form = useForm({
+  report_score: 0,
+  activity_log_score: 0,
 });
+
+let submit = (id) => {
+  submitReport(id);
+  submitActivityLog(id);
+};
+
+
+
+let submitReport = (id) => {
+  console.log('I am here');
+  form.post(route("report_score.store", id));
+};
+
+let submitActivityLog = (id) => {
+  form.post(route("activity_score.store", id));
+};
 
 </script>
