@@ -19,6 +19,11 @@
           </div>
         </div>
 
+        <div v-if="$page.props.flash.message" class="bg-darkBlue text-white py-2 px-8 rounded-md font-bold">
+          <Alert class="w-[800px] ">
+            {{ $page.props.flash.message }}
+          </Alert>
+        </div>
 
         <div class="flex flex-col lg:flex-row justify-between items-center space-x-0 lg:space-x-5 space-y-5 lg:space-y-0">
           <div class="rounded-xl bg-white w-full lg:w-1/2 p-5">
@@ -87,7 +92,7 @@
                     </div>
                   </th>
                   <td class="text-td">
-                    <div>70%</div>
+                    <div>{{ calculateAverage() }}</div>
                   </td>
                   <td class="text-td">
                     <div class="flex space-x-5 hover:cursor-pointer">
@@ -116,8 +121,6 @@
 <script setup>
 import Authenticated from "@/Layouts/Authenticated.vue";
 import InternsNav from "@/Components/InternsNav.vue";
-import EditTableRow from "@/Components/EditTableRow.vue";
-import DeleteTableRow from "@/Components/DeleteTableRow.vue";
 import { Link, Head, useForm } from "@inertiajs/inertia-vue3";
 
 const props = defineProps({
@@ -132,11 +135,18 @@ const props = defineProps({
 
 let report_score = props.report_score;
 let activity_score = props.activity_score;
+let industrial_supervisor_score = props.industrial_supervisor_score;
+let presentation_score = props.presentation_score;
 
 let form = useForm({
   report_score: report_score,
   activity_log_score: activity_score,
 });
+
+const calculateAverage = () => {
+  const average = (+report_score + +activity_score + +industrial_supervisor_score + +presentation_score) / 4;
+  return Math.round(average);
+}
 
 let submit = (id) => {
   form.post(route("activity_score.store", id));

@@ -30,5 +30,9 @@ class ScoresController extends Controller
             ]);
             $score->save();
         }
+
+        return redirect()
+            ->back()
+            ->with('message', 'Results updated successfully');
     }
 }
