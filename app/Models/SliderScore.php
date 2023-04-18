@@ -58,4 +58,15 @@ class SliderScore extends Model
 
         return $roundedAverage;
     }
+
+    public static function getLatestScoreByStudentIdAndEvaluationId($studentId, $evaluationId)
+    {
+        $latestScore = self::where('student_id', $studentId)
+            ->where('evaluation_id', $evaluationId)
+            ->orderBy('created_at', 'desc')
+            ->first();
+
+        return $latestScore ? $latestScore->scores : null;
+
+    }
 }
