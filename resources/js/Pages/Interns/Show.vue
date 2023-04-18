@@ -136,18 +136,6 @@ let form = useForm({
 });
 
 let submit = (id) => {
-  submitReport(id);
-  submitActivityLog(id);
-};
-
-
-
-let submitReport = (id) => {
-  console.log('I am here');
-  form.post(route("report_score.store", id));
-};
-
-let submitActivityLog = (id) => {
   form.post(route("activity_score.store", id));
 };
 

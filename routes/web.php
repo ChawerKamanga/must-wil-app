@@ -12,6 +12,7 @@ use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ProgrammesController;
 use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\ScoresController;
 use App\Http\Controllers\StudentRegisterController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
@@ -60,7 +61,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::post('/activity-log', [ActivityLogController::class, 'store'])->name('activity_log.store');
-    Route::post('/report-score/{user}', [ScoresController::class, 'reportScoreStore'])->name('report_score.store');
     Route::post('/activity-score/{user}', [ScoresController::class, 'activityScoreStore'])->name('activity_score.store');
 });
 
