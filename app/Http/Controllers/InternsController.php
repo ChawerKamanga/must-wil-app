@@ -129,12 +129,32 @@ class InternsController extends Controller
 
     public function showInternActivities(User $user)
     {
-        $activities = DB::table('activity_logs')
-            ->where('user_id', $user->id)
-            ->where('is_approved', 1)
-            ->get();
+        return Inertia::render('Interns/Activities', [
+            'intern' => $user->only('name', 'slug', 'id'),
+            'activities' => DB::table('activity_logs')
+                ->where('user_id', $user->id)
+                ->where('is_approved', 1)
+                ->paginate(10)
+                ->through(function ($activity) {
+                    return [
+                        'id' => $activity->id,
+                        'week_number' => $activity->week_number,
+                        'from_date' => $activity->from_date,
+                        'to_date' => $activity->to_date,
+                        'days_absent' => $activity->days_absent,
+                        'days_present' => $activity->days_present,
+                        'summary' => $activity->summary,
+                        'created_at' => $activity->created_at,
+                    ];
+                }),
+        ]);
 
-        dd($activities);
+        // $activities = DB::table('activity_logs')
+        //     ->where('user_id', $user->id)
+        //     ->where('is_approved', 1)
+        //     ->get();
+
+        // dd($activities);
     }
 
 }
