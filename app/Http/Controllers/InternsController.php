@@ -42,7 +42,6 @@ class InternsController extends Controller
                     'phoneNumber' => $intern->phone_number,
                     'programme' => $intern->programme->code,
                     'district' => $intern->district->name,
-
                 ]),
             'filters' => $request->only(['search']),
         ]);
@@ -77,7 +76,7 @@ class InternsController extends Controller
     public function show(User $user)
     {
         return Inertia::render('Interns/Show', [
-            'intern' => $user->only('name', 'slug', 'id', 'report_url'),
+            'intern' => $user->only('name', 'slug', 'id', 'report_url', 'created_at'),
             'presentation_score' => SliderScore::getAveragePercentage($user->id, 1),
             'industrial_supervisor_score' => SliderScore::getAveragePercentage($user->id, 2),
             'report_score' => SliderScore::getLatestScoreByStudentIdAndEvaluationId($user->id, 3),

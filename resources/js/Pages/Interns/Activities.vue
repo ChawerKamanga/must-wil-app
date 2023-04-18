@@ -61,7 +61,6 @@
                                     </td>
 
                                     <td class="text-td">{{ transformDateTime(activity.created_at) }}</td>
-
                                 </tr>
                             </tbody>
                         </table>
@@ -115,7 +114,5 @@ let transformDateTime = (dateTimeString) => {
 
     return `${day} ${month}, ${year} at ${time}`;
 }
-
-
 
 </script>

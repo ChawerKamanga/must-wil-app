@@ -80,6 +80,7 @@
                 <tr>
                   <th class="dashboard-th text-left">Name</th>
                   <th class="dashboard-th text-left">Final Score</th>
+                  <th class="dashboard-th text-left">Activity Log</th>
                   <th class="dashboard-th text-left">Report</th>
                   <th class="dashboard-th text-left">Assessed On</th>
                 </tr>
@@ -94,6 +95,10 @@
                   <td class="text-td">
                     <div>{{ calculateAverage() }}</div>
                   </td>
+
+                  <td class="text-td">
+                    <Link :href="route('interns.activities', intern)" class="underline">See Activity Report</Link>
+                  </td>
                   <td class="text-td">
                     <div class="flex space-x-5 hover:cursor-pointer">
                       <a :href="intern.report_url" class="space-x-2 flex" v-if="intern.report_url">
@@ -107,7 +112,7 @@
                       </a>
                     </div>
                   </td>
-                  <td class="text-td">54 minutes</td>
+                  <td class="text-td">{{ transformDateTime(intern.created_at) }}</td>
                 </tr>
               </tbody>
             </table>
@@ -151,5 +156,20 @@ const calculateAverage = () => {
 let submit = (id) => {
   form.post(route("activity_score.store", id));
 };
+
+let transformDateTime = (dateTimeString) => {
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  const dateTime = new Date(dateTimeString);
+  const day = dateTime.getDate();
+  const month = months[dateTime.getMonth()];
+  const year = dateTime.getFullYear();
+  const time = dateTime.toLocaleTimeString('en-US', { hour12: false });
+
+  return `${day} ${month}, ${year} at ${time}`;
+}
 
 </script>
