@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('interns/report', [DashboardController::class, 'storeInternReport'])->name('interns.report.store');
     Route::get('users/edit/{user:slug}', [InternsController::class, 'edit'])->name('interns.edit');
     Route::get('interns/{user:slug}', [InternsController::class, 'show'])->name('interns.show');
+    Route::get('interns/{user:slug}/activityLog', [InternsController::class, 'showInternActivities'])->name('interns.activities');
     Route::resource('organizations', OrganizationController::class)->except(['edit', 'show']);
     Route::get('organizations/edit/{organization:slug}', [OrganizationController::class, 'edit'])->name('organizations.edit');
     Route::get('organizations/{organization:slug}', [OrganizationController::class, 'show'])->name('organizations.show');

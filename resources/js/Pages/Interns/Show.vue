@@ -48,30 +48,28 @@
           </div>
 
           <div class="rounded-xl bg-white w-full lg:w-1/2 p-5">
-            <p class="text-gray-400 text-xs font-bold">Questionnaire</p>
+            <p class="text-gray-400 text-xs font-bold">Document</p>
             <p class="text-veryDarkBlue font-bold text-lg">
-              <Link :href="google">Intern Presantation</Link>
+              <Link :href="google">Final Report by the Intern</Link>
             </p>
             <p class="text-veryDarkBlue text-2xl">
-              <!-- <input type="text" v-if="evaluation.id == user_evaluation[len].pivot.evaluation_id"
-                  class="w-12 focus:ring-0 border-t-0 border-l-0  border-r-0 border-b-2 border-darkBlue"
-                  v-model="form.score" /> -->
-              {{ presentation_score }}%
+              <input type="text" class="w-12 focus:ring-0 border-t-0 border-l-0  border-r-0 border-b-2 border-darkBlue"
+                v-model="form.score" />
+              / 100
             </p>
           </div>
 
           <div class="rounded-xl bg-white w-full lg:w-1/2 p-5">
-            <p class="text-gray-400 text-xs font-bold">Questionnaire</p>
+            <p class="text-gray-400 text-xs font-bold">Activities</p>
             <p class="text-veryDarkBlue font-bold text-lg">
-              <Link :href="google">Intern Presantation</Link>
+              <Link :href="route('interns.activities', intern)">Activity Log</Link>
             </p>
             <p class="text-veryDarkBlue text-2xl">
-              <!-- <input type="text" v-if="evaluation.id == user_evaluation[len].pivot.evaluation_id"
-                  class="w-12 focus:ring-0 border-t-0 border-l-0  border-r-0 border-b-2 border-darkBlue"
-                  v-model="form.score" /> -->
-              {{ presentation_score }}%
+              0%
             </p>
           </div>
+
+
         </div>
 
 

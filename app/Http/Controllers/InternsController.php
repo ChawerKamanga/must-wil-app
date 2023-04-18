@@ -127,5 +127,14 @@ class InternsController extends Controller
         //
     }
 
+    public function showInternActivities(User $user)
+    {
+        $activities = DB::table('activity_logs')
+            ->where('user_id', $user->id)
+            ->where('is_approved', 1)
+            ->get();
+
+        dd($activities);
+    }
 
 }
