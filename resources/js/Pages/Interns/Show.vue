@@ -1,5 +1,6 @@
 <template>
   <Authenticated>
+
     <Head title="Assessments" />
     <InternsNav />
 
@@ -14,44 +15,67 @@
           </div>
           <!-- Create button -->
           <div>
-            <Link
-              :href="route('assessments.create')"
-              class="create-btn hidden lg:block"
-              >Add Assessment</Link
-            >
+            <Link :href="route('assessments.create')" class="create-btn hidden lg:block">Add Assessment</Link>
           </div>
         </div>
 
-        <div
-          class="
-            flex flex-col
-            lg:flex-row
-            justify-between
-            items-center
-            space-x-0
-            lg:space-x-5
-            space-y-5
-            lg:space-y-0
-          "
-        >
-          <div
-            v-for="(evaluation, index) in evaluations.data"
-            :key="index"
-            class="rounded-xl bg-white w-full lg:w-1/2 p-5"
-          >
-            <p class="text-gray-400 text-xs font-bold">{{ evaluation.type }}</p>
+
+        <div class="flex flex-col lg:flex-row justify-between items-center space-x-0 lg:space-x-5 space-y-5 lg:space-y-0">
+          <div class="rounded-xl bg-white w-full lg:w-1/2 p-5">
+            <p class="text-gray-400 text-xs font-bold">Questionnaire</p>
             <p class="text-veryDarkBlue font-bold text-lg">
-              <Link
-                :href="route('assessment.student.show', [evaluation, intern])"
-                >{{ evaluation.name }}</Link
-              >
+              <Link :href="google">Intern Presantation Assed by Academic Supervisors</Link>
             </p>
             <p class="text-veryDarkBlue text-2xl">
-              <input type="text" v-if="evaluation.id == user_evaluation[len].pivot.evaluation_id" class="w-12 focus:ring-0 border-t-0 border-l-0  border-r-0 border-b-2 border-darkBlue" v-model="form.score" />
-              / {{ evaluation.total_weight }}
+              <!-- <input type="text" v-if="evaluation.id == user_evaluation[len].pivot.evaluation_id"
+                  class="w-12 focus:ring-0 border-t-0 border-l-0  border-r-0 border-b-2 border-darkBlue"
+                  v-model="form.score" /> -->
+              {{ presentation_score }}%
+            </p>
+          </div>
+
+          <div class="rounded-xl bg-white w-full lg:w-1/2 p-5">
+            <p class="text-gray-400 text-xs font-bold">Questionnaire</p>
+            <p class="text-veryDarkBlue font-bold text-lg">
+              <Link :href="google">Evaluation by Industrial Supervisor</Link>
+            </p>
+            <p class="text-veryDarkBlue text-2xl">
+              <!-- <input type="text" v-if="evaluation.id == user_evaluation[len].pivot.evaluation_id"
+                  class="w-12 focus:ring-0 border-t-0 border-l-0  border-r-0 border-b-2 border-darkBlue"
+                  v-model="form.score" /> -->
+              {{ industrial_supervisor_score }}%
+            </p>
+          </div>
+
+          <div class="rounded-xl bg-white w-full lg:w-1/2 p-5">
+            <p class="text-gray-400 text-xs font-bold">Questionnaire</p>
+            <p class="text-veryDarkBlue font-bold text-lg">
+              <Link :href="google">Intern Presantation</Link>
+            </p>
+            <p class="text-veryDarkBlue text-2xl">
+              <!-- <input type="text" v-if="evaluation.id == user_evaluation[len].pivot.evaluation_id"
+                  class="w-12 focus:ring-0 border-t-0 border-l-0  border-r-0 border-b-2 border-darkBlue"
+                  v-model="form.score" /> -->
+              {{ presentation_score }}%
+            </p>
+          </div>
+
+          <div class="rounded-xl bg-white w-full lg:w-1/2 p-5">
+            <p class="text-gray-400 text-xs font-bold">Questionnaire</p>
+            <p class="text-veryDarkBlue font-bold text-lg">
+              <Link :href="google">Intern Presantation</Link>
+            </p>
+            <p class="text-veryDarkBlue text-2xl">
+              <!-- <input type="text" v-if="evaluation.id == user_evaluation[len].pivot.evaluation_id"
+                  class="w-12 focus:ring-0 border-t-0 border-l-0  border-r-0 border-b-2 border-darkBlue"
+                  v-model="form.score" /> -->
+              {{ presentation_score }}%
             </p>
           </div>
         </div>
+
+
+
 
         <div class="bg-white rounded-xl w-full">
           <div class="w-full mt-6 flex flex-col space-y-6">
@@ -76,22 +100,12 @@
                   </td>
                   <td class="text-td">
                     <div class="flex space-x-5 hover:cursor-pointer">
-                      <a
-                        :href="intern.report_url"
-                        class="space-x-2 flex"
-                        v-if="intern.report_url"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          class="w-4 h-4 text-veryDarkBlue"
-                        >
-                          <path
-                            fill-rule="evenodd"
+                      <a :href="intern.report_url" class="space-x-2 flex" v-if="intern.report_url">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                          class="w-4 h-4 text-veryDarkBlue">
+                          <path fill-rule="evenodd"
                             d="M12 2.25a.75.75 0 01.75.75v11.69l3.22-3.22a.75.75 0 111.06 1.06l-4.5 4.5a.75.75 0 01-1.06 0l-4.5-4.5a.75.75 0 111.06-1.06l3.22 3.22V3a.75.75 0 01.75-.75zm-9 13.5a.75.75 0 01.75.75v2.25a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5V16.5a.75.75 0 011.5 0v2.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V16.5a.75.75 0 01.75-.75z"
-                            clip-rule="evenodd"
-                          />
+                            clip-rule="evenodd" />
                         </svg>
                         <span class="text-veryDarkBlue">Download</span>
                       </a>
@@ -121,6 +135,8 @@ const props = defineProps({
   evaluations: Object,
   intern: Object,
   user_evaluation: Array,
+  presentation_score: Number,
+  industrial_supervisor_score: Number
 });
 
 const form = useForm({

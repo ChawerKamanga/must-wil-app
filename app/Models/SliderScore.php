@@ -20,6 +20,7 @@ class SliderScore extends Model
 
     public static function calculatePercentage($scoreString)
     {
+        dd('I am here');
         $scores = explode(', ', $scoreString);
         $sum = array_reduce($scores, function ($carry, $score) {
             return $carry + (float) $score;

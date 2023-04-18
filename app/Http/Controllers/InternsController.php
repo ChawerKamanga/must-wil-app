@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Assessments;
+use App\Models\Evaluation;
 use App\Models\SliderScore;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -77,33 +76,24 @@ class InternsController extends Controller
      */
     public function show(User $user)
     {
-        // $scores = DB::table('slider_scores')
-        //     ->where('student_id', $user->id)
-        //     ->where('evaluation_id', 1)
-        //     ->pluck('scores')
-        //     ->toArray();
-
         $scores = DB::table('slider_scores')
             ->where('student_id', $user->id)
             ->where('evaluation_id', 1)
-            ->pluck('scores')
-            ->map(function ($scoreString) {
-                return SliderScore::calculatePercentage($scoreString);
-            });
+            ->pluck('scores');
+        // ->map(function ($scoreString) {
+        //     return SliderScore::calculatePercentage($scoreString);
+        // });
 
-        $average = $scores->avg();
-        $roundedAverage = round($average, 0);
-
-        return dd($roundedAverage);
-
-
+        dd($scores);
 
         // return Inertia::render('Interns/Show', [
         //     'intern' => $user->only('name', 'slug', 'id', 'report_url'),
+        //     'presentation_score' => SliderScore::getAveragePercentage($user->id, 1),
+        //     'industrial_supervisor_score' => SliderScore::getAveragePercentage($user->id, 2),
         //     'user_evaluation' => $user->evaluations,
         //     'evaluations' => Evaluation::query()
         //         ->paginate(10)
-        //         ->through(fn ($evaluation) => [
+        //         ->through(fn($evaluation) => [
         //             'id' => $evaluation->id,
         //             'name' => $evaluation->name,
         //             'slug' => $evaluation->slug,
