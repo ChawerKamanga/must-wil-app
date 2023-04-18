@@ -15,7 +15,7 @@
                     </div>
                     <!-- Create button -->
                     <div>
-                        <Link :href="route('assessments.create')" class="create-btn hidden lg:block">Add Assessment</Link>
+                        <Link :href="route('interns.show', intern)" class="create-btn hidden lg:block">Go Back</Link>
                     </div>
                 </div>
 
@@ -31,8 +31,8 @@
                                     <th class="dashboard-th text-left">Dates</th>
                                     <th class="dashboard-th text-left">Days Present</th>
                                     <th class="dashboard-th text-left">Days Absent</th>
-                                    <th class="dashboard-th text-left">Added On</th>
                                     <th class="dashboard-th text-left">Summary</th>
+                                    <th class="dashboard-th text-left">Added On</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,11 +56,12 @@
                                         <div>{{ activity.days_absent }}</div>
                                     </td>
 
-                                    <td class="text-td">{{ transformDateTime(activity.created_at) }}</td>
-
                                     <td class="text-td">
                                         <div>{{ activity.summary }}</div>
                                     </td>
+
+                                    <td class="text-td">{{ transformDateTime(activity.created_at) }}</td>
+
                                 </tr>
                             </tbody>
                         </table>
