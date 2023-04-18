@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assessments;
-use App\Models\Evaluation;
+use App\Models\SliderScore;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -33,7 +33,7 @@ class InternsController extends Controller
                 ->orderBy('name')
                 ->paginate(10)
                 ->withQueryString()
-                ->through(fn ($intern) => [
+                ->through(fn($intern) => [
                     'id' => $intern->id,
                     'name' => $intern->name,
                     'slug' => $intern->slug,
@@ -77,19 +77,40 @@ class InternsController extends Controller
      */
     public function show(User $user)
     {
-        return Inertia::render('Interns/Show', [
-            'intern' => $user->only('name', 'slug', 'id', 'report_url'),
-            'user_evaluation' => $user->evaluations,
-            'evaluations' => Evaluation::query()
-                ->paginate(10)
-                ->through(fn ($evaluation) => [
-                    'id' => $evaluation->id,
-                    'name' => $evaluation->name,
-                    'slug' => $evaluation->slug,
-                    'total_weight' => $evaluation->total_weight_percentage,
-                    'type' => $evaluation->assessment->assessmentType->name,
-                ]),
-        ]);
+        // $scores = DB::table('slider_scores')
+        //     ->where('student_id', $user->id)
+        //     ->where('evaluation_id', 1)
+        //     ->pluck('scores')
+        //     ->toArray();
+
+        $scores = DB::table('slider_scores')
+            ->where('student_id', $user->id)
+            ->where('evaluation_id', 1)
+            ->pluck('scores')
+            ->map(function ($scoreString) {
+                return SliderScore::calculatePercentage($scoreString);
+            });
+
+        $average = $scores->avg();
+        $roundedAverage = round($average, 0);
+
+        return dd($roundedAverage);
+
+
+
+        // return Inertia::render('Interns/Show', [
+        //     'intern' => $user->only('name', 'slug', 'id', 'report_url'),
+        //     'user_evaluation' => $user->evaluations,
+        //     'evaluations' => Evaluation::query()
+        //         ->paginate(10)
+        //         ->through(fn ($evaluation) => [
+        //             'id' => $evaluation->id,
+        //             'name' => $evaluation->name,
+        //             'slug' => $evaluation->slug,
+        //             'total_weight' => $evaluation->total_weight_percentage,
+        //             'type' => $evaluation->assessment->assessmentType->name,
+        //         ]),
+        // ]);
     }
 
     /**
@@ -125,4 +146,6 @@ class InternsController extends Controller
     {
         //
     }
+
+
 }
