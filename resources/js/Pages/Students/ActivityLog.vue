@@ -12,15 +12,15 @@
             <!-- Dark Blue Banner -->
             <div
               class="
-                                                                                                                                                                                                                          relative
-                                                                                                                                                                                                                          flex
-                                                                                                                                                                                                                          justify-between
-                                                                                                                                                                                                                          w-11/12
-                                                                                                                                                                                                                          mx-auto
-                                                                                                                                                                                                                          mt-5
-                                                                                                                                                                                                                          bg-darkBlue
-                                                                                                                                                                                                                          rounded-lg
-                                                                                                                                                                                                                        ">
+                                                                                                                                                                                                                                  relative
+                                                                                                                                                                                                                                  flex
+                                                                                                                                                                                                                                  justify-between
+                                                                                                                                                                                                                                  w-11/12
+                                                                                                                                                                                                                                  mx-auto
+                                                                                                                                                                                                                                  mt-5
+                                                                                                                                                                                                                                  bg-darkBlue
+                                                                                                                                                                                                                                  rounded-lg
+                                                                                                                                                                                                                                ">
               <!-- Assessment Progress Text -->
               <div class="flex flex-col h-[300px] justify-center ml-10">
                 <div>
@@ -56,15 +56,15 @@
                   <div class="flex">
                     <div
                       class="
-                       bg-[#ef6f59]
-                                                                                                                                                                                                                                  border border-gray-300
-                                                                                                                                                                                                                                  rounded-full
-                                                                                                                                                                                                                                  w-12
-                                                                                                                                                                                                                                  h-12
-                                                                                                                                                                                                                                  flex
-                                                                                                                                                                                                                                  justify-center
-                                                                                                                                                                                                                                  items-center
-                                                                                                                                                                                                                                  mr-3">
+                               bg-[#ef6f59]
+                                                                                                                                                                                                                                          border border-gray-300
+                                                                                                                                                                                                                                          rounded-full
+                                                                                                                                                                                                                                          w-12
+                                                                                                                                                                                                                                          h-12
+                                                                                                                                                                                                                                          flex
+                                                                                                                                                                                                                                          justify-center
+                                                                                                                                                                                                                                          items-center
+                                                                                                                                                                                                                                          mr-3">
                       <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon text-white group-hover:text-darkBlue"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -215,12 +215,12 @@
                               class="bg-white border-b border-gray-200">
                               <td class="py-3 px-4 text-center">{{ activity.week_number }}</td>
                               <td class="py-3 px-4">{{ activity.summary }}</td>
-                              <td class="py-3 px-4">{{ activity.from_date }}</td>
-                              <td class="py-3 px-4">{{ activity.to_date }}</td>
+                              <td class="py-3 px-4">{{ transformDate(activity.from_date) }}</td>
+                              <td class="py-3 px-4">{{ transformDate(activity.to_date) }}</td>
                               <td class="py-3 px-4 text-center">{{ activity.days_absent }}</td>
                               <td class="py-3 px-4 text-center">{{ activity.days_present }}</td>
                               <td class="py-3 px-4">{{ getApprovalStatus(activity.is_approved) }}</td>
-                              <td class="py-3 px-4">{{ formatDate(activity.created_at) }}</td>
+                              <td class="py-3 px-4">{{ transformDateTime(activity.created_at) }}</td>
                             </tr>
                           </tbody>
                         </table>
@@ -275,18 +275,36 @@ let submit = () => {
   showForm.value = false;
 };
 
-const formatDate = (dateString) => {
+let transformDate = (dateString) => {
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
   const date = new Date(dateString);
+  const day = date.getDate();
+  const month = months[date.getMonth()];
   const year = date.getFullYear();
-  const month = ('0' + (date.getMonth() + 1)).slice(-2);
-  const day = ('0' + date.getDate()).slice(-2);
-  const hours = ('0' + date.getHours()).slice(-2);
-  const minutes = ('0' + date.getMinutes()).slice(-2);
-  const seconds = ('0' + date.getSeconds()).slice(-2);
-  const formattedDate = `${day}-${month}-${year}`;
-  const formattedTime = `${hours}:${minutes}:${seconds}`;
-  return `${formattedDate} ${formattedTime}`;
-};
+
+  return `${day} ${month} ${year}`;
+}
+
+
+let transformDateTime = (dateTimeString) => {
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  const dateTime = new Date(dateTimeString);
+  const day = dateTime.getDate();
+  const month = months[dateTime.getMonth()];
+  const year = dateTime.getFullYear();
+  const time = dateTime.toLocaleTimeString('en-US', { hour12: false });
+
+  return `${day} ${month}, ${year} at ${time}`;
+}
+
 
 const getApprovalStatus = (isApproved) => {
   if (isApproved === 1) {

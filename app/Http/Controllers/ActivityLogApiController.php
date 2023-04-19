@@ -6,21 +6,20 @@ use App\Http\Resources\ActivityLogResource;
 use App\Models\ActivityLog;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ActivityLogApiController extends Controller
 {
     public function getActivities($authUserId)
     {
-        // Retrieve the authenticated user's organization ID
-        $organizationId = User::findOrFail($authUserId)->organization_id;
+        $user = User::findOrFail($authUserId);
+        $organizationId = $user->organization_id;
 
-        // Use the organization ID to retrieve all the users that belong to that organization
-        $userIds = User::where('organization_id', $organizationId)->pluck('id');
+        $activityLogs = DB::table('activity_logs')
+            ->join('users', 'activity_logs.user_id', '=', 'users.id')
+            ->where('users.organization_id', '=', $organizationId)
+            ->get();
 
-        // Use the user IDs to retrieve all the activity logs that belong to those users
-        $activityLogs = ActivityLog::whereIn('user_id', $userIds)->where('is_approved', 0)->get();
-
-        // return $activityLogs;
 
         return ActivityLogResource::collection($activityLogs);
     }
