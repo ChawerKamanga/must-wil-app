@@ -27,7 +27,6 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::get('user', [UserController::class, 'index']);
     Route::get('organizations', [OrganizationApiController::class, 'index']);
     Route::get('organization/{organization}', [OrganizationApiController::class, 'show']);
-    Route::get('organization/{organization}', [OrganizationApiController::class, 'show']);
     Route::get('programmes', [ProgrammesAPIController::class, 'index']);
     Route::get("interns/{pgId?}/search/{name?}", [InternsAPIController::class, 'search']);
     Route::get("interns/{pgId?}", [InternsAPIController::class, 'index']);
@@ -37,7 +36,7 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::get('activities-log/{selectedUserId}', [ActivityLogApiController::class, 'getActivities']);
     Route::put('/activity-logs/{id}/approve', [ActivityLogApiController::class, 'updateActivityLog']);
     Route::post('/slider-scores', [SliderScoreController::class, 'store']);
-
+    Route::get('organization/interns/{user}', [OrganizationApiController::class, 'getUsersByOrganization']);
 });
 
 
