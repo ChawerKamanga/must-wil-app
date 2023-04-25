@@ -18,8 +18,8 @@ class ActivityLogApiController extends Controller
         $activityLogs = DB::table('activity_logs')
             ->join('users', 'activity_logs.user_id', '=', 'users.id')
             ->where('users.organization_id', '=', $organizationId)
+            ->where('activity_logs.is_approved', '=', 0)
             ->get();
-
 
         return ActivityLogResource::collection($activityLogs);
     }

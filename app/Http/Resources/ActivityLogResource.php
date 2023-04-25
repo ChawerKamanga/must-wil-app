@@ -16,6 +16,7 @@ class ActivityLogResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'is_approved' => $this->is_approved,
             'week_number' => $this->week_number,
             'from_date' => $this->from_date,
             'to_date' => $this->to_date,
@@ -24,7 +25,7 @@ class ActivityLogResource extends JsonResource
             'summary' => $this->summary,
             'created_at' => $this->created_at,
             'intern_name' => $this->name,
-            'intern_img_url' => $this->profile_img_url,
+            'intern_img_url' => $this->profile_img_url
         ];
     }
 }
