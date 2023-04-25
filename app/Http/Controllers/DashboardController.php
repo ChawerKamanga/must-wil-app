@@ -75,7 +75,7 @@ class DashboardController extends Controller
             $user->evaluations()->attach($evaluation);
             return redirect()->back()->with('message', 'Report uploaded successfully');
         } else {
-            return back()->with('message', 'Report upload unsucessfull');
+            return back()->with('message', 'Report not uploaded');
         }
     }
 }

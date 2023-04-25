@@ -95,6 +95,12 @@
           </div>
 
           <!-- Main Section -->
+          <div v-if="$page.props.flash.message" class="bg-darkBlue text-white py-2 px-8 rounded-md font-bold">
+            <Alert class="w-[800px] ">
+              {{ $page.props.flash.message }}
+            </Alert>
+          </div>
+
           <div class="w-full mt-10">
             <div class="w-full mt-6 flex flex-col space-y-6">
               <div class="px-10 py-7 space-y-2">
