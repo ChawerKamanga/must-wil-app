@@ -1,9 +1,10 @@
 <template>
   <Authenticated>
+
     <Head title="Interns" />
     <InternsNav />
 
-     <section class="w-full lg:w-10/12 lg:items-center lg:mx-auto space-y-10">
+    <section class="w-full lg:w-10/12 lg:items-center lg:mx-auto space-y-10">
       <div class="container w-full mx-auto px-5 py-5 flex flex-col space-y-10">
         <div>
           <h1 class="text-veryDarkBlue text-3xl font-bold">Interns</h1>
@@ -12,32 +13,25 @@
         <div class="flex justify-between items-center my-4">
           <!-- Search bar -->
           <div class="flex items-center">
-            <input
-              type="text"
-              placeholder="Search..."
-              v-model="search"
-              class="search-input"
-            />
+            <input type="text" placeholder="Search..." v-model="search" class="search-input" />
             <button @click="erase()" class="px-3 text-gray-500 text-base">
               Reset
             </button>
           </div>
           <!-- Create button -->
           <div>
-            <Link
-              :href="route('interns.create')"
-              class="create-btn hidden lg:block"
-              >Add Intern</Link
-            >
-            <a href="organization-create.html" class="create-btn lg:hidden"
-              >Create</a
-            >
+            <Link :href="route('interns.create')" class="create-btn hidden lg:block">Add Intern</Link>
+            <a href="organization-create.html" class="create-btn lg:hidden">Create</a>
           </div>
         </div>
 
-        <Alert v-if="$page.props.flash.message">
-          {{ $page.props.flash.message }}
-        </Alert>
+        <div class="flex space-x-4 pl-4">
+          <button v-for="programme in programmes.data" :key="programme.id"
+            class="border px-6 py-2 rounded-md border-darkBlue bg-darkBlue text-white">{{
+              programme.code.toUpperCase()
+            }}</button>
+
+        </div>
 
         <div class="bg-white rounded-xl w-full">
           <div class="w-full mt-6 flex flex-col space-y-6">
@@ -56,11 +50,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  v-for="(intern, index) in interns.data"
-                  :key="intern.id"
-                  class="border-b border-gray-200"
-                >
+                <tr v-for="(intern, index) in interns.data" :key="intern.id" class="border-b border-gray-200">
                   <th class="text-left">
                     <span class="font-normal">{{ index + 1 }}</span>
                   </th>
@@ -86,10 +76,11 @@
                     <span v-if="intern.gender == 'M'">
                       Male
                     </span>
-                     <span v-else>
+                    <span v-else>
                       Female
                     </span>
-                  </td><td class="text-td">
+                  </td>
+                  <td class="text-td">
                     <span>
                       {{ intern.phoneNumber }}
                     </span>
@@ -98,14 +89,12 @@
                     {{ intern.programme.toUpperCase() }}
                   </td>
                   <td class="text-td relative">
-                    <div
-                      class="
+                    <div class="
                         flex
                         space-x-5
                         justify-center
                         hover:cursor-pointer
-                      "
-                    >
+                      ">
                       <EditTableRow :href="route('interns.edit', intern.slug)" />
                       <DeleteTableRow @click="destroy(intern)" />
                     </div>
@@ -134,6 +123,7 @@ import EditTableRow from "@/Components/EditTableRow.vue";
 const props = defineProps({
   interns: Object,
   filters: Object,
+  programmes: Object,
 });
 
 let search = ref(props.filters.search);

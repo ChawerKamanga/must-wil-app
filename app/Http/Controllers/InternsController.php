@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evaluation;
+use App\Models\Programme;
 use App\Models\SliderScore;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -42,6 +43,13 @@ class InternsController extends Controller
                     'phoneNumber' => $intern->phone_number,
                     'programme' => $intern->programme->code,
                     'district' => $intern->district->name,
+                ]),
+            'programmes' => Programme::query()
+                ->paginate(10)
+                ->through(fn($programme) => [
+                    'id' => $programme->id,
+                    'name' => $programme->name,
+                    'code' => $programme->code,
                 ]),
             'filters' => $request->only(['search']),
         ]);
