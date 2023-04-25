@@ -58,14 +58,14 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'flash' => [
-                'message' => fn () => $request->session()->get('message')
+                'message' => fn() => $request->session()->get('message')
             ],
-            'auth.user' => fn () => $request->user()
-                ? $request->user()->only('id', 'name', 'email','profile_img_url', 'gender', 'slug', 'is_allocated')
-                : null,
-            'auth.user.role' => fn () => $request->user()
-                ? Auth::user()->role
-                : null,
+            'auth.user' => fn() => $request->user()
+            ? $request->user()->only('id', 'name', 'email', 'profile_img_url', 'gender', 'slug', 'is_allocated', 'report_url', 'updated_at')
+            : null,
+            'auth.user.role' => fn() => $request->user()
+            ? Auth::user()->role
+            : null,
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [
                     'location' => $request->url(),
