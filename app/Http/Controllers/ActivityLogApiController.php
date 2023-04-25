@@ -19,7 +19,7 @@ class ActivityLogApiController extends Controller
             ->join('users', 'activity_logs.user_id', '=', 'users.id')
             ->where('users.organization_id', '=', $organizationId)
             ->where('activity_logs.is_approved', '=', 0)
-            ->select('activity_logs.id', 'activity_logs.week_number', 'activity_logs.is_approved', 'activity_logs.from_date', 'activity_logs.to_date', 'activity_logs.days_present', 'activity_logs.days_absent', 'activity_logs.summary', 'users.name', 'users.profile_img_url')
+            ->select('activity_logs.id', 'activity_logs.week_number', 'activity_logs.is_approved', 'activity_logs.from_date', 'activity_logs.to_date', 'activity_logs.days_present', 'activity_logs.days_absent', 'activity_logs.summary', 'activity_logs.created_at', 'users.name', 'users.profile_img_url')
             ->get();
 
         return ActivityLogResource::collection($activityLogs);
