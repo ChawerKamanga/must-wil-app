@@ -207,6 +207,7 @@ export default {
   setup(props) {
     const authUser = computed(() => usePage().props.value.auth.user);
 
+
     const form = useForm({
       intern_file: null,
       report_id: props.report[0].id
@@ -218,6 +219,9 @@ export default {
       setTimeout(() => {
         form.post(route("interns.report.store"));
       }, 3000);
+
+      this.showForm = false;
+
     }
 
     if (authUser.value.report_url === "") {
