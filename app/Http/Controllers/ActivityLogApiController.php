@@ -19,17 +19,10 @@ class ActivityLogApiController extends Controller
             ->join('users', 'activity_logs.user_id', '=', 'users.id')
             ->where('users.organization_id', '=', $organizationId)
             ->where('activity_logs.is_approved', '=', 0)
+            ->select('activity_logs.id', 'activity_logs.week_number', 'activity_logs.is_approved', 'activity_logs.from_date', 'activity_logs.to_date', 'activity_logs.days_present', 'activity_logs.days_absent', 'activity_logs.summary', 'users.name', 'users.profile_img_url')
             ->get();
-        // $activityLogs = DB::table('activity_logs')
-        //     ->select('activity_logs.id', 'week_number', 'is_approved', 'from_date', 'to_date', 'days_present', 'days_absent', 'user_id', 'summary', 'activity_logs.created_at', 'activity_logs.updated_at as activity_logs_updated_at')
-        //     ->join('users', 'activity_logs.user_id', '=', 'users.id')
-        //     ->where('users.organization_id', '=', $organizationId)
-        //     ->where('activity_logs.is_approved', '=', 0)
-        //     ->get();
 
-        return $activityLogs;
-
-        // return ActivityLogResource::collection($activityLogs);
+        return ActivityLogResource::collection($activityLogs);
     }
 
     public function updateActivityLog($activityId)

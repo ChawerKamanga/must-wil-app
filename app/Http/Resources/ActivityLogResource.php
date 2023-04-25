@@ -23,7 +23,6 @@ class ActivityLogResource extends JsonResource
             'days_absent' => $this->days_absent,
             'days_present' => $this->days_present,
             'summary' => $this->summary,
-            'created_at' => $this->created_at,
             'intern_name' => $this->name,
             'intern_img_url' => $this->profile_img_url
         ];
